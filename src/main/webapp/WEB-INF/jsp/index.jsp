@@ -1,17 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<base href="<%=basePath%>">
 <meta charset="UTF-8">
 
 <title>中国高校信息查询系统_高考院校库_考试吧</title>
-<link href="./index_files/style.css" rel="stylesheet" type="text/css">
-<script src="./index_files/hm.js.下载"></script>
-<script language="javascript" src="./index_files/jquery-1.8.2.js.下载"></script>
-<script src="./index_files/jquery.cookie.js.下载"></script>
-<script src="./index_files/bdhmprotocol.js.下载" type="text/javascript"
-	charset="gb2312"></script>
+<link href="<%=basePath%>static/css/style.css" rel="stylesheet" type="text/css">
+<script src="<%=basePath%>static/js/hm.js"></script>
+<script src="<%=basePath%>static/js/jquery-1.8.2.js"></script>
+<script src="<%=basePath%>static/js/jquery.cookie.js"></script>
+<script src="<%=basePath%>static/js/bdhmprotocol.js" type="text/javascript"></script>
 </head>
 <body>
 
