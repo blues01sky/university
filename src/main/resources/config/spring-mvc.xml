@@ -19,13 +19,13 @@
    <!--  <context:annotation-config /> -->
     
     <!-- 设置使用注解的类所在的jar包 -->
-    <context:component-scan base-package="demo.controller" />
+    <context:component-scan base-package="area.controller" />
 
     <!-- 完成请求和注解POJO的映射 -->
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 
     <!-- 对转向页面的路径解析。prefix：前缀， suffix：后缀 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-        p:prefix="/jsp/" p:suffix=".jsp" />
+        p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
 
 </beans>
