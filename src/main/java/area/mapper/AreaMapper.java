@@ -12,4 +12,17 @@ public interface AreaMapper {
 	
 	Area findByUniversityName(@Param("universityname") String universityname);
 	
+	Area findById(@Param("id") Integer id);
+	
+	Area findOnlyProvince();
+	
+	Area findOnlyLevel();
+	
+	String deleteById(@Param("id") Integer id);
+	
+	String deleteByUniversityName(@Param("universityname") String universityname);
+	
+	String addUniversity(Area area);
+	
+	String updateUniversityById(Area area);
 }

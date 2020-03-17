@@ -2,12 +2,63 @@
  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="area.mapper.AreaMapper">
     <!-- 查询所有person -->  
-    <select id="queryAll" resultType="Area" >  
+    <select id="queryAll" resultMap="MyUniversity" >  
         select * from area  
     </select>
     
-    <select id="findByUniversityName" resultType="Area" >  
+    <select id="findByUniversityName" resultMap="MyUniversity" >  
         select * from area where universityname = #{universityname} 
     </select>
+    
+    <select id="findById" resultMap="MyUniversity" >  
+        select * from area where id = #{id} 
+    </select>
+    
+    <select id="findOnlyProvince" resultType="Area" >  
+        select distinct province from area
+    </select>
+    
+    <select id="findOnlyLevel" resultType="Area" >  
+        select distinct level from area
+    </select>
+    
+    <resultMap type="Area" id="MyUniversity">
+    	<id column="id" property="id"></id>
+    	<result column="universityname" property="universityname"/>
+    	<result column="province" property="province"/>
+    	<result column="type" property="type"/>
+    	<result column="211" property="is211"/>
+    	<result column="985" property="is985"/>
+    	<result column="level" property="level"/>
+    	<result column="url" property="url"/>
+    </resultMap>
+    
+    <parameterMap type="Area" id="addUniversity">
+    	<parameter scale="" property="" />
+    	<id column="id" property="id"></id>
+    	<parameter column="universityname" property="universityname"/>
+    	<parameter column="province" property="province"/>
+    	<parameter column="type" property="type"/>
+    	<parameter column="211" property="is211"/>
+    	<parameter column="985" property="is985"/>
+    	<parameter column="level" property="level"/>
+    	<parameter column="url" property="url"/>
+    </parameterMap>
+    
+    <delete id="deleteById" parameterType="Integer">
+    	delete from area where id = #{id}
+    </delete>
+    
+    <delete id="deleteByUniversityName" parameterType="String">
+    	delete from area where universityname = #{universityname}
+    </delete>
+    
+    <insert id="addUniversity" parameterMap="addUniversity">
+    	insert into area(universityname,province,type,211,985,level,url) values(#{universityname},#{province},#{type},#{211},#{985},#{level},#{url})
+    </insert>
+    
+    <update id="updateUniversityById">
+    	update area set universityname = #{universityname},province=#{province},type=#{type},211=#{211},985=#{985},level=#{level},url=#{url} where id = #{id}
+    </update>
     
 </mapper>

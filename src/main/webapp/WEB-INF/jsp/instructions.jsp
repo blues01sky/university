@@ -1,15 +1,23 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- saved from url=(0032)http://daxue.exam8.com/c/intro/1 -->
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="<%=basePath%>">
+<meta charset="UTF-8">  
         <title>北京大学,录取分数线,专业设置_高考院校库_考试吧高考网_考试吧</title>
    
-    <link href="./instructions_files/style.css" rel="stylesheet" type="text/css">
-    <script src="./instructions_files/hm.js.下载"></script>
-	<script language="javascript" src="./instructions_files/jquery-1.8.2.js.下载"></script>
-    <script src="./instructions_files/jquery.cookie.js.下载"></script>
-    <script language="javascript" src="./instructions_files/compare.js.下载"></script>
-	<script src="./instructions_files/bdhmprotocol.js.下载" type="text/javascript" charset="gb2312"></script>
+    <link href="<%=basePath%>static/css/style.css" rel="stylesheet" type="text/css">
+    <script src="<%=basePath%>static/js/hm.js"></script>
+	<script language="javascript" src="<%=basePath%>static/js/jquery-1.8.2.js"></script>
+    <script src="<%=basePath%>static/js/jquery.cookie.js"></script>
+    <script language="javascript" src="<%=basePath%>static/js/compare.js"></script>
+	<script src="<%=basePath%>static/js/bdhmprotocol.js" type="text/javascript" charset="gb2312"></script>
 </head>
 <body>
     
@@ -20,18 +28,21 @@
     <div class="tknavw">
         <div class="tknav"> <a href="http://daxue.exam8.com/">系统首页</a> <a href="http://daxue.exam8.com/collegelist/">院校大全</a> <a href="http://daxue.exam8.com/Major/">专业大全</a> <a href="http://daxue.exam8.com/Rank/">热门排行</a> <a href="http://daxue.exam8.com/Contact/">高校联系方式</a> <a href="http://daxue.exam8.com/Rules/">录取规则</a> <a href="http://daxue.exam8.com/Charge/">收费标准</a> <a href="http://daxue.exam8.com/Line/">专业分数线</a> <a href="http://gaokao.exam8.com/" class="qc" target="_blank">高考首页</a></div>
     </div>
-    <div class="content">
+    <div class="content" style="background-color: #E7E7E7">
         
         
 <div class="yxnrt">
-    <div class="yxnrtl">北京大学</div>
+    <div class="yxnrtl" style="font-size: 1.8em;">北京大学</div>
     
 </div>
 
 
 <div class="ncon">
-    <div class="nconl">
-        <div class="sanlt"><div class="sanbt fl"><b class="f16px">北京大学--院校简介</b><div class="sanbtt"></div></div></div>
+    <div class="nconl" >
+        <div class="sanlt" >
+        	<div class="sanbt fl" style="background-color: #CCCCCC;"><b class="f16px" style="font-size:3.0em;color: #0000FF;">北京大学--院校简介</b>
+        	<div class="sanbtt"></div>
+        </div></div>
         <div class="nconlc">　　
             <p>&nbsp;&nbsp;&nbsp;&nbsp;北京大学创办于1898年，初名京师大学堂，是中国第一所国立综合性大学，也是当时中国最高教育行政机关。辛亥革命后，于1912年改为现名。
 <br>&nbsp;&nbsp;&nbsp;&nbsp;作为新文化运动的中心和“五四”运动的策源地，作为中国最早传播马克思主义和民主科学思想的发祥地，作为中国共产党最早的活动基地，北京大学为民族的振兴和解放、国家的建设和发展、社会的文明和进步做出了不可替代的贡献，在中国走向现代化的进程中起到了重要的先锋作用。爱国、进步、民主、科学的传统精神和勤奋、严谨、求实、创新的学风在这里生生不息、代代相传。
@@ -45,11 +56,9 @@
 <br>&nbsp;&nbsp;&nbsp;&nbsp;现任校党委书记朱善璐教授、校长周其凤院士。</p>
 </div>
     </div>
-    <div class="nconr">
+    <div class="nconr" >
     
-    
-    
-    <div class="nconrt"><b class="f14px">院校地图</b></div>
+    <div class="nconrt" style="border-bottom: solid 2px red;"><b class="f14px">院校位置</b></div>
     <div class="nconrc">
         <b class="cc00">北京大学所在的位置</b><br>
         北京市海淀区颐和园路5号<br>
@@ -58,7 +67,7 @@
         联系电话：010-62751407,62754145, 010-62752060,010-62751312<br>
     </div>
     <div class="ncheig"></div>
-    <div class="nconrt"><b class="f14px">同地区院校关注排行</b></div>
+    <div class="nconrt" style="border-bottom: solid 2px red;"><b class="f14px">同地区院校关注排行</b></div>
     <div class="nconrc">
         <ul>
                     <li><div class="ncrho">1</div><a href="http://daxue.exam8.com/c/1" target="_blank">北京大学</a></li>
@@ -74,8 +83,8 @@
         </ul>
     </div>
     <div class="ncheig"></div>
-    <div class="nconrt"><b class="f14px">同类型院校关注排行</b></div>
-    <div class="nconrc">
+    <div class="nconrt" style="border-bottom: solid 2px red;"><b class="f14px">同类型院校关注排行</b></div>
+    <div class="nconrc" style="border-bottom: solid 1px #999999;">
         <ul>
                     <li><div class="ncrho">1</div><a href="http://daxue.exam8.com/c/93" target="_blank">西南大学</a></li>
                     <li><div class="ncrho">2</div><a href="http://daxue.exam8.com/c/1" target="_blank">北京大学</a></li>

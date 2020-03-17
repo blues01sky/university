@@ -26,5 +26,47 @@ public class AreaServiceImpl implements AreaService {
 		// TODO Auto-generated method stub
 		return areaMapper.findByUniversityName(universityname);
 	}
+
+	@Override
+	public Area findById(Integer id) {
+		// TODO Auto-generated method stub
+		return areaMapper.findById(id);
+	}
+
+	@Override
+	public Area findOnlyProvince() {
+		// TODO Auto-generated method stub
+		return areaMapper.findOnlyProvince();
+	}
+
+	@Override
+	public Area findOnlyLevel() {
+		// TODO Auto-generated method stub
+		return areaMapper.findOnlyLevel();
+	}
+
+	@Override
+	public String deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		return areaMapper.deleteById(id);
+	}
+
+	@Override
+	public String deleteByUniversityName(String universityname) {
+		// TODO Auto-generated method stub
+		return areaMapper.deleteByUniversityName(universityname);
+	}
+
+	@Override
+	public String addUniversity(Area area) {
+		// TODO Auto-generated method stub
+		return areaMapper.addUniversity(area);
+	}
+
+	@Override
+	public String updateUniversityById(Area area) {
+		// TODO Auto-generated method stub
+		return areaMapper.updateUniversityById(area);
+	}
 	
 }

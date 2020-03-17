@@ -1,25 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- saved from url=(0030)http://daxue.exam8.com/compare -->
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="<%=basePath%>">
+<meta charset="UTF-8">   
+    <title>院校对比</title>
     
-    <title>院校对比_高考院校库_考试吧高考网_考试吧</title>
-    
-    <link href="./compare_files/style.css" rel="stylesheet" type="text/css">
-    <script src="./compare_files/hm.js.下载"></script>
-	<script language="javascript" src="./compare_files/jquery-1.8.2.js.下载"></script>
-    <script src="./compare_files/jquery.cookie.js.下载"></script>
-    <script language="javascript" src="./compare_files/jquery.cookie.js.下载"></script>
-    <script src="./compare_files/bdhmprotocol.js.下载" type="text/javascript" charset="gb2312"></script>
+    <link href="<%=basePath%>static/css/style.css" rel="stylesheet" type="text/css">
+    <script src="<%=basePath%>static/js/hm.js"></script>
+	<script src="<%=basePath%>static/js/jquery-1.8.2.js"></script>
+    <script src="<%=basePath%>static/js/jquery.cookie.js"></script>
+    <script src="<%=basePath%>static/js/jquery.cookie.js"></script>
+    <script src="<%=basePath%>static/js/bdhmprotocol.js" type="text/javascript"></script>
 
 </head>
 <body>
     
     
-    
-    <div class="tknavw">
-        <div class="tknav"> <a href="http://daxue.exam8.com/">系统首页</a> <a href="http://daxue.exam8.com/collegelist/">院校大全</a> <a href="http://daxue.exam8.com/Major/">专业大全</a> <a href="http://daxue.exam8.com/Rank/">热门排行</a> <a href="http://daxue.exam8.com/Contact/">高校联系方式</a> <a href="http://daxue.exam8.com/Rules/">录取规则</a> <a href="http://daxue.exam8.com/Charge/">收费标准</a> <a href="http://daxue.exam8.com/Line/">专业分数线</a> <a href="http://gaokao.exam8.com/" class="qc" target="_blank">高考首页</a></div>
-    </div>
-    <div class="content">
+
+    <div class="content" style="background-color: #E7E7E7">
         
         
 
