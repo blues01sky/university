@@ -1,3 +1,6 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="area.entity.Area"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -45,7 +48,21 @@
 	</head>
 
 	<body>
-
+		<% 
+			int allNum = (Integer)request.getAttribute("allNum");
+			List<Area> onlyProvince = (List<Area>)request.getAttribute("onlyProvince");
+			List<Area> onlyType = (List<Area>)request.getAttribute("onlyType");
+			List<Area> onlyLevel = (List<Area>)request.getAttribute("onlyLevel");
+			
+			List<Area> provinceLimitArea1 = (List<Area>)request.getAttribute("provinceLimitArea1");
+			int byProvinceNum1 = (Integer)request.getAttribute("byProvinceNum1");
+			List<Area> provinceLimitArea2 = (List<Area>)request.getAttribute("provinceLimitArea2");
+			int byProvinceNum2 = (Integer)request.getAttribute("byProvinceNum2");
+			List<Area> provinceLimitArea3 = (List<Area>)request.getAttribute("provinceLimitArea3");
+			int byProvinceNum3 = (Integer)request.getAttribute("byProvinceNum3");
+			List<Area> provinceLimitArea4 = (List<Area>)request.getAttribute("provinceLimitArea4");
+			int byProvinceNum4 = (Integer)request.getAttribute("byProvinceNum4");
+		%>
 		<div class="tknavw">
 			<div class="tknav">
 				<a href="http://daxue.exam8.com/">系统首页</a>
@@ -62,8 +79,10 @@
 			<div class="tktdx">
 				<div class="tdxl">
 					<div class="tdxlt">
+					
 						<div class="tdxbt fl">
-							<b class="f16px" style="font-size: 2.5em; color: red;">挑大学</b><span class="f14px" style="color: red;">(2000多所)</span>
+							<b class="f16px" style="font-size: 2.5em; color: red;">挑大学</b><span class="f14px" style="color: red;">(
+							<%=allNum %>所)</span>
 							<div class="tdxbtt"></div>
 						</div>
 					</div>
@@ -74,39 +93,17 @@
 								按院校地区
 							</div>
 							<div class="tdxlclx"></div>
+							
+							
 							<div class="tdxlclc">
-								<a href="http://daxue.exam8.com/collegelist/Province/1" target="_blank">北京</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/2" target="_blank">天津</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/3" target="_blank">上海</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/4" target="_blank">重庆</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/5" target="_blank">河北</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/17" target="_blank">河南</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/16" target="_blank">山东</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/16" target="_blank">山西</a><br>
-								<a href="http://daxue.exam8.com/collegelist/Province/13" target="_blank">安徽</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/15" target="_blank">江西</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/11" target="_blank">江苏</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/12" target="_blank">浙江</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/18" target="_blank">湖北</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/19" target="_blank">湖南</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/20" target="_blank">广东</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/21" target="_blank">广西</a><br>
-								<a href="http://daxue.exam8.com/collegelist/Province/25" target="_blank">云南</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/24" target="_blank">贵州</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/23" target="_blank">四川</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/27" target="_blank">陕西</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/29" target="_blank">青海</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/30" target="_blank">宁夏</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/10" target="_blank">黑龙江</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/9" target="_blank">吉林</a><br>
-								<a href="http://daxue.exam8.com/collegelist/Province/8" target="_blank">辽宁</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/26" target="_blank">西藏</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/31" target="_blank">新疆</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/7" target="_blank">内蒙</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/22" target="_blank">海南</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/14" target="_blank">福建</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/28" target="_blank">甘肃</a>
-								<a href="http://daxue.exam8.com/collegelist/Province/32" target="_blank">港澳</a>
+								<%
+									for(Area provinces : onlyProvince){
+								%>
+										<a href="" target="_blank"><%=provinces.getProvince() %></a>	
+								<%
+									}
+								%>
+								
 							</div>
 						</div>
 						<div class="tdxlcr">
@@ -115,34 +112,25 @@
 								按院校类型
 							</div>
 							<div class="tdxlclx"></div>
-							<div class="tdxlclc">
-								<a href="http://daxue.exam8.com/collegelist/leixing/1" target="_blank">综合</a>
-								<a href="http://daxue.exam8.com/collegelist/leixing/2" target="_blank">工科</a>
-								<a href="http://daxue.exam8.com/collegelist/leixing/3" target="_blank">农业</a>
-								<a href="http://daxue.exam8.com/collegelist/leixing/4" target="_blank">师范</a>
-								<a href="http://daxue.exam8.com/collegelist/leixing/5" target="_blank">民族</a>
-								<a href="http://daxue.exam8.com/collegelist/leixing/6" target="_blank">林业</a>
-								<a href="http://daxue.exam8.com/collegelist/leixing/7" target="_blank">医药</a>
-								<a href="http://daxue.exam8.com/collegelist/leixing/8" target="_blank">语言</a>
-								<a href="http://daxue.exam8.com/collegelist/leixing/9" target="_blank">财经</a>
-								<a href="http://daxue.exam8.com/collegelist/leixing/10" target="_blank">体育</a>
-								<a href="http://daxue.exam8.com/collegelist/leixing/11" target="_blank">艺术</a>
-								<a href="http://daxue.exam8.com/collegelist/leixing/12" target="_blank">政法</a>
-								<a href="http://daxue.exam8.com/collegelist/leixing/13" target="_blank">军事</a>
-							</div>
+							<div class="tdxlclc"><%
+									for(Area types : onlyType){
+								%>
+										<a href="" target="_blank"><%=types.getType() %></a>	
+								<%
+									}
+								%></div>
 							<div class="tdxlclt">
 								<div class="tdxlcltb"></div>
 								院校性质
 							</div>
 							<div class="tdxlclx"></div>
-							<div class="tdxlclc">
-								<a href="http://daxue.exam8.com/collegelist/xingzhi/benke" target="_blank">本科</a>
-								<a href="http://daxue.exam8.com/collegelist/xingzhi/zhuanke" target="_blank">专科</a>
-								<a href="http://daxue.exam8.com/collegelist/xingzhi/duli" target="_blank">独立学院</a>
-								<a href="http://daxue.exam8.com/collegelist/xingzhi/zhishu" target="_blank">教育部直属</a>
-								<a href="http://daxue.exam8.com/collegelist/xingzhi/is211" target="_blank">211</a>
-								<a href="http://daxue.exam8.com/collegelist/xingzhi/is985" target="_blank">985</a><br>
-							</div>
+							<div class="tdxlclc"><%
+									for(Area levels : onlyLevel){
+								%>
+										<a href="" target="_blank"><%=levels.getLevel() %></a>	
+								<%
+									}
+								%></div>
 						</div>
 						<div class="clear"></div>
 
@@ -198,27 +186,39 @@
 						<div class="tdxbtt"></div>
 					</div>
 					<div class="tdxgun fr">
-						<a href="http://daxue.exam8.com/Charge/" target="_blank">全国千所大学收费标准</a>
+						<a href="" target="_blank">全国千所大学收费标准</a>
 						|
-						<a href="http://daxue.exam8.com/Contact/" target="_blank">联系方式</a>
+						<a href="" target="_blank">联系方式</a>
 						|
-						<a href="http://daxue.exam8.com/Rules/" target="_blank">录取规则</a>
+						<a href="" target="_blank">录取规则</a>
 					</div>
 				</div>
 				<div class="tkerc">
 					<div class="tkerclin">
 						<div class="tdxlclt">
 							<div class="tdxlcltb"></div>
-							<span class="fl">北京（94所院校）</span><span class="fr tdxlcltbgd"><a
+							<span class="fl"><%=provinceLimitArea1.get(0).getProvince() %>（<%=byProvinceNum1 %>所院校）</span><span class="fr tdxlcltbgd"><a
 							href="http://daxue.exam8.com/collegelist/Province/1"
 							target="_blank">更多&gt;&gt;</a></span>
 						</div>
 						<div class="tdxlclx"></div>
 						<div class="tkercn">
 							<ul>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/1" target="_blank" style="padding-left: 20px;">北京大学</a></span> <span class="fr cc00"><a href="http://www.pku.edu.cn/"
-									target="_blank">官方网站</a></span></li>
+							
+								<%
+									for(Area provinceLimitArea1s : provinceLimitArea1){
+								%>
+								<li>
+									<span class="fl">
+									<a href="<%=basePath%>score/index?universityname=<%=provinceLimitArea1s.getUniversityname() %>" target="_blank" style="padding-left: 20px;"><%=provinceLimitArea1s.getUniversityname() %></a>
+									</span>
+									<span class="fr cc00">
+									<a href="#" target="_blank">官方网站</a></span>
+								</li>
+								<%
+									}
+								%>
+								
 									
 							</ul>
 						</div>
@@ -226,147 +226,79 @@
 					<div class="tkercli">
 						<div class="tdxlclt">
 							<div class="tdxlcltb"></div>
-							<span class="fl">天津（56所院校）</span><span class="fr tdxlcltbgd"><a
+							<span class="fl"><%=provinceLimitArea2.get(0).getProvince() %>（<%=byProvinceNum2 %>所院校）</span><span class="fr tdxlcltbgd"><a
 							href="http://daxue.exam8.com/collegelist/Province/2"
 							target="_blank">更多&gt;&gt;</a></span>
 						</div>
 						<div class="tdxlclx"></div>
 						<div class="tkercn">
 							<ul>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/10" target="_blank">·天津大学</a></span> <span class="fr cc00"><a href="http://www.tju.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/9" target="_blank">·南开大学</a></span> <span class="fr cc00"><a href="http://www.nankai.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/144" target="_blank">·天津科技大学</a></span>
-									<span class="fr cc00"><a href="http://www.tust.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/147" target="_blank">·天津理工大学</a></span>
-									<span class="fr cc00"><a href="http://www.tjut.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/109" target="_blank">·天津医科大学</a></span>
-									<span class="fr cc00"><a href="http://www.tijmu.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/149" target="_blank">·天津中医药大学</a></span>
-									<span class="fr cc00"><a href="http://www.tjutcm.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/58" target="_blank">·河北工业大学</a></span>
-									<span class="fr cc00"><a href="http://www.hebut.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/145" target="_blank">·天津工业大学</a></span>
-									<span class="fr cc00"><a href="http://www.tjpu.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/146" target="_blank">·中国民航大学</a></span>
-									<span class="fr cc00"><a href="http://www.cauc.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/2240" target="_blank">·中国人民解放军军事交通学院</a></span>
-									<span class="fr cc00"><a href="http://www.jjxy.cn/"
-									target="_blank">官方网站</a></span></li>
+								<%
+									for(Area provinceLimitArea2s : provinceLimitArea2){
+								%>
+								<li>
+									<span class="fl">
+									<a href="#" target="_blank" style="padding-left: 20px;">·<%=provinceLimitArea2s.getUniversityname() %></a>
+									</span>
+									<span class="fr cc00">
+									<a href="#" target="_blank">官方网站</a></span>
+								</li>
+								<%
+									}
+								%>
+								
 							</ul>
 						</div>
 					</div>
 					<div class="tkercli">
 						<div class="tdxlclt">
 							<div class="tdxlcltb"></div>
-							<span class="fl">上海（66所院校）</span><span class="fr tdxlcltbgd"><a
+							<span class="fl"><%=provinceLimitArea3.get(0).getProvince() %>（<%=byProvinceNum3 %>所院校）</span><span class="fr tdxlcltbgd"><a
 							href="http://daxue.exam8.com/collegelist/Province/3"
 							target="_blank">更多&gt;&gt;</a></span>
 						</div>
 						<div class="tdxlclx"></div>
 						<div class="tkercn">
 							<ul>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/18" target="_blank">·华东师范大学</a></span>
-									<span class="fr cc00"><a href="http://www.ecnu.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/15" target="_blank">·复旦大学</a></span> <span class="fr cc00"><a href="http://www.fudan.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/16" target="_blank">·同济大学</a></span> <span class="fr cc00"><a href="http://www.tongji.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/108" target="_blank">·上海大学</a></span> <span class="fr cc00"><a href="http://www.shu.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/115" target="_blank">·中国人民解放军第二军医大学</a></span>
-									<span class="fr cc00"><a href="http://www.smmu.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/70" target="_blank">·上海财经大学</a></span>
-									<span class="fr cc00"><a href="http://www.shufe.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/67" target="_blank">·华东理工大学</a></span>
-									<span class="fr cc00"><a href="http://www.ecust.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/2401" target="_blank">·上海纽约大学</a></span>
+								<%
+									for(Area provinceLimitArea3s : provinceLimitArea3){
+								%>
+								<li>
+									<span class="fl">
+									<a href="#" target="_blank" style="padding-left: 20px;">·<%=provinceLimitArea3s.getUniversityname() %></a>
+									</span>
+									<span class="fr cc00">
+									<a href="#" target="_blank">官方网站</a></span>
 								</li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/729" target="_blank">·上海建桥学院</a></span>
-								</li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/2242" target="_blank">·上海立信会计学院</a></span>
-								</li>
+								<%
+									}
+								%>
 							</ul>
 						</div>
 					</div>
 					<div class="tkercli">
 						<div class="tdxlclt">
 							<div class="tdxlcltb"></div>
-							<span class="fl">重庆（55所院校）</span><span class="fr tdxlcltbgd"><a
+							<span class="fl"><%=provinceLimitArea4.get(0).getProvince() %>（<%=byProvinceNum4 %>所院校）</span><span class="fr tdxlcltbgd"><a
 							href="http://daxue.exam8.com/collegelist/Province/4"
 							target="_blank">更多&gt;&gt;</a></span>
 						</div>
 						<div class="tdxlclx"></div>
 						<div class="tkercn">
 							<ul>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/93" target="_blank">·西南大学</a></span> <span class="fr cc00"><a href="http://www.swnu.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/419" target="_blank">·重庆交通大学</a></span>
-									<span class="fr cc00"><a href="http://www.cquc.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/437" target="_blank">·西南政法大学</a></span>
-									<span class="fr cc00"><a href="http://202.202.80.1/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/30" target="_blank">·重庆大学</a></span> <span class="fr cc00"><a href="http://www.cqu.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/418" target="_blank">·重庆邮电大学</a></span>
-									<span class="fr cc00"><a href="http://www.cqupt.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/423" target="_blank">·重庆医科大学</a></span>
-									<span class="fr cc00"><a href="http://www.cqmu.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/436" target="_blank">·四川外国语大学</a></span>
+								<%
+									for(Area provinceLimitArea4s : provinceLimitArea4){
+								%>
+								<li>
+									<span class="fl">
+									<a href="" target="_blank" style="padding-left: 20px;">·<%=provinceLimitArea4s.getUniversityname() %></a>
+									</span>
+									<span class="fr cc00">
+									<a href="#" target="_blank">官方网站</a></span>
 								</li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/2060" target="_blank">·重庆师范大学</a></span>
-									<span class="fr cc00"><a href="http://www.cqnu.edu.cn/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/431" target="_blank">·重庆三峡学院</a></span>
-									<span class="fr cc00"><a href="http://www.sanxiau.net/"
-									target="_blank">官方网站</a></span></li>
-								<li><span class="fl"><a
-									href="http://daxue.exam8.com/c/2059" target="_blank">·重庆科技学院</a></span>
-								</li>
+								<%
+									}
+								%>
 							</ul>
 						</div>
 					</div>

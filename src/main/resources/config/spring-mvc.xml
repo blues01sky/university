@@ -19,7 +19,7 @@
    <!--  <context:annotation-config /> -->
     
     <!-- 设置使用注解的类所在的jar包 -->
-    <context:component-scan base-package="area.controller" />
+    <context:component-scan base-package="*.controller"/>
 
     <!-- 完成请求和注解POJO的映射 -->
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />

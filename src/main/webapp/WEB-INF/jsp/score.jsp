@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="score.entity.Score"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -10,21 +12,16 @@
 <head>
 <base href="<%=basePath%>">
 <meta charset="UTF-8">
-<title>中国人民大学,录取分数线,专业设置_高考院校库_考试吧高考网_考试吧</title>
-<link href="<%=basePath%>static/css/style.css" rel="stylesheet"
-	type="text/css">
-<link rel="stylesheet"
-	href="<%=basePath%>static/css/share_style0_24.css">
+<title>中国人民大学</title>
+<link href="<%=basePath%>static/css/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="<%=basePath%>static/css/share_style0_24.css">
 <script src="<%=basePath%>static/js/hm.js"></script>
-<script language="javascript"
-	src="<%=basePath%>static/js/jquery-1.8.2.js"></script>
-<script src="<%=basePath%>static/js/jquery.cookie.js"></script>
-<script src="<%=basePath%>static/js/bdhmprotocol.js"
-	type="text/javascript" charset="gb2312"></script>
+<script language="javascript" src="<%=basePath%>static/js/jquery-1.8.2.js"></script>
+<script language="javascript" src="<%=basePath%>static/js/jquery.cookie.js"></script>
+<script language="javascript" src="<%=basePath%>static/js/bdhmprotocol.js" type="text/javascript" charset="gb2312"></script>
 <script language="javascript" src="<%=basePath%>static/js/compare.js"></script>
-<script src="<%=basePath%>static/js/share.js"></script>
-<script language="javascript"
-	src="<%=basePath%>static/js/XY_function.js"></script>
+<script language="javascript" src="<%=basePath%>static/js/share.js"></script>
+<script language="javascript" src="<%=basePath%>static/js/XY_function.js"></script>
 <script language="javascript" src="<%=basePath%>static/js/Comment.js"></script>
 
 </head>
@@ -47,10 +44,14 @@
 				href="http://gaokao.exam8.com/" class="qc" target="_blank">高考首页</a>
 		</div>
 	</div>
+	<%
+		List<Score> ScoreByUniversitynames = (List<Score>)request.getAttribute("ScoreByUniversitynames");
+	%>
+	
 	<div class="content" style="background-color: #E7E7E7">
 
 		<div class="yxnrt">
-			<div class="yxnrtl">中国人民大学</div>
+			<div class="yxnrtl"><%=ScoreByUniversitynames.get(0).getUniversityname() %></div>
 			<div class="yxnrtr"></div>
 		</div>
 
@@ -75,7 +76,8 @@
 													<option value="1">文科</option>
 													<option value="2">理科</option>
 													<option value="3">综合</option>
-												</select> <select name="CP_Province" id="CP_Province">
+												</select>
+												<select name="CP_Province" id="CP_Province">
 													<option value="北京">北京</option>
 													<option value="天津">天津</option>
 													<option value="上海">上海</option>
@@ -111,6 +113,7 @@
 													<option value="澳门">澳门</option>
 													<option value="台湾">台湾</option>
 												</select>
+												<input type="button" value="确定">
 											</div></td>
 									</tr>
 									<tr>
@@ -121,110 +124,31 @@
 										<th>投档线</th>
 										<th>录取人数</th>
 										<th>录取批次</th>
-										<th>录取线差</th>
+										<th>地区</th>
+										<th>文理科</th>
 									</tr>
 								</tbody>
 								<tbody id="CollegePoint">
+									
+									<%
+										for(Score ScoreByUniversityname: ScoreByUniversitynames){
+									%>
 									<tr>
-										<td>2016</td>
-										<td>--</td>
-										<td>676</td>
-										<td>673</td>
-										<td>--</td>
-										<td>--</td>
-										<td>本科第一批</td>
-										<td>--</td>
+										<td><%=ScoreByUniversityname.getYear() %></td>
+										<td><%=ScoreByUniversityname.getMax() %></td>
+										<td><%=ScoreByUniversityname.getAverage() %></td>
+										<td><%=ScoreByUniversityname.getMin() %></td>
+										<td><%=ScoreByUniversityname.getMinimum() %></td>
+										<td><%=ScoreByUniversityname.getNumber() %></td>
+										<td><%=ScoreByUniversityname.getBatch() %></td>
+										<td><%=ScoreByUniversityname.getArea() %></td>
+										<td><%=ScoreByUniversityname.getDepartment() %></td>
 									</tr>
-									<tr>
-										<td>2015</td>
-										<td>680</td>
-										<td>674</td>
-										<td>669</td>
-										<td>--</td>
-										<td>21</td>
-										<td>本科第一批</td>
-										<td>--</td>
-									</tr>
-									<tr>
-										<td>2014</td>
-										<td>673</td>
-										<td>661</td>
-										<td>645</td>
-										<td>--</td>
-										<td>15</td>
-										<td>本科第一批</td>
-										<td>--</td>
-									</tr>
-									<tr>
-										<td>2013</td>
-										<td>672</td>
-										<td>655</td>
-										<td>--</td>
-										<td>--</td>
-										<td>27</td>
-										<td>本科第一批</td>
-										<td>--</td>
-									</tr>
-									<tr>
-										<td>2012</td>
-										<td>689</td>
-										<td>676</td>
-										<td>658</td>
-										<td>--</td>
-										<td>25</td>
-										<td>本科第一批</td>
-										<td>--</td>
-									</tr>
-									<tr>
-										<td>2012</td>
-										<td>479</td>
-										<td>479</td>
-										<td>479</td>
-										<td>--</td>
-										<td>1</td>
-										<td>本科第二批</td>
-										<td>--</td>
-									</tr>
-									<tr>
-										<td>2011</td>
-										<td>674</td>
-										<td>657</td>
-										<td>607</td>
-										<td>--</td>
-										<td>27</td>
-										<td>本科第一批</td>
-										<td>--</td>
-									</tr>
-									<tr>
-										<td>2010</td>
-										<td>663</td>
-										<td>640</td>
-										<td>--</td>
-										<td>--</td>
-										<td>28</td>
-										<td>本科第一批</td>
-										<td>--</td>
-									</tr>
-									<tr>
-										<td>2009</td>
-										<td>663</td>
-										<td>635</td>
-										<td>613</td>
-										<td>--</td>
-										<td>24</td>
-										<td>本科第一批</td>
-										<td>--</td>
-									</tr>
-									<tr>
-										<td>2008</td>
-										<td>678</td>
-										<td>659</td>
-										<td>643</td>
-										<td>--</td>
-										<td>27</td>
-										<td>本科第一批</td>
-										<td>--</td>
-									</tr>
+									
+									<%
+										}
+									%>
+									
 								</tbody>
 							</table>
 							<table width="100%" border="0" cellspacing="0" cellpadding="0"
@@ -413,10 +337,10 @@
 			<div class="cpy01">
 				Copyright © 2004-
 				<script language="JavaScript">
-						var myDate = new Date();
-						var theYear = myDate.getFullYear();
-						document.write(theYear);
-					</script>
+					var myDate = new Date();
+					var theYear = myDate.getFullYear();
+					document.write(theYear);
+				</script>
 				2020 <a href="http://www.exam8.com/" target="_blank">考试吧 </a>( <a
 					href="http://www.exam8.com/" target="_blank">Exam8.com</a>) All
 				Rights Reserved <a href="http://www.miibeian.gov.cn/"

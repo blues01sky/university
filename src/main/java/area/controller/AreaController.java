@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,7 @@ public class AreaController {
 	private AreaService areaService;
 	
 	@RequestMapping(value="/index",method=RequestMethod.GET)
-	public String area(HttpServletResponse response,HttpServletRequest request,String universityname,String province) {
+	public String area(HttpServletResponse response,HttpServletRequest request,@Param("universityname") String universityname,@Param("province") String province) {
 		List<Area> areas = areaService.findOnlyProvince();
 		List<Area> levels = areaService.findOnlyLevel();
 		List<Area> types = areaService.findOnlyType();
