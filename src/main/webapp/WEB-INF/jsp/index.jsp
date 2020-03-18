@@ -238,7 +238,7 @@
 								%>
 								<li>
 									<span class="fl">
-									<a href="#" target="_blank" style="padding-left: 20px;">·<%=provinceLimitArea2s.getUniversityname() %></a>
+									<a href="<%=basePath%>score/index?universityname=<%=provinceLimitArea2s.getUniversityname() %>" target="_blank" style="padding-left: 20px;">·<%=provinceLimitArea2s.getUniversityname() %></a>
 									</span>
 									<span class="fr cc00">
 									<a href="#" target="_blank">官方网站</a></span>
@@ -265,7 +265,7 @@
 								%>
 								<li>
 									<span class="fl">
-									<a href="#" target="_blank" style="padding-left: 20px;">·<%=provinceLimitArea3s.getUniversityname() %></a>
+									<a href="<%=basePath%>score/index?universityname=<%=provinceLimitArea3s.getUniversityname() %>" target="_blank" style="padding-left: 20px;">·<%=provinceLimitArea3s.getUniversityname() %></a>
 									</span>
 									<span class="fr cc00">
 									<a href="#" target="_blank">官方网站</a></span>
@@ -291,7 +291,7 @@
 								%>
 								<li>
 									<span class="fl">
-									<a href="" target="_blank" style="padding-left: 20px;">·<%=provinceLimitArea4s.getUniversityname() %></a>
+									<a href="<%=basePath%>score/index?universityname=<%=provinceLimitArea4s.getUniversityname() %>" target="_blank" style="padding-left: 20px;">·<%=provinceLimitArea4s.getUniversityname() %></a>
 									</span>
 									<span class="fr cc00">
 									<a href="#" target="_blank">官方网站</a></span>
