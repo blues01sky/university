@@ -351,8 +351,7 @@
 					<div class="zhichi"></div>精准广告支持
 				</a>
 			</div>
-			<div class="cpy01">中国科学院研究生院权威支持(北京) 电 话：010-62168566 传
-				真：010-62192699</div>
+			<div class="cpy01">联系QQ：1181566969 微信：zihan003</div>
 
 		</div>
 	</div>
