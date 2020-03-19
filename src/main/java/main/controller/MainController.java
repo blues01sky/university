@@ -59,4 +59,35 @@ public class MainController {
 		return "index";
 	}
 	
+	
+	@RequestMapping(value="/compare",method = RequestMethod.GET)
+	public String compare() {
+		return "compare";
+	}
+	
+	@RequestMapping(value="/instructions",method = RequestMethod.GET)
+	public String instructions() {
+		return "instructions";
+	}
+	
+	@RequestMapping(value="/login",method = RequestMethod.GET)
+	public String login() {
+		return "login";
+	}
+	
+	@RequestMapping(value="/province",method = RequestMethod.GET)
+	public String province() {
+		return "province";
+	}
+	
+	@RequestMapping(value="/score",method = RequestMethod.GET)
+	public String score() {
+		return "score";
+	}
+	
+	@RequestMapping(value="/scoreline",method = RequestMethod.GET)
+	public String scoreline() {
+		return "scoreline";
+	}
+	
 }

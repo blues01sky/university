@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import user.entity.User;
 
-public interface UserServices {
+public interface UserService {
 	
 	List<User> queryAll();
 	
@@ -20,11 +20,13 @@ public interface UserServices {
 	
 	String deleteByUserId(@Param("id") Integer id);
 	
-	String addUser(@Param("user") User user);
+	void tianjiaUser(User user);
 	
-	String updateuserById(@Param("user") User user);
+	User chaByUsername(@Param("username") String username);
 	
-	String updateUserByUsername(@Param("user") User user);
+	String updateuserById(User user);
 	
-	String reset(@Param("user") User user);
+	String updateUserByUsername(User user);
+	
+	String reset(User user);
 }

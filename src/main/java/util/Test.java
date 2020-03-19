@@ -1,18 +1,29 @@
 package util;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import score.entity.Score;
-import score.mapper.ScoreMapper;
+import user.entity.User;
+import user.services.UserService;
 
 public class Test {
 	
-	private ScoreMapper ScoreMapper;
+	@Autowired
+	private UserService userService;
 	
 	@org.junit.Test
 	public void name() {
-		List<Score> sy = ScoreMapper.queryAll();
-		/*findScoreByUniversitynameAndAreaAndDepartmentYearDesc("清华大学","河南","理科");*/
-		System.out.println(sy);
+		
+		User user = new User();
+		user.setUsername("123");
+		user.setPassword("1234");
+		user.setScore("650");
+		user.setProvince("河南");
+		user.setDepartment("理科");
+		user.setTelphone("110");
+		
+		System.out.println(user);
+		
+		
+		System.out.println(user);
 	}
 }

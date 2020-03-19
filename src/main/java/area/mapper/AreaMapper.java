@@ -36,7 +36,7 @@ public interface AreaMapper {
 	
 	String deleteByUniversityName(@Param("universityname") String universityname);
 	
-	String addUniversity(Area area);
+	void addUniversity(Area area);
 	
 	String updateUniversityById(Area area);
 }

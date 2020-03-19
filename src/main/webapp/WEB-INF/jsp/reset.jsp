@@ -41,16 +41,17 @@
 				<a href="">高校联系方式</a>
 				<a href="">批次控制线</a>
 				<%
-					String username = (String)request.getAttribute("username");
-					if(username.isEmpty() || username == "" || username.equals(null)){
+					String username = (String)session.getAttribute("username");
+					if(username != null){
 						%>
-				<a href="<%=basePath%>user/index" style="float: right;border-radius: 15px;">注册</a>
-				<a href="<%=basePath%>user/index" style="float: right;border-radius: 15px;">登录</a>
+						<a href="<%=basePath%>user/logout" style="float: right;border-radius: 15px;">注销登录</a>	
+						<a href="<%=basePath%>user/logout" style="float: right;border-radius: 15px;font-size: 1.8em;"><%=username %></a>	
 				<%
 					}else{
 						%>
-						<a href="<%=basePath%>user/logout" style="float: right;border-radius: 15px;font-size: 1.8em;"><%=username %></a>	
-						<a href="<%=basePath%>user/logout" style="float: right;border-radius: 15px;">注销登录</a>	
+						<a href="<%=basePath%>user/index" style="float: right;border-radius: 15px;">注册</a>
+						<a href="<%=basePath%>user/index" style="float: right;border-radius: 15px;">登录</a>
+						
 						<% }%>
 			</div>
 		</div>
@@ -73,7 +74,7 @@
 									<input type="password" name="newPassword" placeholder="新密码" required="required" />
 									<input type="text" name="score" placeholder="分数" required="required"/>
 									<input type="text" name="province" placeholder="地区" required="required" />
-									<input type="text" name="department" list="department" placeholder="选科（默认为理科）" required="required"/>
+									<input type="text" name="department" list="department" placeholder="选科" required="required"/>
 									<datalist id="department" editable="false" >
 										<option value="文科"></option>
 										<option value="理科"></option>
@@ -89,7 +90,7 @@
 									<input type="text" name="Username" placeholder="用户名" required="required" />
 									<input type="text" name="score" placeholder="分数" required="required"/>
 									<input type="text" name="province" placeholder="地区" required="required" />
-									<input type="text" name="department" list="department" placeholder="选科（默认为理科）" required="required"/>
+									<input type="text" name="department" list="department" placeholder="选科" required="required"/>
 									<datalist id="department">
 										<option value="文科"></option>
 										<option value="理科" selected="selected"></option>

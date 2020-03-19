@@ -23,7 +23,7 @@
 </head>
 <body>
     
-    <div class="tknavw">
+  <div class="tknavw">
 			<div class="tknav">
 				<a href="">系统首页</a>
 				<a href="">院校大全</a>
@@ -32,16 +32,17 @@
 				<a href="">高校联系方式</a>
 				<a href="">批次控制线</a>
 				<%
-					String username = (String)request.getAttribute("username");
-					if(username.isEmpty() || username == "" || username.equals(null)){
+					String username = (String)session.getAttribute("username");
+					if(username != null){
 						%>
-				<a href="<%=basePath%>user/index" style="float: right;border-radius: 15px;">注册</a>
-				<a href="<%=basePath%>user/index" style="float: right;border-radius: 15px;">登录</a>
+						<a href="<%=basePath%>user/logout" style="float: right;border-radius: 15px;">注销登录</a>	
+						<a href="<%=basePath%>user/logout" style="float: right;border-radius: 15px;font-size: 1.8em;"><%=username %></a>	
 				<%
 					}else{
 						%>
-						<a href="<%=basePath%>user/logout" style="float: right;border-radius: 15px;font-size: 1.8em;"><%=username %></a>	
-						<a href="<%=basePath%>user/logout" style="float: right;border-radius: 15px;">注销登录</a>	
+						<a href="<%=basePath%>user/index" style="float: right;border-radius: 15px;">注册</a>
+						<a href="<%=basePath%>user/index" style="float: right;border-radius: 15px;">登录</a>
+						
 						<% }%>
 			</div>
 		</div>

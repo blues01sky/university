@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 
 import user.entity.User;
 import user.mapper.UserMapper;
-import user.services.UserServices;
+import user.services.UserService;
 import util.DateUtil;
 
 @Service("userService")
-public class UserServicesImpl implements UserServices {
+public class UserServiceImpl implements UserService {
 
 	private DateUtil date;
 	
@@ -43,7 +43,7 @@ public class UserServicesImpl implements UserServices {
 	public User findUserByUsername(String username) {
 		// TODO Auto-generated method stub
 		System.out.println("----------"+date.getDate()+"-------------------"+"执行了通过用户名查找用户信息的方法"+"------------------");
-		return userMapper.findUserByUsername(username);
+		return userMapper.findByUsername(username);
 	}
 
 	@Override
@@ -58,13 +58,6 @@ public class UserServicesImpl implements UserServices {
 		// TODO Auto-generated method stub
 		System.out.println("----------"+date.getDate()+"-------------------"+"执行了通过id删除一个用户的方法"+"------------------");
 		return userMapper.deleteByUserId(id);
-	}
-
-	@Override
-	public String addUser(User user) {
-		// TODO Auto-generated method stub
-		System.out.println("----------"+date.getDate()+"-------------------"+"执行了增加一个用户的方法"+"------------------");
-		return userMapper.addUser(user);
 	}
 
 	@Override
@@ -87,4 +80,19 @@ public class UserServicesImpl implements UserServices {
 		System.out.println("----------"+date.getDate()+"-------------------"+"执行了重置密码的方法"+"------------------");
 		return userMapper.reset(user);
 	}
+
+	@Override
+	public void tianjiaUser(User user) {
+		// TODO Auto-generated method stub
+		
+		 userMapper.tianjiaUser(user);
+	}
+
+	@Override
+	public User chaByUsername(String username) {
+		// TODO Auto-generated method stub
+		System.out.println("----------"+date.getDate()+"-------------------"+"执行了通过用户名查找用户信息的方法"+"------------------");
+		return userMapper.chaByUsername(username);
+	}
+	
 }

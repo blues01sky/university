@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import user.entity.User;
-import user.services.UserServices;
+import user.services.UserService;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 	
 	@Autowired
-	private UserServices userServices;
+	private UserService userService;
 	
 	@RequestMapping(value="/index",method = RequestMethod.GET)
 	public String index() {
@@ -41,8 +41,7 @@ public class UserController {
 		user.setDepartment(department);
 		user.setTelphone(phone);
 		
-		System.out.println(user+"user");
-		userServices.addUser(user);
+		userService.tianjiaUser(user);
 		
 		return "redirect:/user/index";
 	}
@@ -52,7 +51,7 @@ public class UserController {
 		String username = request.getParameter("Username");
 		String Password = request.getParameter("Password");
 		
-		User findPassword = userServices.findPassword(username);
+		User findPassword = userService.findPassword(username);
 		if (findPassword.getUsername().isEmpty() || findPassword.getUsername() == "" || findPassword.getUsername().equals(null)) {
 			request.setAttribute("msg","用户不存在，请重试");
 			System.out.println("用户不存在，请重试");
@@ -62,7 +61,7 @@ public class UserController {
 				request.setAttribute("msg","恭喜登录成功");
 				System.out.println("恭喜登录成功");
 				session.setAttribute("username",findPassword.getUsername());
-				return "redirect:/area/index";
+				return "redirect:/index";
 			} else {
 				request.setAttribute("msg","密码错误请再次尝试");
 				System.out.println("密码错误请再次尝试");
@@ -87,7 +86,7 @@ public class UserController {
 		user.setDepartment(request.getParameter("department"));
 		user.setTelphone(request.getParameter("Phone"));
 		
-		User name = userServices.findUserByUsername(user.getUsername());
+		User name = userService.findUserByUsername(user.getUsername());
 		if (name.getUsername().isEmpty() || name.getUsername() == "" || name.getUsername().equals(null)) {
 			request.setAttribute("msg","用户不存在，请重试");
 			System.out.println("用户不存在，请重试");
@@ -96,7 +95,7 @@ public class UserController {
 			if (name.getUsername()==user.getUsername() && name.getDepartment()==user.getDepartment() && name.getProvince() == user.getProvince() && name.getScore() == user.getScore() && name.getTelphone() == user.getTelphone()) {
 				request.setAttribute("msg","恭喜重置密码成功");
 				System.out.println("恭喜重置密码成功");
-				userServices.reset(user);
+				userService.reset(user);
 				return "redirect:/user/index";
 			} else {
 				System.out.println("用户不存在，请重试");
@@ -120,14 +119,14 @@ public class UserController {
 		user.setDepartment(request.getParameter("department"));
 		user.setTelphone(request.getParameter("Phone"));
 		
-		User name = userServices.findUserByUsername(user.getUsername());
+		User name = userService.chaByUsername(user.getUsername());
 		if (name.getUsername().isEmpty() || name.getUsername() == "" || name.getUsername().equals(null)) {
 			request.setAttribute("msg","用户不存在，请重试");
 			System.out.println("用户不存在，请重试");
 			return "redirect:/user/reset";
 		} else {
 			if (name.getPassword() == oldpassword) {
-				userServices.updateUserByUsername(user);
+				userService.updateUserByUsername(user);
 				request.setAttribute("msg","恭喜修改用户信息成功");
 				System.out.println("恭喜修改用户信息成功");
 				return "redirect:/user/index";
@@ -143,7 +142,12 @@ public class UserController {
 	public String logout(HttpSession session,HttpServletRequest request) {
 		session.invalidate();
 		request.setAttribute("msg", "注销用户登录成功！");
-		return "redirect:/area/index";
+		return "redirect:/index";
 	}
+	
+	
+	public static void main(String[] args) {
+			
+		}
 	
 }

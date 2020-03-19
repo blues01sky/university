@@ -90,10 +90,10 @@ public class AreaServiceImpl implements AreaService {
 	}
 
 	@Override
-	public String addUniversity(Area area) {
+	public void addUniversity(Area area) {
 		// TODO Auto-generated method stub
 		System.out.println("----------"+date.getDate()+"-------------------"+"执行了增加一个大学数据 的方法"+"------------------");
-		return areaMapper.addUniversity(area);
+		areaMapper.addUniversity(area);
 	}
 
 	@Override

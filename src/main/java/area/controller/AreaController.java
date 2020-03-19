@@ -49,7 +49,7 @@ public class AreaController {
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public void add() {
 		Area area = new Area();
-		area.setUniversityname("清华大学");
+		area.setUniversityname("清华1大学");
 		area.setProvince("北京");
 		area.setType("重点");
 		area.setIs211(0);

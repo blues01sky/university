@@ -14,17 +14,20 @@ public interface UserMapper {
 	
 	User findUserById(@Param("id") Integer id);
 	
-	User findUserByUsername(@Param("username") String username);
+	User findByUsername(@Param("username") String username);
 	
 	String deleteByUserName(@Param("username") String username);
 	
 	String deleteByUserId(@Param("id") Integer id);
 	
-	String addUser(@Param("user") User user);
+	void tianjiaUser(User user);
 	
-	String updateuserById(@Param("user") User user);
+	String updateuserById(User user);
 	
-	String updateUserByUsername(@Param("user") User user);
+	String updateUserByUsername(User user);
 	
-	String reset(@Param("user") User user);
+	String reset(User user);
+	
+	User chaByUsername(@Param("username") String username);
+	
 }
