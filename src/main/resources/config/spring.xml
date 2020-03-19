@@ -12,7 +12,7 @@
      http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
     <!-- 自动注入 -->
-    <context:component-scan base-package="area.services.impl;services.services.impl" />
+    <context:component-scan base-package="area.services.impl;services.services.impl;user.services.impl" />
     
     <!-- 加载properties文件  -->
     <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">

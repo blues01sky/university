@@ -8,6 +8,7 @@
     <typeAliases>    
          <typeAlias type="area.entity.Area" alias="Area"/>  
          <typeAlias type="score.entity.Score" alias="Score"/>  
+         <typeAlias type="user.entity.User" alias="User"/>  
     </typeAliases>     
      <!--  <mappers>  
         <mapper resource="cn.com.demo.mapper.PersonMapper.xml" />  

@@ -1,1 +1,45 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user.mapper.UserMapper">
+    <!-- 查询所有person -->  
+    <select id="queryAll" resultType="User" >  
+        select * from user 
+    </select>
+    
+    <select id="findPassword" resultType="User">  
+        select * from user where username = #{username}
+    </select>
+    
+    <select id="findUserById" resultType="User">  
+        select * from user where id = #{id}
+    </select>
+    
+    <select id="findUserByUsername" parameterType="String" resultType="User">  
+        select * from user where username = #{username}
+    </select>
+    
+    <delete id="deleteByUserName" parameterType="String">
+    	delete from user where username = #{username}
+    </delete>
+    
+    <delete id="deleteByUserId" parameterType="Integer">
+    	delete from user where id = #{id}
+    </delete>
+    
+    <insert id="addUser">
+    	insert into user(username,password,score,province,department,telphone) values(#{username},#{password},#{score},#{province},#{department},#{telphone})
+    </insert>
+    
+    <update id="updateuserById">
+    	update user set username = #{username},password=#{password},score=#{score},province=#{province},department=#{department},telphone=#{telphone} where id = #{id}
+    </update>
+    
+    <update id="updateUserByUsername">
+    	update user set password=#{password},score=#{score},province=#{province},department=#{department},telphone=#{telphone} where username = #{username}
+    </update>
+    
+    <update id="reset">
+    	update user set password='1234' where username = #{username} and score=#{score} and province=#{province} and department=#{department} and telphone=#{telphone}
+    </update>
+    
+</mapper>

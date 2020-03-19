@@ -18,6 +18,8 @@
     <script src="<%=basePath%>static/js/jquery.cookie.js"></script>
     <script language="javascript" src="<%=basePath%>static/js/compare.js"></script>
 	<script src="<%=basePath%>static/js/bdhmprotocol.js" type="text/javascript" charset="gb2312"></script>
+	
+	<link href="../../static/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     
@@ -26,8 +28,27 @@
     
     
     <div class="tknavw">
-        <div class="tknav"> <a href="http://daxue.exam8.com/">系统首页</a> <a href="http://daxue.exam8.com/collegelist/">院校大全</a> <a href="http://daxue.exam8.com/Major/">专业大全</a> <a href="http://daxue.exam8.com/Rank/">热门排行</a> <a href="http://daxue.exam8.com/Contact/">高校联系方式</a> <a href="http://daxue.exam8.com/Rules/">录取规则</a> <a href="http://daxue.exam8.com/Charge/">收费标准</a> <a href="http://daxue.exam8.com/Line/">专业分数线</a> <a href="http://gaokao.exam8.com/" class="qc" target="_blank">高考首页</a></div>
-    </div>
+			<div class="tknav">
+				<a href="">系统首页</a>
+				<a href="">院校大全</a>
+				<a href="">地区排行</a>
+				<a href="">热门排行</a>
+				<a href="">高校联系方式</a>
+				<a href="">批次控制线</a>
+				<%
+					String username = (String)request.getAttribute("username");
+					if(username.isEmpty() || username == "" || username.equals(null)){
+						%>
+				<a href="<%=basePath%>user/index" style="float: right;border-radius: 15px;">注册</a>
+				<a href="<%=basePath%>user/index" style="float: right;border-radius: 15px;">登录</a>
+				<%
+					}else{
+						%>
+						<a href="<%=basePath%>user/logout" style="float: right;border-radius: 15px;font-size: 1.8em;"><%=username %></a>	
+						<a href="<%=basePath%>user/logout" style="float: right;border-radius: 15px;">注销登录</a>	
+						<% }%>
+			</div>
+		</div>
     <div class="content" style="background-color: #E7E7E7">
         
         
