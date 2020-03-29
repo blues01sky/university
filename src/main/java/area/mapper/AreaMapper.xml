@@ -30,6 +30,14 @@
         select * from area where province = #{province} limit #{startnum},#{shownum}  
     </select>
     
+    <select id="findByTypeLimit" resultType="Area" >  
+        select * from area where type = #{type} limit #{startnum},#{shownum}
+    </select>
+    
+    <select id="findByLevelLimit" resultType="Area" >  
+        select * from area where level = #{level} limit #{startnum},#{shownum}
+    </select>
+    
     <select id="findOnlyProvince" resultType="Area" >  
         select distinct province from area
     </select>
@@ -48,6 +56,14 @@
     
     <select id="findAllNumByProvince" resultType="Integer" parameterType="String" >  
         select count(province) from area where province = #{province}
+    </select> 
+    
+    <select id="findAllNumByType" resultType="Integer" parameterType="String" >  
+        select count(type) from area where type = #{type}
+    </select> 
+    
+    <select id="findAllNumByLevel" resultType="Integer" parameterType="String" >  
+        select count(level) from area where level = #{level}
     </select> 
     
     <delete id="deleteById" parameterType="Integer">

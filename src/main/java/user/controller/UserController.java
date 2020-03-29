@@ -20,7 +20,8 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping(value="/index",method = RequestMethod.GET)
-	public String index() {
+	public String index(HttpServletRequest request,HttpServletResponse response) {
+		request.setAttribute("msg","0");
 		return "login";
 	}
 	
@@ -34,6 +35,12 @@ public class UserController {
 		String department = request.getParameter("department");
 		String phone = request.getParameter("Phone");
 		
+		User check = userService.findUserByUsername(username);
+		if(check != null) {
+			request.setAttribute("msg","用户已存在");
+			return "login";
+		}
+		
 		user.setUsername(username);
 		user.setPassword(password);
 		user.setScore(score);
@@ -42,8 +49,9 @@ public class UserController {
 		user.setTelphone(phone);
 		
 		userService.tianjiaUser(user);
+		request.setAttribute("msg","恭喜注册成功");
 		
-		return "redirect:/user/index";
+		return "login";
 	}
 	
 	@RequestMapping(value="/login",method = RequestMethod.POST)
@@ -51,27 +59,28 @@ public class UserController {
 		String username = request.getParameter("Username");
 		String Password = request.getParameter("Password");
 		
-		User findPassword = userService.findPassword(username);
-		if (findPassword.getUsername().isEmpty() || findPassword.getUsername() == "" || findPassword.getUsername().equals(null)) {
-			request.setAttribute("msg","用户不存在，请重试");
-			System.out.println("用户不存在，请重试");
-			return "redirect:/user/index";
-		} else {
+		User findPassword = userService.findByPassword(username);
+		if (findPassword != null) {
 			if (findPassword.getPassword().equals(Password)) {
-				request.setAttribute("msg","恭喜登录成功");
 				System.out.println("恭喜登录成功");
+				session.setAttribute("msg","恭喜登录成功");
 				session.setAttribute("username",findPassword.getUsername());
 				return "redirect:/index";
 			} else {
 				request.setAttribute("msg","密码错误请再次尝试");
 				System.out.println("密码错误请再次尝试");
 			}
+		} else {
+			request.setAttribute("msg","用户不存在");
+			System.out.println("用户不存在，请重试");
+			return "login";
 		}
-		return "redirect:/user/index";
+		return "login";
 	}
 	
 	@RequestMapping(value="/reset",method=RequestMethod.GET)
-	public String reset() {
+	public String reset(HttpServletRequest request) {
+		request.setAttribute("msg","0");
 		return "reset";
 	}
 	
@@ -85,24 +94,24 @@ public class UserController {
 		user.setProvince(request.getParameter("province"));
 		user.setDepartment(request.getParameter("department"));
 		user.setTelphone(request.getParameter("Phone"));
-		
+		user.setPassword("1234");
 		User name = userService.findUserByUsername(user.getUsername());
-		if (name.getUsername().isEmpty() || name.getUsername() == "" || name.getUsername().equals(null)) {
-			request.setAttribute("msg","用户不存在，请重试");
-			System.out.println("用户不存在，请重试");
-			return "redirect:/user/reset";
-		}else {
-			if (name.getUsername()==user.getUsername() && name.getDepartment()==user.getDepartment() && name.getProvince() == user.getProvince() && name.getScore() == user.getScore() && name.getTelphone() == user.getTelphone()) {
+		if (name.getUsername() != null) {
+			if (name.getUsername().equals(user.getUsername()) && name.getDepartment().equals(user.getDepartment()) && name.getProvince().equals(user.getProvince()) && name.getScore().equals(user.getScore()) && name.getTelphone().equals(user.getTelphone())) {
 				request.setAttribute("msg","恭喜重置密码成功");
 				System.out.println("恭喜重置密码成功");
 				userService.reset(user);
-				return "redirect:/user/index";
+				return "login";
 			} else {
-				System.out.println("用户不存在，请重试");
-				request.setAttribute("msg","用户不存在，请重试");
+				System.out.println("重置密码失败，请重试");
+				request.setAttribute("msg","重置密码失败，请重试");
 			}
+		}else {
+			request.setAttribute("msg","不存在");
+			System.out.println("用户不存在，请重试");
+			return "reset";
 		}
-		return "redirect:/user/reset";
+		return "reset";
 	}
 	
 	
@@ -120,28 +129,28 @@ public class UserController {
 		user.setTelphone(request.getParameter("Phone"));
 		
 		User name = userService.chaByUsername(user.getUsername());
-		if (name.getUsername().isEmpty() || name.getUsername() == "" || name.getUsername().equals(null)) {
-			request.setAttribute("msg","用户不存在，请重试");
-			System.out.println("用户不存在，请重试");
-			return "redirect:/user/reset";
-		} else {
-			if (name.getPassword() == oldpassword) {
+		if (name.getUsername() != null) {
+			if (name.getPassword().equals(oldpassword)) {
 				userService.updateUserByUsername(user);
 				request.setAttribute("msg","恭喜修改用户信息成功");
 				System.out.println("恭喜修改用户信息成功");
-				return "redirect:/user/index";
+				return "login";
 			} else {
 				request.setAttribute("msg","修改用户信息失败");
 				System.out.println("修改用户信息失败");
 			}
+		} else {
+			request.setAttribute("msg","用户不存在，请重试");
+			System.out.println("用户不存在，请重试");
+			return "reset";
 		}
-		return "redirect:/user/reset";
+		return "reset";
 	}
 	
 	@RequestMapping(value ="/logout",method=RequestMethod.GET)
 	public String logout(HttpSession session,HttpServletRequest request) {
-		session.invalidate();
-		request.setAttribute("msg", "注销用户登录成功！");
+		session.removeAttribute("username");
+		session.setAttribute("msg", "注销用户登录成功！");
 		return "redirect:/index";
 	}
 	

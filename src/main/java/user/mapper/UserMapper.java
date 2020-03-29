@@ -10,7 +10,7 @@ public interface UserMapper {
 	
 	List<User> queryAll();
 	
-	User findPassword(@Param("username") String username);
+	User findByPassword(@Param("username") String username);
 	
 	User findUserById(@Param("id") Integer id);
 	
@@ -22,11 +22,11 @@ public interface UserMapper {
 	
 	void tianjiaUser(User user);
 	
-	String updateuserById(User user);
+	void updateuserById(User user);
 	
-	String updateUserByUsername(User user);
+	void updateUserByUsername(User user);
 	
-	String reset(User user);
+	void reset(User user);
 	
 	User chaByUsername(@Param("username") String username);
 	

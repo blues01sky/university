@@ -1,3 +1,4 @@
+<%@page import="major.entity.Major"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="area.entity.Area"%>
 <%@page import="java.util.List"%>
@@ -19,35 +20,62 @@
 		<link href="<%=basePath%>static/css/style.css" rel="stylesheet" type="text/css">
 		<script src="<%=basePath%>static/js/hm.js"></script>
 		<script src="<%=basePath%>static/js/jquery-1.8.2.js"></script>
-		<script src="<%=basePath%>static/js/jquery.cookie.js"></script>
 		<script src="<%=basePath%>static/js/bdhmprotocol.js" type="text/javascript"></script>
 
-		<link href="../../static/css/style.css" rel="stylesheet" type="text/css">
+		<link href="<%=basePath%>static/css/style.css" rel="stylesheet" type="text/css">
 
 		<script type="text/javascript">
 			function searchschool(schoolname) {
 				if(schoolname.value == "") {
-					alert("kong");
+					alert("您输入的值为空，请重试");
+					window.location.reload();	
 				} else {
 					alert(schoolname.value);
 				}
 			}
 
-			function searchprovince(provincename) {
+			function searchprovince() {
+				var province = $('#provincename').val();
 				if(provincename.value == "") {
-					alert("kong");
+					alert("您输入的值为空，请重试");
 				} else {
-					alert(provincename.value);
+					var params = {
+							"province":province
+							};
+			    	$.ajax({
+			    		type: 'POST',
+			    	    ansyv:true,
+			    	    data:params,
+			    	    datatype:'json',
+			    	    url: '${pageContext.request.contextPath}/area/index',
+			    	    success:function(){
+			    	    	/* alert("检索成功"); */
+			    	    },
+			    	    error:function(){
+			    	    	window.location.reload();	
+			    	    }
+			    	})
 				}
 			}
-
 			function searchmajor(majorname) {
 				if(majorname.value == "") {
-					alert("kong");
+					alert("您输入的值为空，请重试");
 				} else {
 					alert(majorname.value);
 				}
 			}
+			<%
+				String msg = (String) session.getAttribute("msg");
+				session.removeAttribute(msg);
+			if(msg != null){
+				if (msg == "注销用户登录成功！") {%>
+				window.onload = function(){
+					alert("注销用户登录成功！");}
+				<%} else if (msg == "恭喜登录成功") {%>
+				window.onload = function(){
+					alert("恭喜登录成功");}
+			<%}
+			}%>
 		</script>
 	</head>
 
@@ -57,6 +85,7 @@
 			List<Area> onlyProvince = (List<Area>)request.getAttribute("onlyProvince");
 			List<Area> onlyType = (List<Area>)request.getAttribute("onlyType");
 			List<Area> onlyLevel = (List<Area>)request.getAttribute("onlyLevel");
+			List<Major> onlyMajortype = (List<Major>)request.getAttribute("onlyMajortype");
 			
 			List<Area> provinceLimitArea1 = (List<Area>)request.getAttribute("provinceLimitArea1");
 			int byProvinceNum1 = (Integer)request.getAttribute("byProvinceNum1");
@@ -69,7 +98,7 @@
 		%>
 		<div class="tknavw">
 			<div class="tknav">
-				<a href="">系统首页</a>
+				<a href="<%=basePath%>index">系统首页</a>
 				<a href="">院校大全</a>
 				<a href="">地区排行</a>
 				<a href="">热门排行</a>
@@ -114,7 +143,7 @@
 								<%
 									for(Area provinces : onlyProvince){
 								%>
-								<a href="" target="_blank">
+								<a href="<%=basePath%>area/index?province=<%=provinces.getProvince() %>" target="_blank">
 									<%=provinces.getProvince() %>
 								</a>
 								<%
@@ -133,7 +162,7 @@
 								<%
 									for(Area types : onlyType){
 								%>
-								<a href="" target="_blank">
+								<a href="<%=basePath%>area/types?type=<%=types.getType() %>" target="_blank">
 									<%=types.getType() %>
 								</a>
 								<%
@@ -149,7 +178,7 @@
 								<%
 									for(Area levels : onlyLevel){
 								%>
-								<a href="" target="_blank">
+								<a href="<%=basePath%>area/level?level=<%=levels.getLevel() %>" target="_blank">
 									<%=levels.getLevel() %>
 								</a>
 								<%
@@ -166,20 +195,12 @@
 								<b class="fl f14px" style="color: red;font-size: 2.0em;">选专业</b>
 							</div>
 							<div class="tdxlxlc" style="text-align: left;">
-								<a href="http://daxue.exam8.com/Major/Index?sortId=1&amp;subjectId=0" target="_blank">实验班</a>
-								<a href="http://daxue.exam8.com/Major/Index?sortId=2&amp;subjectId=0" target="_blank">哲学</a>
-								<a href="http://daxue.exam8.com/Major/Index?sortId=3&amp;subjectId=0" target="_blank">经济学</a>
-								<a href="http://daxue.exam8.com/Major/Index?sortId=4&amp;subjectId=0" target="_blank">法学</a>
-								<a href="http://daxue.exam8.com/Major/Index?sortId=5&amp;subjectId=0" target="_blank">教育学</a>
-								<a href="http://daxue.exam8.com/Major/Index?sortId=6&amp;subjectId=0" target="_blank">文学</a>
-								<a href="http://daxue.exam8.com/Major/Index?sortId=7&amp;subjectId=0" target="_blank">历史学</a>
-								<a href="http://daxue.exam8.com/Major/Index?sortId=8&amp;subjectId=0" target="_blank">理学</a>
-								<a href="http://daxue.exam8.com/Major/Index?sortId=9&amp;subjectId=0" target="_blank">工学</a>
-								<a href="http://daxue.exam8.com/Major/Index?sortId=10&amp;subjectId=0" target="_blank">农学</a>
-								<a href="http://daxue.exam8.com/Major/Index?sortId=11&amp;subjectId=0" target="_blank">医学</a>
-								<a href="http://daxue.exam8.com/Major/Index?sortId=12&amp;subjectId=0" target="_blank">管理学</a>
-								<a href="http://daxue.exam8.com/Major/Index?sortId=13&amp;subjectId=0" target="_blank">军事学</a>
-								<a href="http://daxue.exam8.com/Major/Index?sortId=14&amp;subjectId=0" target="_blank">艺术学</a>
+								<%
+									for(Major major: onlyMajortype){%>
+										<a href="#" target="_blank"><%=major.getMajortype() %></a>
+										<%
+									}
+								%>
 							</div>
 						</div>
 						<div class="tdxlxr">
@@ -200,14 +221,13 @@
 					<div class="tdxrt">
 						<b class="f14px">搜学校</b>
 						<div class="">
-							<input id="schoolname" style="border: solid 1px #2E6DA4;margin-left: 10%;margin-top: 50px;margin-bottom:30px;width: 80%;" onchange="searchschool(this,0,0,1)" placeholder="查学校" />
+							<input id="schoolname" style="border: solid 1px #2E6DA4;margin-left: 10%;margin-top: 50px;margin-bottom:30px;width: 60%;" onchange="searchschool()" placeholder="查学校" />
 
-							<input id="provincename" style="border: solid 1px #2E6DA4;margin-left: 10%;margin-top: 20px;margin-bottom:30px;width: 80%;" onchange="searchprovince(this,0,0,1)" placeholder="查地区" />
+							<input id="provincename" style="border: solid 1px #2E6DA4;margin-left: 10%;margin-top: 20px;margin-bottom:30px;width: 80%;" onchange="searchprovince()" placeholder="查地区" />
 
-							<input id="majorname" style="border: solid 1px #2E6DA4;margin-left: 10%;margin-top: 20px;margin-bottom:30px;width: 80%;" onchange="searchmajor(this,0,0,1)" placeholder="查分数" />
+							<input id="majorname" style="border: solid 1px #2E6DA4;margin-left: 10%;margin-top: 20px;margin-bottom:30px;width: 80%;" onchange="searchmajor()" placeholder="查分数" />
 						</div>
 					</div>
-
 				</div>
 				<div class="clear">
 
@@ -369,7 +389,7 @@
 					<a href="http://adm.baidu.com/help/success.html" target="_blank" style="position: relative; padding-left: 20px;">
 						<div class="zhichi"></div>精准广告支持</a>
 				</div>
-				<div class="cpy01">联系QQ：1181566969 微信：zihan003
+				<div class="cpy01">中国科学院研究生院权威支持(北京)　电 话：010-62168566　传 真：010-62192699</div>
 				</div>
 
 			</div>

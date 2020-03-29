@@ -13,7 +13,7 @@ import util.DateUtil;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
-	private DateUtil date;
+	DateUtil date = new DateUtil();
 	
 	@Autowired
 	private UserMapper userMapper;
@@ -26,10 +26,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findPassword(String username) {
+	public User findByPassword(String username) {
 		// TODO Auto-generated method stub
 		System.out.println("----------"+date.getDate()+"-------------------"+"执行了通过查找密码信息的的方法"+"------------------");
-		return userMapper.findPassword(username);
+		return userMapper.findByPassword(username);
 	}
 
 	@Override
@@ -61,24 +61,24 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String updateuserById(User user) {
+	public void updateuserById(User user) {
 		// TODO Auto-generated method stub
 		System.out.println("----------"+date.getDate()+"-------------------"+"执行了通过id更新用户信息的方法"+"------------------");
-		return userMapper.updateuserById(user);
+		userMapper.updateuserById(user);
 	}
 
 	@Override
-	public String updateUserByUsername(User user) {
+	public void updateUserByUsername(User user) {
 		// TODO Auto-generated method stub
 		System.out.println("----------"+date.getDate()+"-------------------"+"执行了通过用户名更新用户信息的方法"+"------------------");
-		return userMapper.updateUserByUsername(user);
+		userMapper.updateUserByUsername(user);
 	}
 
 	@Override
-	public String reset(User user) {
+	public void reset(User user) {
 		// TODO Auto-generated method stub
 		System.out.println("----------"+date.getDate()+"-------------------"+"执行了重置密码的方法"+"------------------");
-		return userMapper.reset(user);
+		userMapper.reset(user);
 	}
 
 	@Override

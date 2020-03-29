@@ -56,13 +56,13 @@
 			</div>
 		</div>
 	<%
-		List<Score> ScoreByUniversitynames = (List<Score>)request.getAttribute("ScoreByUniversitynames");
+		List<Score> scores = (List<Score>)request.getAttribute("scores");
 	%>
 	
 	<div class="content" style="background-color: #E7E7E7">
 
 		<div class="yxnrt">
-			<div class="yxnrtl"><%=ScoreByUniversitynames.get(0).getUniversityname() %></div>
+			<div class="yxnrtl"><%=scores.get(0).getUniversityname() %></div>
 			<div class="yxnrtr"></div>
 		</div>
 
@@ -81,14 +81,16 @@
 								class="zstable">
 								<tbody>
 									<tr class="zstr">
-										<td colspan="8"><b class="fl f14px">录取分数线</b>
+										<td colspan="9"><b class="fl f14px">录取分数线</b>
+											<form action="<%=basePath%>score/select" method="post">
+											<input type="text" hidden="hidden" name="universityname" value="<%=scores.get(0).getUniversityname() %>" />
 											<div class="fr">
-												<select name="CP_PointType" id="CP_PointType">
-													<option value="1">文科</option>
-													<option value="2">理科</option>
-													<option value="3">综合</option>
+												<select name="department" id="CP_PointType">
+													<option value="文科">文科</option>
+													<option value="理科">理科</option>
+													<option value="综合">综合</option>
 												</select>
-												<select name="CP_Province" id="CP_Province">
+												<select name="area" id="CP_Province">
 													<option value="北京">北京</option>
 													<option value="天津">天津</option>
 													<option value="上海">上海</option>
@@ -124,8 +126,10 @@
 													<option value="澳门">澳门</option>
 													<option value="台湾">台湾</option>
 												</select>
-												<input type="button" value="确定">
-											</div></td>
+												<input type="submit" value="确定">
+											</div>
+											</form>
+											</td>
 									</tr>
 									<tr>
 										<th>年份</th>
@@ -142,7 +146,7 @@
 								<tbody id="CollegePoint">
 									
 									<%
-										for(Score ScoreByUniversityname: ScoreByUniversitynames){
+										for(Score ScoreByUniversityname: scores){
 									%>
 									<tr>
 										<td><%=ScoreByUniversityname.getYear() %></td>
@@ -185,14 +189,17 @@
 					<a name="Comment"></a><b class="fl f16px">网校评论</b><span
 						class="c1968 fr"></span>
 				</div>
+				<form action="<%=basePath%>remark/remark" method="post">
+				<input type="text" hidden="hidden" id="universityname" name="universityname" value="<%=scores.get(0).getUniversityname() %>" />
 				<div class="olfc">
-					<textarea class="olfcbd" id="remark"></textarea>
+					<textarea class="olfcbd" id="remarkcontent" name="remarkcontent"></textarea>
 					<div class="olfcanx">
 						<input class="olfcan"
 							style="color: white; background-color: #1968AA;" type="submit"
 							value="提 交" id="btn_comment">
 					</div>
 				</div>
+				</form>
 			</div>
 
 			<div class="nconr">
@@ -362,7 +369,7 @@
 					<div class="zhichi"></div>精准广告支持
 				</a>
 			</div>
-			<div class="cpy01">联系QQ：1181566969 微信：zihan003</div>
+			<div class="cpy01">中国科学院研究生院权威支持(北京)　电 话：010-62168566　传 真：010-62192699</div>
 
 		</div>
 	</div>

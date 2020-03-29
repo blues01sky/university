@@ -21,7 +21,116 @@ public class AreaController {
 	@Autowired
 	private AreaService areaService;
 	
-	@RequestMapping(value="/index",method=RequestMethod.GET)
+	@RequestMapping(value = "/fenyebylevel",method = RequestMethod.GET)
+	public String fenyeBylevel(@Param("level") String level,@Param("page") int page,HttpServletRequest request,HttpServletResponse response) {
+		Integer Number = areaService.findAllNumByLevel(level);
+		int shownum = 10;
+		int startnum = (page-1) * shownum;
+		List<Area> result = areaService.findByLevelLimit(startnum, shownum, level);
+		
+		request.setAttribute("Number",Number);
+		request.setAttribute("page",page);
+		request.setAttribute("startnum",startnum);
+		request.setAttribute("shownum",shownum);
+		request.setAttribute("result",result);
+		
+		return "level";
+	}
+	
+	@RequestMapping(value = "/level",method = RequestMethod.GET)
+	public String level(@Param("level") String level,HttpServletRequest request,HttpServletResponse response) {
+		Integer Number = areaService.findAllNumByLevel(level);
+		int startnum = 0;
+		int shownum = 10;
+		List<Area> result = areaService.findByLevelLimit(startnum,shownum,level);
+		
+		request.setAttribute("Number",Number);
+		request.setAttribute("startnum",startnum);
+		request.setAttribute("page",1);
+		request.setAttribute("shownum",shownum);
+		request.setAttribute("result",result);
+		return "level";
+	}
+	
+	@RequestMapping(value = "/fenyebytype",method = RequestMethod.GET)
+	public String fenyeBytype(@Param("type") String type,@Param("page") int page,HttpServletRequest request,HttpServletResponse response) {
+		Integer Number = areaService.findAllNumByType(type);
+		int shownum = 10;
+		int startnum = (page-1) * shownum;
+		List<Area> result = areaService.findByTypeLimit(startnum, shownum, type);
+		
+		request.setAttribute("Number",Number);
+		request.setAttribute("page",page);
+		request.setAttribute("startnum",startnum);
+		request.setAttribute("shownum",shownum);
+		request.setAttribute("result",result);
+		
+		return "type";
+	}
+	
+	@RequestMapping(value = "/types",method = RequestMethod.GET)
+	public String type(@Param("type") String type,HttpServletRequest request,HttpServletResponse response) {
+		Integer Number = areaService.findAllNumByType(type);
+		int startnum = 0;
+		int shownum = 10;
+		List<Area> result = areaService.findByTypeLimit(startnum,shownum,type);
+		
+		request.setAttribute("Number",Number);
+		request.setAttribute("startnum",startnum);
+		request.setAttribute("page",1);
+		request.setAttribute("shownum",shownum);
+		request.setAttribute("result",result);
+		return "type";
+	}
+	
+	@RequestMapping(value = "/fenye",method = RequestMethod.GET)
+	public String fenye(@Param("province") String province,@Param("page") int page,HttpServletRequest request,HttpServletResponse response) {
+		Integer Number = areaService.findAllNumByProvince(province);
+		int shownum = 10;
+		int startnum = (page-1) * shownum;
+		List<Area> result = areaService.findByProvinceLimit(startnum, shownum, province);
+		
+		request.setAttribute("Number",Number);
+		request.setAttribute("page",page);
+		request.setAttribute("startnum",startnum);
+		request.setAttribute("shownum",shownum);
+		request.setAttribute("result",result);
+		
+		return "province";
+	}
+	
+	@RequestMapping(value = "/index",method = RequestMethod.GET)
+	public String province(@Param("province") String province,HttpServletRequest request,HttpServletResponse response) {
+		Integer Number = areaService.findAllNumByProvince(province);
+		int startnum = 0;
+		int shownum = 10;
+		List<Area> result = areaService.findByProvinceLimit(startnum, shownum, province);
+		
+		request.setAttribute("Number",Number);
+		request.setAttribute("startnum",startnum);
+		request.setAttribute("page",1);
+		request.setAttribute("shownum",shownum);
+		request.setAttribute("result",result);
+		return "province";
+	}
+	
+/*	@RequestMapping(value = "/index",method = RequestMethod.POST)
+	public void ajax(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		String province = request.getParameter("province");
+		Integer Number = areaService.findAllNumByProvince(province);
+		int startnum = 0;
+		int shownum = 10;
+		List<Area> result = areaService.findByProvinceLimit(startnum, shownum, province);
+		request.setAttribute("Number",Number);
+		request.setAttribute("startnum",startnum);
+		request.setAttribute("page",1);
+		request.setAttribute("shownum",shownum);
+		request.setAttribute("result",result);
+		request.getRequestDispatcher("/WEB-INF/jsp/province.jsp").forward(request,response);
+	}*/
+	
+	
+	@RequestMapping(value="/",method=RequestMethod.GET)
 	public String area(HttpServletResponse response,HttpServletRequest request,@Param("universityname") String universityname,@Param("province") String province) {
 		List<Area> areas = areaService.findOnlyProvince();
 		List<Area> levels = areaService.findOnlyLevel();

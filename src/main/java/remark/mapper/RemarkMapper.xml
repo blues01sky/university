@@ -1,1 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="remark.mapper.RemarkMapper">
+	<insert id="addReamrk">
+		insert into remark(universityname,content,updatetime) values(#{universityname},#{content},#{updatetime});
+	</insert>
+	
+	<select id="findById" >
+		select * from remark where id = #{id}
+	</select>
+	
+	<select id="findByUniversityname" >
+		select * from remark where universityname = #{universityname}
+	</select>
+	
+	<select id="findAll" >
+		select * from remark 
+	</select>
+	
+	<delete id="deleteByUniversityname">
+		delete from remark where universityname = #{universityname}
+	</delete>
+</mapper>

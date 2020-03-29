@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import area.entity.Area;
 import area.services.AreaService;
+import major.entity.Major;
+import major.services.MajorServices;
 
 @Controller
 @RequestMapping
 public class MainController {
 	
+	@Autowired
+	private MajorServices majorServices;
 	@Autowired
 	private AreaService areaService;
 	
@@ -26,27 +30,29 @@ public class MainController {
 		List<Area> onlyProvince = areaService.findOnlyProvince();
 		List<Area> onlyType = areaService.findOnlyType();
 		List<Area> onlyLevel = areaService.findOnlyLevel();
+		List<Major> onlyMajortype = majorServices.findOnlyMajortype();
 		
 		List<Area> provinceLimitArea1 = areaService.findByProvinceLimit(0, 10, "北京");
 		
 		Integer byProvinceNum1 = areaService.findAllNumByProvince("北京");
 		
-		List<Area> provinceLimitArea2 = areaService.findByProvinceLimit(0, 10, "北京");
+		List<Area> provinceLimitArea2 = areaService.findByProvinceLimit(0, 10, "河南");
 		
-		Integer byProvinceNum2 = areaService.findAllNumByProvince("北京");
+		Integer byProvinceNum2 = areaService.findAllNumByProvince("河南");
 		
 		List<Area> provinceLimitArea3 = areaService.findByProvinceLimit(0, 10, "北京");
 		
 		Integer byProvinceNum3 = areaService.findAllNumByProvince("北京");
 		
-		List<Area> provinceLimitArea4 = areaService.findByProvinceLimit(0, 10, "北京");
+		List<Area> provinceLimitArea4 = areaService.findByProvinceLimit(0, 10, "河南");
 		
-		Integer byProvinceNum4 = areaService.findAllNumByProvince("北京");
+		Integer byProvinceNum4 = areaService.findAllNumByProvince("河南");
 		
 		request.setAttribute("allNum", allNum);
 		request.setAttribute("onlyProvince", onlyProvince);
 		request.setAttribute("onlyType", onlyType);
 		request.setAttribute("onlyLevel", onlyLevel);
+		request.setAttribute("onlyMajortype", onlyMajortype);
 		request.setAttribute("provinceLimitArea1", provinceLimitArea1);
 		request.setAttribute("byProvinceNum1", byProvinceNum1);
 		request.setAttribute("provinceLimitArea2", provinceLimitArea2);

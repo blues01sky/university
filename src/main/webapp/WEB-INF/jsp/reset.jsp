@@ -26,7 +26,19 @@
 		<link href="../../static/css/style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="../../static/css/login.css" />
 		<script src="../../static/js/jquery-1.8.2.js"></script>
-		
+		<script type="text/javascript">
+		<%String msg = (String) request.getAttribute("msg");
+		if (msg == "用户不存在，请重试") {%>
+			window.onload = function(){
+				alert("用户不存在，请重试");}
+			<%} else if (msg == "重置密码失败，请重试") {%>
+			window.onload = function(){
+				alert("重置密码失败，请重试");}
+			<%} else if (msg == "修改用户信息失败") {%>
+			window.onload = function(){
+				alert("修改用户信息失败");}
+		<%}%>
+		</script>
 
 	</head>
 
@@ -145,7 +157,7 @@
 					<a href="http://adm.baidu.com/help/success.html" target="_blank" style="position: relative; padding-left: 20px;">
 						<div class="zhichi"></div>精准广告支持</a>
 				</div>
-				<div class="cpy01">联系QQ：1181566969 微信：zihan003
+				<div class="cpy01">中国科学院研究生院权威支持(北京)　电 话：010-62168566　传 真：010-62192699</div>
 				</div>
 
 			</div>

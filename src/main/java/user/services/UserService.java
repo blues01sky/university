@@ -10,7 +10,7 @@ public interface UserService {
 	
 	List<User> queryAll();
 	
-	User findPassword(@Param("username") String username);
+	User findByPassword(@Param("username") String username);
 	
 	User findUserById(@Param("id") Integer id);
 	
@@ -24,9 +24,9 @@ public interface UserService {
 	
 	User chaByUsername(@Param("username") String username);
 	
-	String updateuserById(User user);
+	void updateuserById(User user);
 	
-	String updateUserByUsername(User user);
+	void updateUserByUsername(User user);
 	
-	String reset(User user);
+	void reset(User user);
 }

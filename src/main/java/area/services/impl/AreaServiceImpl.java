@@ -131,8 +131,32 @@ public class AreaServiceImpl implements AreaService {
 		return areaMapper.findByProvinceLimit(startnum, shownum, province);
 	}
 
+	@Override
+	public Integer findAllNumByType(String type) {
+		// TODO Auto-generated method stub
+		System.out.println("----------"+date.getDate()+"-------------------"+"执行了查询所有类型大学数量的方法"+"------------------");
+		return areaMapper.findAllNumByType(type);
+	}
 
-	
-	
-	
+	@Override
+	public List<Area> findByTypeLimit(Integer startnum, Integer shownum, String type) {
+		// TODO Auto-generated method stub
+		System.out.println("----------"+date.getDate()+"-------------------"+"执行了查询所有类型大学并限制数量的方法"+"------------------");
+		return areaMapper.findByTypeLimit(startnum, shownum, type);
+	}
+
+	@Override
+	public List<Area> findByLevelLimit(Integer startnum, Integer shownum, String level) {
+		// TODO Auto-generated method stub
+		System.out.println("----------"+date.getDate()+"-------------------"+"执行了查询所有层次大学并限制数量的方法"+"------------------");
+		return areaMapper.findByLevelLimit(startnum, shownum, level);
+	}
+
+	@Override
+	public Integer findAllNumByLevel(String level) {
+		// TODO Auto-generated method stub
+		System.out.println("----------"+date.getDate()+"-------------------"+"执行了查询所有层次大学数量的方法"+"------------------");
+		return areaMapper.findAllNumByLevel(level);
+	}
+
 }

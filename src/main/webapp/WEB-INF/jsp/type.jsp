@@ -304,20 +304,21 @@
    				}
 	       	%>
         <div class="fenye">&nbsp;
-	        <a href="<%=basePath%>area/fenye?province=<%=result.get(0).getProvince() %>&page=1" class="fy1 ">首页</a>&nbsp;&nbsp;&nbsp;
+	        <a href="<%=basePath%>area/fenyebytype?type=<%=result.get(0).getType() %>&page=1" class="fy1 ">首页</a>&nbsp;&nbsp;&nbsp;
 	        <%
-	        	if(pagenum>1){%>
-	        	<a href="<%=basePath%>area/fenye?province=<%=result.get(0).getProvince() %>&page=<%=beforepage %>" class="fy2 ">上一页</a>&nbsp;&nbsp;&nbsp;
+	        	if(pagenum!=1){%>
+	        	<a href="<%=basePath%>area/fenyebytype?type=<%=result.get(0).getType() %>&page=<%=beforepage %>" class="fy2 ">上一页</a>&nbsp;&nbsp;&nbsp;
 	        	<%
 	        	}
 	        %>
+	        
 	        <%
 	        	if(startnum == 0){
 	        		%>
 	        		<span>1</span>&nbsp;&nbsp;&nbsp;
 	        		<%
 	        		for(int i=2;i<=allNum;i++){%>
-	        			<a href="<%=basePath%>area/fenye?province=<%=result.get(0).getProvince() %>&page=<%=i %>" class="fy3"><%=i %></a>&nbsp;&nbsp;&nbsp;
+	        			<a href="<%=basePath%>area/fenyebytype?type=<%=result.get(0).getType() %>&page=<%=i %>" class="fy3"><%=i %></a>&nbsp;&nbsp;&nbsp;
 	        			<%
 	        		}
 	        	}else{
@@ -330,20 +331,19 @@
 		       	<%
 	       			}else{
 	       				%>
-		       			<a href="<%=basePath%>area/fenye?province=<%=result.get(0).getProvince() %>&page=<%=i %>" class="fy3"><%=i %></a>&nbsp;&nbsp;&nbsp;
+		       			<a href="<%=basePath%>area/fenyebytype?type=<%=result.get(0).getType() %>&page=<%=i %>" class="fy3"><%=i %></a>&nbsp;&nbsp;&nbsp;
 		       	<%
 	       				}
 	       			}
 	       		}
 	       	%>
-	       	
 	       	<%
-	        	if(pagenum<allNum){%>
-	        	<a href="<%=basePath%>area/fenye?province=<%=result.get(0).getProvince() %>&page=<%=nextpage %>" class="fy2 ">下一页</a> &nbsp;&nbsp;
+	        	if(pagenum!=allNum){%>
+	        	 <a href="<%=basePath%>area/fenyebytype?type=<%=result.get(0).getType() %>&page=<%=nextpage %>" class="fy2 ">下一页</a> &nbsp;&nbsp;
 	        	<%
 	        	}
 	        %>
-	        <a href="<%=basePath%>area/fenye?province=<%=result.get(0).getProvince() %>&page=<%=allNum %>" class="fy1 ">尾页</a>&nbsp;</div>
+	        <a href="<%=basePath%>area/fenyebytype?type=<%=result.get(0).getType() %>&page=<%=allNum %>" class="fy1 ">尾页</a>&nbsp;</div>
    		</div><div class="clear "></div>
 </div>
 

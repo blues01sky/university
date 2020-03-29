@@ -7,6 +7,13 @@ import org.apache.ibatis.annotations.Param;
 import area.entity.Area;
 
 public interface AreaService {
+	List<Area> findByLevelLimit(@Param("startnum") Integer startnum,@Param("shownum") Integer shownum,@Param("level") String level);
+	
+	Integer findAllNumByLevel(@Param("level") String level);
+	
+	Integer findAllNumByType(@Param("type") String type);
+	
+	List<Area> findByTypeLimit(@Param("startnum") Integer startnum,@Param("shownum") Integer shownum,@Param("type") String type);
 	
 	List<Area> queryAll();
 	

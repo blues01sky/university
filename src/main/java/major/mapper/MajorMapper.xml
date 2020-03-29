@@ -1,1 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="major.mapper.MajorMapper">
+    <!-- 查询所有person -->  
+    <select id="queryAll" resultType="Major" >  
+        select * from major 
+    </select>
+    
+    <select id="findCountByProfessional">  
+        select count(#{professional}) from major where universityname = #{universityname}
+    </select>
+    
+    <select id="findOnlyProfessional" resultType="Major" >  
+        select distinct professional from major
+    </select>
+    
+    <select id="findOnlyDegree" resultType="Major" >  
+        select distinct degree from major
+    </select>
+    
+    <select id="findOnlyMajortype" resultType="Major" >  
+        select distinct majortype from major
+    </select>
+    
+    <select id="findCountByDegree">  
+        select count(#{degree}) from major where universityname = #{universityname}
+    </select>
+    
+    <select id="findCountByMajortype" >  
+        select count(#{majortype}) from major where universityname = #{universityname}
+    </select>
+    
+    <select id="findByProfessional" resultType="Major">  
+        select * from major where professional = #{professional}
+    </select>
+    
+    <select id="findByDegree" resultType="Major">  
+        select * from major where degree = #{degree}
+    </select>
+    
+    <select id="findMajorByMajortype" resultType="Major">  
+        select * from major where majortype = #{majortype}
+    </select>
+    
+    <select id="findByUniversityname" parameterType="String" resultType="Major">  
+        select * from major where universityname = #{universityname} order by degree desc
+    </select>
+    
+    <delete id="deleteByprofessionalAndUniversityname" parameterType="String">
+    	delete from major where professional = #{professional} and universityname = #{universityname}
+    </delete>
+    
+    <delete id="deleteByDegreeAndUniversityname" parameterType="String">
+    	delete from major where degree = #{degree} and universityname = #{universityname}
+    </delete>
+    
+    <delete id="deleteByMajortypeAndUniversityname" parameterType="String">
+    	delete from major where majortype = #{majortype} and universityname = #{universityname}
+    </delete>
+    
+    <delete id="deleteByUniversityname" parameterType="String">
+    	delete from major where and universityname = #{universityname}
+    </delete>
+    
+    <delete id="deleteByDegree" parameterType="String">
+    	delete from major where and degree = #{degree}
+    </delete>
+    
+    <delete id="deleteByMajortype" parameterType="String">
+    	delete from major where and majortype = #{majortype}
+    </delete>
+    
+    <delete id="deleteByMajorId" parameterType="Integer">
+    	delete from major where id = #{id}
+    </delete>
+    
+    <insert id="addMajor" >
+    	insert into major(professional,degree,majortype,universityname) values(#{professional},#{degree},#{majortype},#{universityname})
+    </insert>
+    
+    <update id="updateMajorById" >
+    	update major set professional = #{professional},degree=#{degree},majortype=#{majortype},universityname=#{universityname} where id = #{id}
+    </update>
+    
+    <update id="updateMajorByUniversityname" >
+    	update major set professional = #{professional},degree=#{degree},majortype=#{majortype} where universityname = #{universityname}
+    </update>
+    
+</mapper>
