@@ -10,6 +10,10 @@ public interface ScoreMapper {
 	
 	List<Score> queryAll();
 	
+	Integer findBigSelvesCount(@Param("minscore") String minscore,@Param("maxscore") String maxscore,@Param("todayyear") Integer todayyear,@Param("department") String department,@Param("area") String area);
+	
+	List<Score> findBigSelves(@Param("minscore") String minscore,@Param("maxscore") String maxscore,@Param("todayyear") Integer todayyear,@Param("startnum") Integer startnum,@Param("pagecount") Integer pagecount,@Param("department") String department,@Param("area") String area);
+	
 	List<Score> findScoreByUniversitynameAndAreaAndDepartmentYearDesc(@Param("universityname") String universityname,@Param("area") String area,@Param("department") String department);
 	
 	List<Score> findScoreByUniversitynameDesc(@Param("universityname") String universityname);

@@ -159,4 +159,25 @@ public class AreaServiceImpl implements AreaService {
 		return areaMapper.findAllNumByLevel(level);
 	}
 
+	@Override
+	public List<Area> findLike(String universityname) {
+		// TODO Auto-generated method stub
+		System.out.println("----------"+date.getDate()+"-------------------"+"执行了模糊查询大学的方法"+"------------------");
+		return areaMapper.findLike(universityname);
+	}
+
+	@Override
+	public List<Area> findLikeLimit(Integer startnum, Integer shownum, String universityname) {
+		// TODO Auto-generated method stub
+		System.out.println("----------"+date.getDate()+"-------------------"+"执行了模糊查询大学并限制数量的方法"+"------------------");
+		return areaMapper.findLikeLimit(startnum, shownum, universityname);
+	}
+
+	@Override
+	public Integer findLikeCount(String universityname) {
+		// TODO Auto-generated method stub
+		System.out.println("----------"+date.getDate()+"-------------------"+"执行了模糊查询大学数量的方法"+"------------------");
+		return areaMapper.findLikeCount(universityname);
+	}
+
 }

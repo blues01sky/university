@@ -7,8 +7,13 @@ import org.apache.ibatis.annotations.Param;
 import area.entity.Area;
 
 public interface AreaMapper {
+	Integer findLikeCount(@Param("universityname") String universityname);
 	
 	List<Area> queryAll();
+	
+	List<Area> findLikeLimit(@Param("startnum") Integer startnum,@Param("shownum") Integer shownum,@Param("universityname") String universityname);
+	
+	List<Area> findLike(@Param("universityname") String universityname);
 	
 	Area findByUniversityName(@Param("universityname") String universityname);
 	

@@ -94,4 +94,18 @@ public class ScoreServicesImpl implements ScoreServices {
 		return null;
 	}
 
+	@Override
+	public List<Score> findBigSelves(String minscore, String maxscore, Integer todayyear, Integer startnum,
+			Integer pagecount,String department,String area) {
+		// TODO Auto-generated method stub
+		System.out.println("----------"+date.getDate()+"-------------------"+"执行了根据分估学校的方法"+"------------------");
+		return scoreMapper.findBigSelves(minscore, maxscore, todayyear, startnum, pagecount, department, area);
+	}
+
+	@Override
+	public Integer findBigSelvesCount(String minscore, String maxscore, Integer todayyear,String department,String area) {
+		// TODO Auto-generated method stub
+		return scoreMapper.findBigSelvesCount(minscore, maxscore, todayyear, department, area);
+	}
+
 }

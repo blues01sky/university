@@ -52,6 +52,22 @@ public class AreaController {
 		return "level";
 	}
 	
+	@RequestMapping(value = "/like",method = RequestMethod.POST)
+	public String findlike(HttpServletRequest request,HttpServletResponse response) {
+		String universityname = request.getParameter("schoolname");
+		Integer Number = areaService.findLikeCount(universityname);
+		int startnum = 0;
+		int shownum = 50;
+		List<Area> result = areaService.findLike(universityname);
+		
+		request.setAttribute("Number",Number);
+		request.setAttribute("startnum",startnum);
+		request.setAttribute("page",1);
+		request.setAttribute("shownum",shownum);
+		request.setAttribute("result",result);
+		return "level";
+	}
+	
 	@RequestMapping(value = "/fenyebytype",method = RequestMethod.GET)
 	public String fenyeBytype(@Param("type") String type,@Param("page") int page,HttpServletRequest request,HttpServletResponse response) {
 		Integer Number = areaService.findAllNumByType(type);
@@ -70,6 +86,22 @@ public class AreaController {
 	
 	@RequestMapping(value = "/types",method = RequestMethod.GET)
 	public String type(@Param("type") String type,HttpServletRequest request,HttpServletResponse response) {
+		Integer Number = areaService.findAllNumByType(type);
+		int startnum = 0;
+		int shownum = 10;
+		List<Area> result = areaService.findByTypeLimit(startnum,shownum,type);
+		
+		request.setAttribute("Number",Number);
+		request.setAttribute("startnum",startnum);
+		request.setAttribute("page",1);
+		request.setAttribute("shownum",shownum);
+		request.setAttribute("result",result);
+		return "type";
+	}
+	
+	@RequestMapping(value = "/types",method = RequestMethod.POST)
+	public String searchtype(HttpServletRequest request,HttpServletResponse response) {
+		String type = request.getParameter("majorname");
 		Integer Number = areaService.findAllNumByType(type);
 		int startnum = 0;
 		int shownum = 10;
@@ -104,6 +136,22 @@ public class AreaController {
 		Integer Number = areaService.findAllNumByProvince(province);
 		int startnum = 0;
 		int shownum = 10;
+		List<Area> result = areaService.findByProvinceLimit(startnum, shownum, province);
+		
+		request.setAttribute("Number",Number);
+		request.setAttribute("startnum",startnum);
+		request.setAttribute("page",1);
+		request.setAttribute("shownum",shownum);
+		request.setAttribute("result",result);
+		return "province";
+	}
+	
+	@RequestMapping(value = "/index",method = RequestMethod.POST)
+	public String searchprovince(HttpServletRequest request,HttpServletResponse response) {
+		String province = request.getParameter("provincename");
+		Integer Number = areaService.findAllNumByProvince(province);
+		int startnum = 0;
+		int shownum = 50;
 		List<Area> result = areaService.findByProvinceLimit(startnum, shownum, province);
 		
 		request.setAttribute("Number",Number);
@@ -155,7 +203,7 @@ public class AreaController {
 		return "index";
 	}
 	 
-	@RequestMapping(value="/add",method=RequestMethod.GET)
+	/*@RequestMapping(value="/add",method=RequestMethod.GET)
 	public void add() {
 		Area area = new Area();
 		area.setUniversityname("清华1大学");
@@ -194,6 +242,6 @@ public class AreaController {
 	@RequestMapping(value="/sel",method=RequestMethod.GET)
 	public void sel() {
 		
-	}
+	}*/
 	
 }

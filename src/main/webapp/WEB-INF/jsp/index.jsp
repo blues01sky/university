@@ -221,11 +221,18 @@
 					<div class="tdxrt">
 						<b class="f14px">搜学校</b>
 						<div class="">
-							<input id="schoolname" style="border: solid 1px #2E6DA4;margin-left: 10%;margin-top: 50px;margin-bottom:30px;width: 60%;" onchange="searchschool()" placeholder="查学校" />
-
-							<input id="provincename" style="border: solid 1px #2E6DA4;margin-left: 10%;margin-top: 20px;margin-bottom:30px;width: 80%;" onchange="searchprovince()" placeholder="查地区" />
-
-							<input id="majorname" style="border: solid 1px #2E6DA4;margin-left: 10%;margin-top: 20px;margin-bottom:30px;width: 80%;" onchange="searchmajor()" placeholder="查分数" />
+							<form action="<%=basePath%>area/like" method="post">
+								<input name="schoolname" style="border: solid 1px #2E6DA4;margin-left: 10%;margin-top: 50px;margin-bottom:30px;width: 50%;" onchange="searchschool()" placeholder="查学校" />
+								<input id="" style="width: 20%;" type="submit" value="搜一下">
+							</form>
+							<form action="<%=basePath%>area/index" method="post">
+								<input name="provincename" style="border: solid 1px #2E6DA4;margin-left: 10%;margin-top: 20px;margin-bottom:30px;width: 50%;" onchange="searchprovince()" placeholder="查地区" />
+								<input style="width: 20%;" type="submit" value="搜一下">
+							</form>
+							<form action="<%=basePath%>score/search" method="post">
+								<input name="searchscore" style="border: solid 1px #2E6DA4;margin-left: 10%;margin-top: 20px;margin-bottom:30px;width: 50%;" onchange="searchmajor()" placeholder="查分数" />
+								<input id="" style="width: 20%;" type="submit" value="搜一下">
+							</form>
 						</div>
 					</div>
 				</div>

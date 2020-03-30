@@ -10,6 +10,18 @@
         select * from area where universityname = #{universityname} 
     </select>
     
+    <select id="findLike" resultType="Area" >  
+        select * from area where universityname like '%${universityname}%' 
+    </select>
+    
+    <select id="findLikeLimit" resultType="Area" >  
+        select * from area where universityname like '%${universityname}%' limit #{startnum},#{shownum}  
+    </select>
+    
+    <select id="findLikeCount" resultType="Integer">  
+        select count(*) from area where universityname like '%${universityname}%'
+    </select>
+    
     <select id="findById" resultType="Area" >  
         select * from area where id = #{id} 
     </select>
