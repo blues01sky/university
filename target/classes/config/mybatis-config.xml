@@ -11,6 +11,7 @@
          <typeAlias type="user.entity.User" alias="User"/>  
          <typeAlias type="remark.entity.Remark" alias="Remark"/>  
          <typeAlias type="major.entity.Major" alias="Major"/>  
+         <typeAlias type="admin.entity.Admin" alias="Admin"/>  
     </typeAliases>     
      <!--  <mappers>  
         <mapper resource="cn.com.demo.mapper.PersonMapper.xml" />  
