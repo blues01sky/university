@@ -54,38 +54,38 @@ public class ScoreServicesImpl implements ScoreServices {
 	}
 
 	@Override
-	public String deleteByScoreName(String universityname) {
+	public void deleteByScoreName(String universityname) {
 		// TODO Auto-generated method stub
 		System.out.println("----------"+date.getDate()+"-------------------"+"执行了根据id删除分数线的方法"+"------------------");
-		return scoreMapper.deleteByScoreName(universityname);
+		scoreMapper.deleteByScoreName(universityname);
 	}
 
 	@Override
-	public String deleteByScoreId(Integer id) {
+	public void deleteByScoreId(Integer id) {
 		// TODO Auto-generated method stub
 		System.out.println("----------"+date.getDate()+"-------------------"+"执行了根据id删除分数线的方法"+"------------------");
-		return scoreMapper.deleteByScoreId(id);
+		scoreMapper.deleteByScoreId(id);
 	}
 
 	@Override
-	public String addScore(Score score) {
+	public void addScore(Score score) {
 		// TODO Auto-generated method stub
 		System.out.println("----------"+date.getDate()+"-------------------"+"执行了增加分数线的方法"+"------------------");
-		return scoreMapper.addScore( score);
+		scoreMapper.addScore( score);
 	}
 
 	@Override
-	public String updateScoreById(Score score) {
+	public void updateScoreById(Score score) {
 		// TODO Auto-generated method stub
 		System.out.println("----------"+date.getDate()+"-------------------"+"执行了根据id更新分数线的方法"+"------------------");
-		return scoreMapper.updateScoreById(score);
+		scoreMapper.updateScoreById(score);
 	}
 
 	@Override
-	public String updateScoreByUniversityname(Score score) {
+	public void updateScoreByUniversityname(Score score) {
 		// TODO Auto-generated method stub
 		System.out.println("----------"+date.getDate()+"-------------------"+"执行了根据大学更新分数线的方法"+"------------------");
-		return scoreMapper.updateScoreByUniversityname(score);
+		scoreMapper.updateScoreByUniversityname(score);
 	}
 
 	@Override
@@ -106,6 +106,12 @@ public class ScoreServicesImpl implements ScoreServices {
 	public Integer findBigSelvesCount(String minscore, String maxscore, Integer todayyear,String department,String area) {
 		// TODO Auto-generated method stub
 		return scoreMapper.findBigSelvesCount(minscore, maxscore, todayyear, department, area);
+	}
+
+	@Override
+	public Score findById(Integer id) {
+		// TODO Auto-generated method stub
+		return scoreMapper.findById(id);
 	}
 
 }

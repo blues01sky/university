@@ -10,6 +10,8 @@ public interface ScoreServices {
 	
 	List<Score> queryAll();
 	
+	Score findById(@Param("id") Integer id);
+	
 	List<Score> findBigSelves(@Param("minscore") String minscore,@Param("maxscore") String maxscore,@Param("todayyear") Integer todayyear,@Param("startnum") Integer startnum,@Param("pagecount") Integer pagecount,@Param("department") String department,@Param("area") String area);
 	
 	Integer findBigSelvesCount(@Param("minscore") String minscore,@Param("maxscore") String maxscore,@Param("todayyear") Integer todayyear,@Param("department") String department,@Param("area") String area);
@@ -24,13 +26,13 @@ public interface ScoreServices {
 	
 	List<Score> findScoreByAreaAndDepartmentBiggerThanMinimumAsc(@Param("minimum") Integer minimum,@Param("area") String area,@Param("department") String department);
 	
-	String deleteByScoreName(@Param("universityname") String universityname );
+	void deleteByScoreName(@Param("universityname") String universityname );
 	
-	String deleteByScoreId(@Param("id") Integer id);
+	void deleteByScoreId(@Param("id") Integer id);
 	
-	String addScore(@Param("score") Score score);
+	void addScore(Score score);
 	
-	String updateScoreById(@Param("score") Score score);
+	void updateScoreById(Score score);
 	
-	String updateScoreByUniversityname(@Param("score") Score score);
+	void updateScoreByUniversityname(Score score);
 }

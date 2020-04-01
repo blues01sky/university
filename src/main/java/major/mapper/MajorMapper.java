@@ -10,6 +10,8 @@ public interface MajorMapper {
 	
 	List<Major> queryAll();
 	
+	Major findById(@Param("id") Integer id);
+	
 	Integer findCountByProfessional(@Param("professional") String professional,@Param("universityname") String universityname);
 	
 	List<Major> findOnlyProfessional();

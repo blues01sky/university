@@ -26,7 +26,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var minutes = now.getMinutes();
 				var seconds = now.getSeconds();
 
-				var day = now.getDay();
 				var weeks = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
 				var week = weeks[day];
 
@@ -68,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Brand</a>
+					<a class="navbar-brand" href="<%=basePath%>index">Brand</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -140,43 +139,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<label for="username" class="col-sm-2 control-label">大学名称：</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="universityname"
-						value="大学名称">
+						placeholder="大学名称">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">学校类型：</label>
 				<div class="col-sm-10">
-					<input type="password"
+					<input type="text"
 						class="form-control" name="type"
-						value="学校类型">
+						placeholder="学校类型">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">学校所在地区：</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="province"
-						value="学校所在地区">
+						placeholder="学校所在地区">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">学校电话：</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="telphone"
-						value="学校电话">
+						placeholder="学校电话">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">学校地址：</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="address"
-						value="学校地址">
+						placeholder="学校地址">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">官网网址：</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="url"
-						value="官网网址">
+						placeholder="官网网址">
 				</div>
 			</div>
 			<div class="col-lg-5"></div>

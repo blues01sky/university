@@ -11,6 +11,8 @@ List<Major> queryAll();
 	
 	Integer findCountByProfessional(@Param("professional") String professional,@Param("universityname") String universityname);
 	
+	Major findById(@Param("id") Integer id);
+	
 	List<Major> findOnlyProfessional();
 	
 	List<Major> findOnlyDegree();

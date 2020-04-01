@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scoreline.mapper.ScorelineMapper">
+	<select id="queryAll" resultType="Scoreline">
+		select * from scoreline order by id asc
+	</select>
+    
+    <select id="findByProvinceAndYearDepartment" resultType="Scoreline">  
+        select * from scoreline where province = #{province} and year = #{year} and deparement = #{deparement} order by year desc 
+    </select>
+    
+    <select id="findScorelineById" resultType="Scoreline">  
+        select * from scoreline where id = #{id}
+    </select>
+    
+    <delete id="deleteByScorelineId">
+    	delete from scoreline where id = #{id}
+    </delete>
+    
+    <insert id="addScoreline">
+    	insert into scoreline(province,deparement,year,cengci,fenshu) values(#{province},#{deparement},#{year},#{cengci},#{fenshu})
+    </insert>
+    
+    <update id="updateScorelineById" >
+    	update scoreline set province = #{province},deparement=#{deparement},year=#{year},cengci=#{cengci},fenshu=#{fenshu} where id = #{id}
+    </update>
+    
+</mapper>

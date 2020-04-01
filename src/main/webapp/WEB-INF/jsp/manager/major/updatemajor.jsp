@@ -1,5 +1,4 @@
-<%@page import="cn.com.entity.Admin"%>
-<%@page import="cn.com.entity.User"%>
+<%@page import="major.entity.Major"%>
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
 <%
@@ -28,7 +27,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var minutes = now.getMinutes();
 				var seconds = now.getSeconds();
 
-				var day = now.getDay();
 				var weeks = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
 				var week = weeks[day];
 
@@ -54,10 +52,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			setInterval("gettime()", 1000);
 		</script>
 <title>data属性实现下拉菜单</title>
-<% 
-			Admin admin = new Admin();
-			admin = (Admin)request.getAttribute("admin");
-		%>
 </head>
 
 <body>
@@ -74,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Brand</a>
+					<a class="navbar-brand" href="<%=basePath%>index">Brand</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -96,7 +90,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<li>
 								<a href="<%=basePath%>admin/compare">学校详细信息管理</a>
 							</li>
-							<li>
+							<li class="active">
 								<a href="<%=basePath%>admin/major">学校专业管理</a>
 							</li>
 							<li>
@@ -141,33 +135,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<div class="col-lg-3"></div>
 	<div class="nav col-lg-5">
-		<form class="form-horizontal" method="post" action="updateAdmin.admin">
+	<%
+		Major major = (Major)request.getAttribute("result");
+	%>
+		<form class="form-horizontal" method="post" action="<%=basePath%>major/updatemajor">
 			<div class="form-group">
 				<label for="username" class="col-sm-2 control-label">学校名称</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="universityname" 
-						placeholder="学校名称">
+						value="<%=major.getUniversityname() %>">
+					<input type="hidden" class="form-control" name="majorid" 
+						value="<%=major.getId() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">学位类型</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="degree" 
-						placeholder="学位类型">
+						value="<%=major.getDegree() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">大类</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="majortype" 
-						placeholder="大类">
+						value="<%=major.getMajortype() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">专业</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="professional" 
-						placeholder="专业">
+						value="<%=major.getProfessional() %>">
 				</div>
 			</div>
 			<div class="col-lg-5"></div>

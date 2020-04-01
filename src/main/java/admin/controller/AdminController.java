@@ -22,8 +22,14 @@ import compare.entity.Compare;
 import compare.services.CompareServices;
 import connect.entity.Connect;
 import connect.services.ConnectServices;
+import major.entity.Major;
+import major.services.MajorServices;
 import remark.entity.Remark;
 import remark.services.RemarkServices;
+import score.entity.Score;
+import score.services.ScoreServices;
+import scoreline.entity.Scoreline;
+import scoreline.services.ScorelineServices;
 import user.entity.User;
 import user.services.UserService;
 import util.DateUtil;
@@ -48,6 +54,12 @@ public class AdminController {
 	private CompareServices compareServices;
 	@Autowired
 	private ConnectServices connectServices;
+	@Autowired
+	private MajorServices majorServices;
+	@Autowired
+	private ScorelineServices scorelineServices;
+	@Autowired
+	private ScoreServices scoreServices;
 	
 	@RequestMapping(value="/index",method=RequestMethod.GET)
 	public String index() {
@@ -88,7 +100,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/major",method=RequestMethod.GET)
-	public String major() {
+	public String major(HttpServletRequest request) {
+		List<Major> result = majorServices.queryAll();
+		request.setAttribute("result",result);
 		return "manager/major/major";
 	}
 	
@@ -100,12 +114,16 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/score",method=RequestMethod.GET)
-	public String score() {
+	public String score(HttpServletRequest request) {
+		List<Score> result = scoreServices.queryAll();
+		request.setAttribute("result",result);
 		return "manager/score/score";
 	}
 	
 	@RequestMapping(value="/scoreline",method=RequestMethod.GET)
-	public String scoreline() {
+	public String scoreline(HttpServletRequest request) {
+		List<Scoreline> result = scorelineServices.queryAll();
+		request.setAttribute("result",result);
 		return "manager/scoreline/scoreline";
 	}
 	

@@ -44,7 +44,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var minutes = now.getMinutes();
 		var seconds = now.getSeconds();
 
-		var day = now.getDay();
 		var weeks = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
 		var week = weeks[day];
 
@@ -87,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Brand</a>
+					<a class="navbar-brand" href="<%=basePath%>index">Brand</a>
 				</div>
 
 				<div class="collapse navbar-collapse"

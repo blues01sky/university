@@ -27,7 +27,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var minutes = now.getMinutes();
 				var seconds = now.getSeconds();
 
-				var day = now.getDay();
 				var weeks = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
 				var week = weeks[day];
 
@@ -69,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Brand</a>
+					<a class="navbar-brand" href="<%=basePath%>index">Brand</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -100,7 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<li>
 								<a href="<%=basePath%>admin/score">学校分数管理</a>
 							</li>
-							<li>
+							<li class="active">
 								<a href="<%=basePath%>admin/scoreline">各地分数线管理</a>
 							</li>
 							<li>
@@ -136,7 +135,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<div class="col-lg-3"></div>
 	<div class="nav col-lg-5">
-		<form class="form-horizontal" method="post" action="addAdmin.admin">
+		<form class="form-horizontal" method="post" action="<%=basePath%>scoreline/addscoreline">
 			
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">地区</label>

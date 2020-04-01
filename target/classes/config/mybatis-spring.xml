@@ -49,7 +49,7 @@
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="connect.mapper;user.mapper;area.mapper;score.mapper;remark.mapper;major.mapper;admin.mapper;charge.mapper;compare.mapper" />
+        <property name="basePackage" value="user.mapper;area.mapper;score.mapper;remark.mapper;major.mapper;admin.mapper;charge.mapper;compare.mapper;connect.mapper;scoreline.mapper" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
 

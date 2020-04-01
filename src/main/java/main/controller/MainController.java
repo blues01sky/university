@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,8 @@ public class MainController {
 	private AreaService areaService;
 	
 	@RequestMapping(value="/index",method = RequestMethod.GET)
-	public String index(HttpServletRequest request,HttpServletResponse response) {
+	public String index(HttpServletRequest request,HttpServletResponse response,HttpSession session) {
+		session.removeAttribute("adminname");
 		Integer allNum = areaService.findAllNum();
 		List<Area> onlyProvince = areaService.findOnlyProvince();
 		List<Area> onlyType = areaService.findOnlyType();

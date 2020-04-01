@@ -141,4 +141,10 @@ public class MajorServicesImpl implements MajorServices {
 		majorMapper.updateMajorByUniversityname(major);
 	}
 
+	@Override
+	public Major findById(Integer id) {
+		// TODO Auto-generated method stub
+		return majorMapper.findById(id);
+	}
+
 }

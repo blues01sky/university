@@ -1,6 +1,5 @@
-<%@page import="cn.com.entity.Admin"%>
+<%@page import="score.entity.Score"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
-<%@page import="cn.com.entity.User"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
@@ -29,7 +28,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var minutes = now.getMinutes();
 				var seconds = now.getSeconds();
 
-				var day = now.getDay();
 				var weeks = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
 				var week = weeks[day];
 
@@ -71,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Brand</a>
+					<a class="navbar-brand" href="<%=basePath%>index">Brand</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -99,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<li>
 								<a href="<%=basePath%>admin/connect">联系方式管理</a>
 							</li>
-							<li>
+							<li class="active">
 								<a href="<%=basePath%>admin/score">学校分数管理</a>
 							</li>
 							<li>
@@ -153,30 +151,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td colspan="3" style="text-align: center;">操作</td>
 				</tr>
 				<%
-					List<Admin> lists = (List<Admin>)request.getAttribute("lists");
-					for(Admin admin : lists){
+					List<Score> lists = (List<Score>)request.getAttribute("result");
+					for(Score score : lists){
 						%>
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td title="">鼠标悬停点击查看详情</td>
+					<td><%=score.getId() %></td>
+					<td><%=score.getUniversityname() %></td>
+					<td><%=score.getYear() %></td>
+					<td><%=score.getMax() %></td>
+					<td><%=score.getMin() %></td>
+					<td><%=score.getAverage() %></td>
+					<td><%=score.getMinimum() %></td>
+					<td><%=score.getNumber() %></td>
+					<td><%=score.getBatch() %></td>
+					<td><%=score.getDepartment() %></td>
+					<td><%=score.getArea() %></td>
 					<td>
-						<a href="addAdmin.do">增加</a>
+						<a href="<%=basePath%>score/addscore">增加</a>
 					</td>
 					<td>
-						<a href="updateAdmin.do?adminid=<%=admin.getId() %>">修改</a>
+						<a href="<%=basePath%>score/updatescore?scoreid=<%=score.getId() %>">修改</a>
 					</td>
 					<td>
-						<a href="javascript:if(confirm('删除用户<%=admin.getAdminname() %>吗？')) location.href='deleteAdmin.admin?adminid=<%=admin.getId() %>'">删除</a>
+						<a href="javascript:if(confirm('确认要删除ID为<%=score.getId() %>的这条数据吗？')) location.href='<%=basePath%>score/delscore?scoreid=<%=score.getId() %>'">删除</a>
 					</td>
 				</tr>
 				<%

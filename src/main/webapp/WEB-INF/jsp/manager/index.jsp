@@ -35,7 +35,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var minutes = now.getMinutes();
 				var seconds = now.getSeconds();
 
-				var day = now.getDay();
 				var weeks = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
 				var week = weeks[day];
 
@@ -70,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
-						<a class="navbar-brand" href="javascript::void(0)">Brand</a>
+						<a class="navbar-brand" href="<%=basePath%>index">Brand</a>
 					</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->

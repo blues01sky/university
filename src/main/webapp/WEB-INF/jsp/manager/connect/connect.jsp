@@ -28,7 +28,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var minutes = now.getMinutes();
 				var seconds = now.getSeconds();
 
-				var day = now.getDay();
 				var weeks = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
 				var week = weeks[day];
 
@@ -70,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Brand</a>
+					<a class="navbar-brand" href="<%=basePath%>index">Brand</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -159,7 +158,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td><%=connect.getAddress() %></td>
 				<td><%=connect.getUrl() %></td>
 				<td><a href="<%=basePath%>connect/addconnect">增加</a></td>
-				<td><a href="<%=basePath%>connec/updateconnect?connectid=<%=connect.getId() %>">修改</a></td>
+				<td><a href="<%=basePath%>connect/updateconnect?connectid=<%=connect.getId() %>">修改</a></td>
 				<td><a
 					href="javascript:if(confirm('确认删除<%=connect.getUniversityname() %>？')) location.href='<%=basePath%>connect/delconnect?connectid=<%=connect.getId() %>'">删除</a>
 				</td>

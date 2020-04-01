@@ -1,5 +1,4 @@
-<%@page import="cn.com.entity.Admin"%>
-<%@page import="cn.com.entity.User"%>
+<%@page import="score.entity.Score"%>
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
 <%
@@ -28,7 +27,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var minutes = now.getMinutes();
 				var seconds = now.getSeconds();
 
-				var day = now.getDay();
 				var weeks = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
 				var week = weeks[day];
 
@@ -54,10 +52,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			setInterval("gettime()", 1000);
 		</script>
 <title>data属性实现下拉菜单</title>
-<% 
-			Admin admin = new Admin();
-			admin = (Admin)request.getAttribute("admin");
-		%>
 </head>
 
 <body>
@@ -74,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Brand</a>
+					<a class="navbar-brand" href="<%=basePath%>index">Brand</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -102,7 +96,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<li>
 								<a href="<%=basePath%>admin/connect">联系方式管理</a>
 							</li>
-							<li>
+							<li class="active">
 								<a href="<%=basePath%>admin/score">学校分数管理</a>
 							</li>
 							<li>
@@ -141,75 +135,81 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<div class="col-lg-3"></div>
 	<div class="nav col-lg-5">
-		<form class="form-horizontal" method="post" action="updateAdmin.admin">
+		<%
+			Score score = (Score)request.getAttribute("result");
+		%>
+	
+		<form class="form-horizontal" method="post" action="<%=basePath%>score/updatescore">
 			<div class="form-group">
 				<label for="username" class="col-sm-2 control-label">学校名称</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="universityname" 
-						placeholder="学校名称">
+						value="<%=score.getUniversityname() %>">
+					<input type="hidden" class="form-control" name="scoreid" 
+						value="<%=score.getId() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">年份</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="year" 
-						placeholder="年份">
+						value="<%=score.getYear() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">最高分</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="max" 
-						placeholder="最高分">
+						value="<%=score.getMax() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">最低分</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="min" 
-						placeholder="最低分">
+						value="<%=score.getMin() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">平均分</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="average" 
-						placeholder="平均分">
+						value="<%=score.getAverage() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">投档线</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="minimum" 
-						placeholder="投档线">
+						value="<%=score.getMinimum() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">录取人数</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="number" 
-						placeholder="录取人数">
+						value="<%=score.getNumber() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">录取层次</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="batch" 
-						placeholder="录取层次">
+						value="<%=score.getBatch() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">文理科</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="department" 
-						placeholder="文理科">
+						value="<%=score.getDepartment() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">地区</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="area" 
-						placeholder="地区">
+						value="<%=score.getArea() %>">
 				</div>
 			</div>
 			<div class="col-lg-5"></div>

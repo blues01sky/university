@@ -15,6 +15,7 @@
          <typeAlias type="charge.entity.Charge" alias="Charge"/>  
          <typeAlias type="compare.entity.Compare" alias="Compare"/>
          <typeAlias type="connect.entity.Connect" alias="Connect"/>  
+         <typeAlias type="scoreline.entity.Scoreline" alias="Scoreline"/>  
          
     </typeAliases>     
      <!--  <mappers>  

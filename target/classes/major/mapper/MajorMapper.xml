@@ -6,7 +6,7 @@
         select * from major 
     </select>
     
-    <select id="findCountByProfessional">  
+    <select id="findCountByProfessional" >  
         select count(#{professional}) from major where universityname = #{universityname}
     </select>
     
@@ -38,6 +38,10 @@
         select * from major where degree = #{degree}
     </select>
     
+    <select id="findById" resultType="Major">  
+        select * from major where id = #{id}
+    </select>
+    
     <select id="findMajorByMajortype" resultType="Major">  
         select * from major where majortype = #{majortype}
     </select>
@@ -46,31 +50,31 @@
         select * from major where universityname = #{universityname} order by degree desc
     </select>
     
-    <delete id="deleteByprofessionalAndUniversityname" parameterType="String">
+    <delete id="deleteByprofessionalAndUniversityname">
     	delete from major where professional = #{professional} and universityname = #{universityname}
     </delete>
     
-    <delete id="deleteByDegreeAndUniversityname" parameterType="String">
+    <delete id="deleteByDegreeAndUniversityname">
     	delete from major where degree = #{degree} and universityname = #{universityname}
     </delete>
     
-    <delete id="deleteByMajortypeAndUniversityname" parameterType="String">
+    <delete id="deleteByMajortypeAndUniversityname">
     	delete from major where majortype = #{majortype} and universityname = #{universityname}
     </delete>
     
-    <delete id="deleteByUniversityname" parameterType="String">
+    <delete id="deleteByUniversityname">
     	delete from major where and universityname = #{universityname}
     </delete>
     
-    <delete id="deleteByDegree" parameterType="String">
+    <delete id="deleteByDegree">
     	delete from major where and degree = #{degree}
     </delete>
     
-    <delete id="deleteByMajortype" parameterType="String">
+    <delete id="deleteByMajortype">
     	delete from major where and majortype = #{majortype}
     </delete>
     
-    <delete id="deleteByMajorId" parameterType="Integer">
+    <delete id="deleteByMajorId">
     	delete from major where id = #{id}
     </delete>
     

@@ -6,6 +6,10 @@
         select * from score 
     </select>
     
+    <select id="findById" resultType="Score" >  
+        select * from score where id = #{id}
+    </select>
+    
     <select id="findBigSelves" resultType="Score" >  
         select * from score where minimum &gt; #{minscore} and minimum &lt; #{maxscore} 
         and year = #{todayyear} and department = #{department} and area = #{area} 
@@ -16,11 +20,6 @@
         select count(*) from score where minimum &gt; #{minscore} and minimum &lt; #{maxscore} 
         and year = #{todayyear} and department = #{department} and area = #{area} 
    </select>
-    
-    <!-- 
-    &lt;小于
-    &gt;大于
-     -->
     
     <select id="findScoreByUniversitynameAndAreaAndDepartmentYearDesc" resultType="Score">  
         select * from score where universityname = #{universityname} and area = #{area} and department = #{department} order by year desc

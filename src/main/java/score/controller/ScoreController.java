@@ -30,6 +30,81 @@ public class ScoreController {
 	@Autowired
 	private AreaService areaService;
 	
+	@RequestMapping(value = "/addscore",method = RequestMethod.GET)
+	public String addscorepage() {
+		return "manager/score/addscore";
+	}
+	
+	@RequestMapping(value = "/addscore",method = RequestMethod.POST)
+	public String addscore(HttpServletRequest request) {
+		String universityname = request.getParameter("universityname");
+		String year = request.getParameter("year");
+		String max = request.getParameter("max");
+		String min = request.getParameter("min");
+		String average = request.getParameter("average");
+		String minimum = request.getParameter("minimum");
+		String number = request.getParameter("number");
+		String batch = request.getParameter("batch");
+		String department = request.getParameter("department");
+		String area = request.getParameter("area");
+		Score score = new Score();
+		score.setArea(area);
+		score.setAverage(average);
+		score.setBatch(batch);
+		score.setDepartment(department);
+		score.setMax(max);
+		score.setMin(min);
+		score.setMinimum(minimum);
+		score.setNumber(Integer.valueOf(number));
+		score.setUniversityname(universityname);
+		score.setYear(Integer.valueOf(year));
+		scoreServices.addScore(score);
+		return "redirect:/admin/score";
+	}
+	
+	@RequestMapping(value = "/updatescore",method = RequestMethod.GET)
+	public String updatechargepage(@Param("scoreid") String scoreid,HttpServletRequest request) {
+		Score result = scoreServices.findById(Integer.valueOf(scoreid));
+		request.setAttribute("result",result);
+		return "manager/score/updatescore";
+	}
+	
+	@RequestMapping(value = "/updatescore",method = RequestMethod.POST)
+	public String updatecharge(HttpServletRequest request) {
+		String universityname = request.getParameter("universityname");
+		String year = request.getParameter("year");
+		String max = request.getParameter("max");
+		String min = request.getParameter("min");
+		String average = request.getParameter("average");
+		String minimum = request.getParameter("minimum");
+		String number = request.getParameter("number");
+		String batch = request.getParameter("batch");
+		String department = request.getParameter("department");
+		String area = request.getParameter("area");
+		String scoreid = request.getParameter("scoreid");
+		Score score = new Score();
+		score.setArea(area);
+		score.setAverage(average);
+		score.setBatch(batch);
+		score.setDepartment(department);
+		score.setMax(max);
+		score.setMin(min);
+		score.setMinimum(minimum);
+		score.setNumber(Integer.valueOf(number));
+		score.setUniversityname(universityname);
+		score.setYear(Integer.valueOf(year));
+		score.setId(Integer.valueOf(scoreid));
+		scoreServices.updateScoreById(score);
+		return "redirect:/admin/score";
+	}
+	
+	@RequestMapping(value = "/delscore",method = RequestMethod.GET)
+	public String delcharge(@Param("scoreid") String scoreid) {
+		scoreServices.deleteByScoreId(Integer.valueOf(scoreid));
+		return "redirect:/admin/score";
+	}
+	
+	
 	@RequestMapping(value="/index",method = RequestMethod.GET)
 	public String index(HttpServletRequest request,HttpServletResponse response,@Param("universityname") String universityname) {
 		Area findByUniversityName = areaService.findByUniversityName(universityname);

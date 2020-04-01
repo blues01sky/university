@@ -1,5 +1,4 @@
-<%@page import="cn.com.entity.Admin"%>
-<%@page import="cn.com.entity.User"%>
+<%@page import="scoreline.entity.Scoreline"%>
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
 <%
@@ -28,7 +27,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var minutes = now.getMinutes();
 				var seconds = now.getSeconds();
 
-				var day = now.getDay();
 				var weeks = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
 				var week = weeks[day];
 
@@ -54,10 +52,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			setInterval("gettime()", 1000);
 		</script>
 <title>data属性实现下拉菜单</title>
-<% 
-			Admin admin = new Admin();
-			admin = (Admin)request.getAttribute("admin");
-		%>
 </head>
 
 <body>
@@ -74,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Brand</a>
+					<a class="navbar-brand" href="<%=basePath%>index">Brand</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -105,7 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<li>
 								<a href="<%=basePath%>admin/score">学校分数管理</a>
 							</li>
-							<li>
+							<li class="active">
 								<a href="<%=basePath%>admin/scoreline">各地分数线管理</a>
 							</li>
 							<li>
@@ -141,40 +135,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<div class="col-lg-3"></div>
 	<div class="nav col-lg-5">
-		<form class="form-horizontal" method="post" action="updateAdmin.admin">
+		<%
+			Scoreline scoreline = (Scoreline)request.getAttribute("result");
+		%>
+		<form class="form-horizontal" method="post" action="<%=basePath%>scoreline/updatescoreline">
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">地区</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="province" 
-						placeholder="地区">
+						value="<%=scoreline.getProvince() %>">
+					<input type="hidden" class="form-control" name="scorelineid" value="<%=scoreline.getId() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">文理科</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="deparement" 
-						placeholder="文理科">
+						value="<%=scoreline.getDeparement() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">年份</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="year" 
-						placeholder="年份">
+						value="<%=scoreline.getYear() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">层次</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="cengci" 
-						placeholder="层次">
+						value="<%=scoreline.getCengci() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">分数</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="fenshu" 
-						placeholder="分数">
+						value="<%=scoreline.getFenshu() %>">
 				</div>
 			</div>
 			<div class="col-lg-5"></div>
