@@ -1,1 +1,97 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="compare.mapper.CompareMapper">
+	<select id="queryAll" resultType="Compare">
+		select * from compare order by id asc
+	</select>
+    
+    <select id="findBycomparename" resultType="Compare">  
+        select * from compare where universityname = #{universityname}
+    </select>
+    
+    <select id="findcompareById" resultType="Compare">  
+        select * from compare where id = #{id}
+    </select>
+    
+    <delete id="deleteBycomparename">
+    	delete from compare where universityname = #{universityname}
+    </delete>
+    
+    <delete id="deleteBycompareId">
+    	delete from compare where id = #{id}
+    </delete>
+    
+    <insert id="addcompare" >
+    	insert into compare(
+	    	universityname,type,province,is211,
+	    	is985,subjection,graduate,focus,maserpoint,doctoral,
+	    	academician,book,area,createtime,telphone,instructions,
+	    	major,url,teacher,cost,schoolship,entrance,students,
+	    	accommodation,employment
+		) values(
+		#{universityname},#{type},#{province},#{is211},
+		#{is985},#{subjection},#{graduate},#{focus},
+		#{maserpoint},#{doctoral},#{academician},#{book},
+		#{area},#{createtime},#{telphone},#{instructions},
+		#{major},#{url},#{teacher},#{cost},
+		#{schoolship},#{entrance},#{students},#{accommodation},
+		#{employment})
+    </insert>
+    
+    <update id="updatecompareById" >
+    	update compare set universityname = #{universityname},type=#{type},
+		province =#{province},
+		is211=#{is211},
+	    is985=#{is985},
+	    subjection=#{subjection},
+	    graduate=#{graduate},
+	    focus=#{focus},
+	    maserpoint=#{maserpoint},
+	    doctoral=#{doctoral},
+	    academician=#{academician},
+	    book=#{book},
+	    area=#{area},
+	    createtime=#{createtime},
+	    telphone=#{telphone},
+	    instructions=#{instructions},
+	    major=#{major},
+	    url=#{url},
+	    teacher=#{teacher},
+	    cost=#{cost},
+	    schoolship=#{schoolship},
+	    entrance=#{entrance},
+	    students=#{students},
+	    accommodation=#{accommodation},
+	    employment = #{employment}
+		where id = #{id}
+	</update>
+    
+    <update id="updatecompareByUsername" >
+    	update compare set type=#{type},
+		province =#{province},
+		is211=#{is211},
+	    is985=#{is985},
+	    subjection=#{subjection},
+	    graduate=#{graduate},
+	    focus=#{focus},
+	    maserpoint=#{maserpoint},
+	    doctoral=#{doctoral},
+	    academician=#{academician},
+	    book=#{book},
+	    area=#{area},
+	    createtime=#{createtime},
+	    telphone=#{telphone},
+	    instructions=#{instructions},
+	    major=#{major},
+	    url=#{url},
+	    teacher=#{teacher},
+	    cost=#{cost},
+	    schoolship=#{schoolship},
+	    entrance=#{entrance},
+	    students=#{students},
+	    accommodation=#{accommodation},
+	    employment = #{employment}
+		where universityname = #{universityname}
+		 </update>
+    
+</mapper>

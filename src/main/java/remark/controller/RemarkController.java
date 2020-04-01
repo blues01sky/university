@@ -3,13 +3,14 @@ package remark.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import remark.entity.Remark;
-import remark.mapper.RemarkMapper;
+import remark.services.RemarkServices;
 import util.DateUtil;
 
 @Controller
@@ -18,7 +19,7 @@ public class RemarkController {
 	DateUtil date = new DateUtil();
 	
 	@Autowired
-	private RemarkMapper remarkMapper;
+	private RemarkServices remarkServices;
 	
 	@RequestMapping(value="/remark",method = RequestMethod.POST)
 	public String remark(String remarkcontent,HttpServletRequest request,HttpServletResponse response) {
@@ -28,7 +29,13 @@ public class RemarkController {
 		remark.setUpdatetime(date.getTimeTypeDate());
 		remark.setUniversityname(universityname);
 		remark.setContent(remarkcontent);
-		remarkMapper.addReamrk(remark);
+		remarkServices.addReamrk(remark);
 		return "redirect:/index";
+	}
+	
+	@RequestMapping(value="/delremark",method = RequestMethod.GET)
+	public String delremark(@Param("remarkid") String remarkid) {
+		remarkServices.deleteByid(Integer.valueOf(remarkid));
+		return "redirect:/admin/remark";
 	}
 }

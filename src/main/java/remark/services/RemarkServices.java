@@ -15,5 +15,7 @@ public interface RemarkServices {
 	
 	List<Remark> findAll();
 	
+	void deleteByid(@Param("id") Integer id);
+	
 	void deleteByUniversityname(@Param("universityname") String universityname);
 }

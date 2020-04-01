@@ -1,6 +1,4 @@
-<%@page import="cn.com.entity.Admin"%>
-<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
-<%@page import="cn.com.entity.User"%>
+<%@page import="charge.entity.Charge"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
@@ -60,87 +58,83 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<body>
 
 		<div class="nav">
-			<nav class="navbar navbar-default">
-				<div class="container-fluid">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						aria-expanded="false">
 						<span class="sr-only">Toggle navigation</span> <span
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-						<a class="navbar-brand" href="#">Brand</a>
-					</div>
+					<a class="navbar-brand" href="#">Brand</a>
+				</div>
 
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav">
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
 							<li>
-								<a href="">管理员管理</a>
+								<a href="<%=basePath%>admin/admin">管理员管理</a>
 							</li>
 							<li>
-								<a href="">用户管理</a>
+								<a href="<%=basePath%>admin/user">用户管理</a>
 							</li>
 							<li>
-								<a href="">学校管理</a>
+								<a href="<%=basePath%>admin/university">学校管理</a>
 							</li>
 							<li class="active">
-								<a href="">学校收费管理</a>
+								<a href="<%=basePath%>admin/charge">学校收费管理</a>
 							</li>
 							<li>
-								<a href="">学校详细信息管理</a>
+								<a href="<%=basePath%>admin/compare">学校详细信息管理</a>
 							</li>
 							<li>
-								<a href="">学校专业管理</a>
+								<a href="<%=basePath%>admin/major">学校专业管理</a>
 							</li>
 							<li>
-								<a href="">联系方式管理</a>
+								<a href="<%=basePath%>admin/connect">联系方式管理</a>
 							</li>
 							<li>
-								<a href="">学校分数管理</a>
+								<a href="<%=basePath%>admin/score">学校分数管理</a>
 							</li>
 							<li>
-								<a href="">各地分数线管理</a>
+								<a href="<%=basePath%>admin/scoreline">各地分数线管理</a>
 							</li>
 							<li>
-								<a href="">用户留言管理</a>
+								<a href="<%=basePath%>admin/remark">用户留言管理</a>
 							</li>
 						</ul>
 
-						<ul class="nav navbar-nav navbar-right">
-							<%
+					<ul class="nav navbar-nav navbar-right">
+						<%
 						String adminname = (String)session.getAttribute("adminname");
 						if(adminname != null){
 						%>
-							<li>
-								<a href="/milkSale">当前登录的账号名称为：
-									<%=adminname %>
-								</a>
-							</li>
-							<li>
-								<a href="logout.main">退出登录</a>
-							</li>
-							<%
+						<li><a href="<%=basePath%>admin/managerindex">当前登录的账号名称为：<%=adminname %></a></li>
+						<li><a
+							href="javascript:if(confirm('确认要退出吗？')) location.href='<%=basePath%>admin/logout'">退出登录</a></li>
+						<%
 					}
 						%>
-						</ul>
-					</div>
-					<!-- /.navbar-collapse -->
+					</ul>
 				</div>
-				<!-- /.container-fluid -->
-			</nav>
-		</div>
-		<div class="nav col-lg-1">
-			<ul class="nav nav-pills nav-stacked">
-				<li role="presentation" class="active">
-					<a href="<%=basePath%>admin/index">主页</a>
-				</li>
-				<li role="presentation">
-					<a href="javascript:if(confirm('确认要退出吗？')) location.href='<%=basePath%>admin/logout'">退出</a>
-				</li>
-			</ul>
-		</div>
-		<div class="nav col-lg-11">
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
+	</div>
+	<div class="nav col-lg-1">
+		<ul class="nav nav-pills nav-stacked">
+			<li role="presentation" class="active"><a
+				href="<%=basePath%>admin/managerindex">主页</a></li>
+			<li role="presentation"><a
+				href="javascript:if(confirm('确认要退出吗？')) location.href='<%=basePath%>admin/logout'">退出</a></li>
+		</ul>
+	</div>
+		<div class="nav col-lg-11" style="padding-bottom: 30px;">
 			<table class="table table-striped">
 				<tr>
 					<td>id</td>
@@ -151,23 +145,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td colspan="3" style="text-align: center;">操作</td>
 				</tr>
 				<%
-					List<Admin> lists = (List<Admin>)request.getAttribute("lists");
-					for(Admin admin : lists){
+					List<Charge> result = (List<Charge>)request.getAttribute("result");
+					for(Charge charge : result){
 						%>
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td title="">鼠标悬停点击查看详情</td>
+					<td><%=charge.getId() %></td>
+					<td><%=charge.getUniversityname() %></td>
+					<td><%=charge.getProvince() %></td>
+					<td><%=charge.getType() %></td>
+					<td title="<%=charge.getCost() %>">鼠标悬停点击查看详情</td>
 					<td>
-						<a href="addAdmin.do">增加</a>
+						<a href="<%=basePath%>charge/addcharge">增加</a>
 					</td>
 					<td>
-						<a href="updateAdmin.do?adminid=<%=admin.getId() %>">修改</a>
+						<a href="<%=basePath%>charge/updatecharge?chargeid=<%=charge.getId() %>">修改</a>
 					</td>
 					<td>
-						<a href="javascript:if(confirm('删除用户<%=admin.getAdminname() %>吗？')) location.href='deleteAdmin.admin?adminid=<%=admin.getId() %>'">删除</a>
+						<a href="javascript:if(confirm('确实要删除<%=charge.getUniversityname() %>吗？')) location.href='<%=basePath%>charge/delcharge?chargeid=<%=charge.getId() %>'">删除</a>
 					</td>
 				</tr>
 				<%

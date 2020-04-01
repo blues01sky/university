@@ -47,17 +47,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String deleteByUserName(String username) {
+	public void deleteByUserName(String username) {
 		// TODO Auto-generated method stub
 		System.out.println("----------"+date.getDate()+"-------------------"+"执行了通过用户名删除一个用户的方法"+"------------------");
-		return userMapper.deleteByUserName(username);
+		userMapper.deleteByUserName(username);
 	}
 
 	@Override
-	public String deleteByUserId(Integer id) {
+	public void deleteByUserId(Integer id) {
 		// TODO Auto-generated method stub
 		System.out.println("----------"+date.getDate()+"-------------------"+"执行了通过id删除一个用户的方法"+"------------------");
-		return userMapper.deleteByUserId(id);
+		userMapper.deleteByUserId(id);
 	}
 
 	@Override

@@ -76,34 +76,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 							<li>
-								<a href="">管理员管理</a>
-							</li>
-							<li >
-								<a href="">用户管理</a>
+								<a href="<%=basePath%>admin/admin">管理员管理</a>
 							</li>
 							<li>
-								<a href="">学校管理</a>
+								<a href="<%=basePath%>admin/user">用户管理</a>
 							</li>
 							<li>
-								<a href="">学校收费管理</a>
+								<a href="<%=basePath%>admin/university">学校管理</a>
+							</li>
+							<li>
+								<a href="<%=basePath%>admin/charge">学校收费管理</a>
 							</li>
 							<li class="active">
-								<a href="">学校详细信息管理</a>
+								<a href="<%=basePath%>admin/compare">学校详细信息管理</a>
 							</li>
 							<li>
-								<a href="">学校专业管理</a>
+								<a href="<%=basePath%>admin/major">学校专业管理</a>
 							</li>
 							<li>
-								<a href="">联系方式管理</a>
+								<a href="<%=basePath%>admin/connect">联系方式管理</a>
 							</li>
 							<li>
-								<a href="">学校分数管理</a>
+								<a href="<%=basePath%>admin/score">学校分数管理</a>
 							</li>
 							<li>
-								<a href="">各地分数线管理</a>
+								<a href="<%=basePath%>admin/scoreline">各地分数线管理</a>
 							</li>
 							<li>
-								<a href="">用户留言管理</a>
+								<a href="<%=basePath%>admin/remark">用户留言管理</a>
 							</li>
 						</ul>
 
@@ -112,8 +112,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						String adminname = (String)session.getAttribute("adminname");
 						if(adminname != null){
 						%>
-						<li><a href="/milkSale">当前登录的账号名称为：<%=adminname %></a></li>
-						<li><a href="logout.main">退出登录</a></li>
+						<li><a href="<%=basePath%>admin/managerindex">当前登录的账号名称为：<%=adminname %></a></li>
+						<li><a
+							href="javascript:if(confirm('确认要退出吗？')) location.href='<%=basePath%>admin/logout'">退出登录</a></li>
 						<%
 					}
 						%>
@@ -126,13 +127,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<div class="nav col-lg-1">
 		<ul class="nav nav-pills nav-stacked">
-			<li role="presentation" class="active"><a href="<%=basePath%>admin/index">主页</a></li>
-			<li role="presentation"><a href="javascript:if(confirm('确认要退出吗？')) location.href='<%=basePath%>admin/logout'">退出</a></li>
+			<li role="presentation" class="active"><a
+				href="<%=basePath%>admin/managerindex">主页</a></li>
+			<li role="presentation"><a
+				href="javascript:if(confirm('确认要退出吗？')) location.href='<%=basePath%>admin/logout'">退出</a></li>
 		</ul>
 	</div>
 	<div class="col-lg-3"></div>
-	<div class="nav col-lg-5">
-		<form class="form-horizontal" method="post" action="addAdmin.admin">
+	<div class="nav col-lg-5" style="padding-bottom: 60px;">
+		<form class="form-horizontal" method="post" action="<%=basePath%>compare/addcompare">
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">大学名称</label>
 				<div class="col-sm-10">

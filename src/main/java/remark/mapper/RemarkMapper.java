@@ -16,4 +16,6 @@ public interface RemarkMapper {
 	List<Remark> findAll();
 	
 	void deleteByUniversityname(@Param("universityname") String universityname);
+	
+	void deleteByid(@Param("id") Integer id);
 }

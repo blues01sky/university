@@ -5,19 +5,23 @@
 		insert into remark(universityname,content,updatetime) values(#{universityname},#{content},#{updatetime});
 	</insert>
 	
-	<select id="findById" >
+	<select id="findById" resultType="Remark" >
 		select * from remark where id = #{id}
 	</select>
 	
-	<select id="findByUniversityname" >
+	<select id="findByUniversityname"  resultType="Remark">
 		select * from remark where universityname = #{universityname}
 	</select>
 	
-	<select id="findAll" >
+	<select id="findAll" resultType="Remark">
 		select * from remark 
 	</select>
 	
 	<delete id="deleteByUniversityname">
 		delete from remark where universityname = #{universityname}
+	</delete>
+	
+	<delete id="deleteByid">
+		delete from remark where id = #{id}
 	</delete>
 </mapper>

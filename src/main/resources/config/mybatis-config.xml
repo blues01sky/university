@@ -12,6 +12,10 @@
          <typeAlias type="remark.entity.Remark" alias="Remark"/>  
          <typeAlias type="major.entity.Major" alias="Major"/>  
          <typeAlias type="admin.entity.Admin" alias="Admin"/>  
+         <typeAlias type="charge.entity.Charge" alias="Charge"/>  
+         <typeAlias type="compare.entity.Compare" alias="Compare"/>
+         <typeAlias type="connect.entity.Connect" alias="Connect"/>  
+         
     </typeAliases>     
      <!--  <mappers>  
         <mapper resource="cn.com.demo.mapper.PersonMapper.xml" />  

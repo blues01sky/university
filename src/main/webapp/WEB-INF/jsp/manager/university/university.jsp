@@ -1,6 +1,4 @@
-<%@page import="cn.com.entity.Admin"%>
-<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
-<%@page import="cn.com.entity.User"%>
+<%@page import="area.entity.Area"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
@@ -80,34 +78,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 							<li>
-								<a href="">管理员管理</a>
+								<a href="<%=basePath%>admin/admin">管理员管理</a>
 							</li>
 							<li>
-								<a href="">用户管理</a>
+								<a href="<%=basePath%>admin/user">用户管理</a>
 							</li>
 							<li class="active">
-								<a href="">学校管理</a>
+								<a href="<%=basePath%>admin/university">学校管理</a>
 							</li>
 							<li>
-								<a href="">学校收费管理</a>
+								<a href="<%=basePath%>admin/charge">学校收费管理</a>
 							</li>
 							<li>
-								<a href="">学校详细信息管理</a>
+								<a href="<%=basePath%>admin/compare">学校详细信息管理</a>
 							</li>
 							<li>
-								<a href="">学校专业管理</a>
+								<a href="<%=basePath%>admin/major">学校专业管理</a>
 							</li>
 							<li>
-								<a href="">联系方式管理</a>
+								<a href="<%=basePath%>admin/connect">联系方式管理</a>
 							</li>
 							<li>
-								<a href="">学校分数管理</a>
+								<a href="<%=basePath%>admin/score">学校分数管理</a>
 							</li>
 							<li>
-								<a href="">各地分数线管理</a>
+								<a href="<%=basePath%>admin/scoreline">各地分数线管理</a>
 							</li>
 							<li>
-								<a href="">用户留言管理</a>
+								<a href="<%=basePath%>admin/remark">用户留言管理</a>
 							</li>
 						</ul>
 
@@ -116,8 +114,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						String adminname = (String)session.getAttribute("adminname");
 						if(adminname != null){
 						%>
-						<li><a href="/milkSale">当前登录的账号名称为：<%=adminname %></a></li>
-						<li><a href="logout.main">退出登录</a></li>
+						<li><a href="<%=basePath%>admin/managerindex">当前登录的账号名称为：<%=adminname %></a></li>
+						<li><a
+							href="javascript:if(confirm('确认要退出吗？')) location.href='<%=basePath%>admin/logout'">退出登录</a></li>
 						<%
 					}
 						%>
@@ -130,11 +129,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<div class="nav col-lg-1">
 		<ul class="nav nav-pills nav-stacked">
-			<li role="presentation" class="active"><a href="<%=basePath%>admin/index">主页</a></li>
-			<li role="presentation"><a href="javascript:if(confirm('确认要退出吗？')) location.href='<%=basePath%>admin/logout'">退出</a></li>
+			<li role="presentation" class="active"><a
+				href="<%=basePath%>admin/managerindex">主页</a></li>
+			<li role="presentation"><a
+				href="javascript:if(confirm('确认要退出吗？')) location.href='<%=basePath%>admin/logout'">退出</a></li>
 		</ul>
 	</div>
-	<div class="nav col-lg-11">
+	<div class="nav col-lg-11" style="padding-bottom: 30px;">
 		<table class="table table-striped">
 			<tr>
 				<td>id</td>
@@ -148,22 +149,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td colspan="3" style="text-align: center;">操作</td>
 			</tr>
 			<%
-					List<Admin> lists = (List<Admin>)request.getAttribute("lists");
-					for(Admin admin : lists){
+					List<Area> lists = (List<Area>)request.getAttribute("lists");
+					System.out.println(lists);
+					for(Area area : lists){
 						%>
 			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td><a href="addAdmin.do">增加</a></td>
-				<td><a href="updateAdmin.do?adminid=<%=admin.getId() %>">修改</a></td>
+				<td><%=area.getId() %></td>
+				<td><%=area.getUniversityname() %></td>
+				<td><%=area.getProvince() %></td>
+				<td><%=area.getType() %></td>
+				<td><%=area.getIs211() %></td>
+				<td><%=area.getIs985() %></td>
+				<td><%=area.getLevel() %></td>
+				<td><%=area.getUrl() %></td>
+				<td><a href="<%=basePath%>area/addarea">增加</a></td>
+				<td><a href="<%=basePath%>area/updatearea?areaid=<%=area.getId() %>">修改</a></td>
 				<td><a
-					href="javascript:if(confirm('删除用户<%=admin.getAdminname() %>吗？')) location.href='deleteAdmin.admin?adminid=<%=admin.getId() %>'">删除</a>
+					href="javascript:if(confirm('删除用户吗？')) location.href='<%=basePath%>area/delarea?areaid=<%=area.getId() %>'">删除</a>
 				</td>
 			</tr>
 			<%

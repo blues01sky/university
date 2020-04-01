@@ -1,3 +1,5 @@
+<%@page import="user.entity.User"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
 <%
@@ -76,44 +78,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 							<li>
-								<a href="">管理员管理</a>
+								<a href="<%=basePath%>admin/admin">管理员管理</a>
 							</li>
 							<li class="active">
-								<a href="">用户管理</a>
+								<a href="<%=basePath%>admin/user">用户管理</a>
 							</li>
 							<li>
-								<a href="">学校管理</a>
+								<a href="<%=basePath%>admin/university">学校管理</a>
 							</li>
 							<li>
-								<a href="">学校收费管理</a>
+								<a href="<%=basePath%>admin/charge">学校收费管理</a>
 							</li>
 							<li>
-								<a href="">学校详细信息管理</a>
+								<a href="<%=basePath%>admin/compare">学校详细信息管理</a>
 							</li>
 							<li>
-								<a href="">学校专业管理</a>
+								<a href="<%=basePath%>admin/major">学校专业管理</a>
 							</li>
 							<li>
-								<a href="">联系方式管理</a>
+								<a href="<%=basePath%>admin/connect">联系方式管理</a>
 							</li>
 							<li>
-								<a href="">学校分数管理</a>
+								<a href="<%=basePath%>admin/score">学校分数管理</a>
 							</li>
 							<li>
-								<a href="">各地分数线管理</a>
+								<a href="<%=basePath%>admin/scoreline">各地分数线管理</a>
 							</li>
 							<li>
-								<a href="">用户留言管理</a>
+								<a href="<%=basePath%>admin/remark">用户留言管理</a>
 							</li>
 						</ul>
+
 					<ul class="nav navbar-nav navbar-right">
 						<%
 						String adminname = (String)session.getAttribute("adminname");
-						System.out.println(adminname);
 						if(adminname != null){
 						%>
-						<li><a href="/milkSale">当前登录的账号名称为：<%=adminname %></a></li>
-						<li><a href="logout.main">退出登录</a></li>
+						<li><a href="<%=basePath%>admin/managerindex">当前登录的账号名称为：<%=adminname %></a></li>
+						<li><a
+							href="javascript:if(confirm('确认要退出吗？')) location.href='<%=basePath%>admin/logout'">退出登录</a></li>
 						<%
 					}
 						%>
@@ -126,12 +129,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<div class="nav col-lg-1">
 		<ul class="nav nav-pills nav-stacked">
-			<li role="presentation" class="active"><a href="<%=basePath%>admin/index">主页</a></li>
-			<li role="presentation"><a href="javascript:if(confirm('确认要退出吗？')) location.href='<%=basePath%>admin/logout'">退出</a></li>
+			<li role="presentation" class="active"><a
+				href="<%=basePath%>admin/managerindex">主页</a></li>
+			<li role="presentation"><a
+				href="javascript:if(confirm('确认要退出吗？')) location.href='<%=basePath%>admin/logout'">退出</a></li>
 		</ul>
 	</div>
-	<div class="nav col-lg-11">
+	<div class="nav col-lg-11" style="padding-bottom: 30px;">
 		<table class="table table-striped">
+			
 			<tr>
 				<td>id</td>
 				<td>用户名</td>
@@ -142,20 +148,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td>电话</td>
 				<td colspan="3" style="text-align: center;">操作</td>
 			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td><a href="addUser.do">增加</a></td>
-				<td><a href="updateUser.do?userid=">修改</a></td>
-				<td><a
-					href="javascript:if(confirm('删除用户？')) location.href='deleteUser.user?userid='">删除</a>
-				</td>
-			</tr>
+			<%
+				List<User> result =(List<User>)request.getAttribute("result");
+				for(User user : result ){
+					%>
+				<tr>
+					<td><%=user.getId() %></td>
+					<td><%=user.getUsername() %></td>
+					<td><%=user.getPassword() %></td>
+					<td><%=user.getScore() %></td>
+					<td><%=user.getProvince() %></td>
+					<td><%=user.getDepartment() %></td>
+					<td><%=user.getTelphone() %></td>
+					<td><a href="<%=basePath%>admin/adduser">增加</a></td>
+					<td><a href="<%=basePath%>admin/updateuser?userid=<%=user.getId() %>">修改</a></td>
+					<td><a
+						href="javascript:if(confirm('删除用户？')) location.href='<%=basePath%>admin/deluser?userid=<%=user.getId() %>'">删除</a>
+					</td>
+			</tr>	
+					<%
+				}
+			%>
+			
 		</table>
 	</div>
 	<div class="foot">

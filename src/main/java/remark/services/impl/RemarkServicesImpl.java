@@ -53,4 +53,10 @@ public class RemarkServicesImpl implements RemarkServices {
 		remarkMapper.deleteByUniversityname(universityname);
 	}
 
+	@Override
+	public void deleteByid(Integer id) {
+		// TODO Auto-generated method stub
+		remarkMapper.deleteByid(id);
+	}
+
 }

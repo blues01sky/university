@@ -3,7 +3,7 @@
 <mapper namespace="area.mapper.AreaMapper">
     <!-- 查询所有person -->  
     <select id="queryAll" resultType="Area" >  
-        select * from area  
+        select * from area 
     </select>
     
     <select id="findByUniversityName" resultType="Area" >  
@@ -78,11 +78,11 @@
         select count(level) from area where level = #{level}
     </select> 
     
-    <delete id="deleteById" parameterType="Integer">
+    <delete id="deleteById">
     	delete from area where id = #{id}
     </delete>
     
-    <delete id="deleteByUniversityName" parameterType="String">
+    <delete id="deleteByUniversityName">
     	delete from area where universityname = #{universityname}
     </delete>
     

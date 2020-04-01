@@ -21,6 +21,68 @@ public class AreaController {
 	@Autowired
 	private AreaService areaService;
 	
+	
+	@RequestMapping(value = "/addarea",method = RequestMethod.GET)
+	public String addschoolpage() {
+		return "manager/university/adduniversity";
+	}
+	
+	@RequestMapping(value = "/updatearea",method = RequestMethod.GET)
+	public String updateareapage(@Param("areaid") String areaid,HttpServletRequest request) {
+		Area result = areaService.findById(Integer.valueOf(areaid));
+		request.setAttribute("result",result);
+		return "manager/university/updateuniversity";
+	}
+	
+	@RequestMapping(value = "/addarea",method = RequestMethod.POST)
+	public String addarea(HttpServletRequest request) {
+		String universityname = request.getParameter("universityname");
+		String province = request.getParameter("province");
+		String type = request.getParameter("type");
+		String is211 = request.getParameter("is211");
+		String is985 = request.getParameter("is985");
+		String level = request.getParameter("level");
+		String url = request.getParameter("url");
+		Area area = new Area();
+		area.setIs211(Integer.valueOf(is211));
+		area.setIs985(Integer.valueOf(is985));
+		area.setLevel(level);
+		area.setProvince(province);
+		area.setType(type);
+		area.setUniversityname(universityname);
+		area.setUrl(url);
+		areaService.addUniversity(area);
+		return "redirect:/admin/university";
+	}
+	
+	@RequestMapping(value = "/updatearea",method = RequestMethod.POST)
+	public String updatearea(HttpServletRequest request) {
+		String universityname = request.getParameter("universityname");
+		String province = request.getParameter("province");
+		String type = request.getParameter("type");
+		String is211 = request.getParameter("is211");
+		String is985 = request.getParameter("is985");
+		String level = request.getParameter("level");
+		String url = request.getParameter("url");
+		Area area = new Area();
+		area.setIs211(Integer.valueOf(is211));
+		area.setIs985(Integer.valueOf(is985));
+		area.setLevel(level);
+		area.setProvince(province);
+		area.setType(type);
+		area.setUniversityname(universityname);
+		area.setUrl(url);
+		areaService.updateUniversityById(area);
+		return "redirect:/admin/university";
+	}
+	
+	@RequestMapping(value = "/delarea",method = RequestMethod.GET)
+	public String delarea(@Param("areaid") String areaid,HttpServletRequest request) {
+		areaService.deleteById(Integer.valueOf(areaid));
+		return "redirect:/admin/university";
+	}
+	
+	
 	@RequestMapping(value = "/fenyebylevel",method = RequestMethod.GET)
 	public String fenyeBylevel(@Param("level") String level,@Param("page") int page,HttpServletRequest request,HttpServletResponse response) {
 		Integer Number = areaService.findAllNumByLevel(level);

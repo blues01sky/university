@@ -45,11 +45,11 @@ public interface AreaMapper {
 	
 	Integer findAllNumByProvince(@Param("province") String province);
 	
-	String deleteById(@Param("id") Integer id);
+	void deleteById(@Param("id") Integer id);
 	
-	String deleteByUniversityName(@Param("universityname") String universityname);
+	void deleteByUniversityName(@Param("universityname") String universityname);
 	
 	void addUniversity(Area area);
 	
-	String updateUniversityById(Area area);
+	void updateUniversityById(Area area);
 }

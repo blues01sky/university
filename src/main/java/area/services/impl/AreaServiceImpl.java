@@ -76,17 +76,17 @@ public class AreaServiceImpl implements AreaService {
 	}
 
 	@Override
-	public String deleteById(Integer id) {
+	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		System.out.println("----------"+date.getDate()+"-------------------"+"执行了通过id删除数据的方法"+"------------------");
-		return areaMapper.deleteById(id);
+		areaMapper.deleteById(id);
 	}
 
 	@Override
-	public String deleteByUniversityName(String universityname) {
+	public void deleteByUniversityName(String universityname) {
 		// TODO Auto-generated method stub
 		System.out.println("----------"+date.getDate()+"-------------------"+"执行了通过大学名称删除数据的方法"+"------------------");
-		return areaMapper.deleteByUniversityName(universityname);
+		areaMapper.deleteByUniversityName(universityname);
 	}
 
 	@Override
@@ -97,10 +97,10 @@ public class AreaServiceImpl implements AreaService {
 	}
 
 	@Override
-	public String updateUniversityById(Area area) {
+	public void updateUniversityById(Area area) {
 		// TODO Auto-generated method stub
 		System.out.println("----------"+date.getDate()+"-------------------"+"执行了通过id更新大学信息的方法"+"------------------");
-		return areaMapper.updateUniversityById(area);
+		areaMapper.updateUniversityById(area);
 	}
 
 	@Override

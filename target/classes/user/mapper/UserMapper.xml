@@ -18,11 +18,11 @@
         select * from user where username = #{username}
     </select>
     
-    <delete id="deleteByUserName" parameterType="String">
+    <delete id="deleteByUserName">
     	delete from user where username = #{username}
     </delete>
     
-    <delete id="deleteByUserId" parameterType="Integer">
+    <delete id="deleteByUserId">
     	delete from user where id = #{id}
     </delete>
     

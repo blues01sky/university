@@ -1,1 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="connect.mapper.ConnectMapper">
+	<select id="queryAll" resultType="Connect">
+		select * from connect order by id asc
+	</select>
+    
+    <select id="findByuniversityname" resultType="Connect">  
+        select * from connect where universityname = #{universityname}
+    </select>
+    
+    <select id="findConnectById" resultType="Connect">  
+        select * from connect where id = #{id}
+    </select>
+    
+    <delete id="deleteByConnectname">
+    	delete from connect where universityname = #{universityname}
+    </delete>
+    
+    <delete id="deleteByConnectId">
+    	delete from connect where id = #{id}
+    </delete>
+    
+    <insert id="addConnect">
+    	insert into connect(universityname,type,province,telphone,address,url) values(#{universityname},#{type},#{province},#{telphone},#{address},#{url})
+    </insert>
+    
+    <update id="updateConnectById" >
+    	update connect set universityname = #{universityname},type=#{type},province=#{province},telphone=#{telphone},address=#{address},url=#{url} where id = #{id}
+    </update>
+    
+    <update id="updateConnectByUsername" >
+    	update connect set type=#{type},province=#{province},telphone=#{telphone},address=#{address},url=#{url} where universityname = #{universityname}
+    </update>
+    
+</mapper>

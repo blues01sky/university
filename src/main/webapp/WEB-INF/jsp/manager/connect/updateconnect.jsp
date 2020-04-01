@@ -1,4 +1,4 @@
-<%@page import="cn.com.entity.User"%>
+<%@page import="connect.entity.Connect"%>
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
 <%
@@ -53,10 +53,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			setInterval("gettime()", 1000);
 		</script>
 <title>data属性实现下拉菜单</title>
-<% 
-			User user = new User();
-			user = (User)request.getAttribute("user");
-		%>
 </head>
 
 <body>
@@ -81,43 +77,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 							<li>
-								<a href="">管理员管理</a>
+								<a href="<%=basePath%>admin/admin">管理员管理</a>
 							</li>
 							<li>
-								<a href="">用户管理</a>
+								<a href="<%=basePath%>admin/user">用户管理</a>
 							</li>
 							<li>
-								<a href="">学校管理</a>
+								<a href="<%=basePath%>admin/university">学校管理</a>
 							</li>
 							<li>
-								<a href="">学校收费管理</a>
+								<a href="<%=basePath%>admin/charge">学校收费管理</a>
 							</li>
 							<li>
-								<a href="">学校详细信息管理</a>
-							</li>
-							<li>
-								<a href="">学校专业管理</a>
+								<a href="<%=basePath%>admin/compare">学校详细信息管理</a>
 							</li>
 							<li class="active">
-								<a href="">联系方式管理</a>
+								<a href="<%=basePath%>admin/major">学校专业管理</a>
 							</li>
 							<li>
-								<a href="">学校分数管理</a>
+								<a href="<%=basePath%>admin/connect">联系方式管理</a>
 							</li>
 							<li>
-								<a href="">各地分数线管理</a>
+								<a href="<%=basePath%>admin/score">学校分数管理</a>
 							</li>
 							<li>
-								<a href="">用户留言管理</a>
+								<a href="<%=basePath%>admin/scoreline">各地分数线管理</a>
+							</li>
+							<li>
+								<a href="<%=basePath%>admin/remark">用户留言管理</a>
 							</li>
 						</ul>
+
 					<ul class="nav navbar-nav navbar-right">
 						<%
 						String adminname = (String)session.getAttribute("adminname");
 						if(adminname != null){
 						%>
-						<li><a href="/milkSale">当前登录的账号名称为：<%=adminname %></a></li>
-						<li><a href="logout.main">退出登录</a></li>
+						<li><a href="<%=basePath%>admin/managerindex">当前登录的账号名称为：<%=adminname %></a></li>
+						<li><a
+							href="javascript:if(confirm('确认要退出吗？')) location.href='<%=basePath%>admin/logout'">退出登录</a></li>
 						<%
 					}
 						%>
@@ -129,57 +127,63 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</nav>
 	</div>
 	<div class="nav col-lg-1">
+	
+		<%
+			Connect connect = (Connect)request.getAttribute("result");
+		%>
 		<ul class="nav nav-pills nav-stacked">
-			<li role="presentation" class="active"><a href="<%=basePath%>admin/index">主页</a></li>
-			<li role="presentation"><a href="javascript:if(confirm('确认要退出吗？')) location.href='<%=basePath%>admin/logout'">退出</a></li>
+			<li role="presentation" class="active"><a
+				href="<%=basePath%>admin/managerindex">主页</a></li>
+			<li role="presentation"><a
+				href="javascript:if(confirm('确认要退出吗？')) location.href='<%=basePath%>admin/logout'">退出</a></li>
 		</ul>
 	</div>
 	<div class="col-lg-3"></div>
 	<div class="nav col-lg-5">
-		<form class="form-horizontal" method="post" action="updateUser.user">
+		<form class="form-horizontal" method="post" action="<%=basePath%>connect/updateconnect">
 			<div class="form-group">
 				<label for="username" class="col-sm-2 control-label">大学名称：</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="universityname"
-						value="大学名称">
+						value="<%=connect.getUniversityname() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">学校类型：</label>
 				<div class="col-sm-10">
-					<input type="hidden" class="form-control" name="id"
-						value="<%=user.getId() %>"> 
+					<input type="hidden" class="form-control" name="connectid"
+						value="<%=connect.getId() %>"> 
 					<input type="password"
 						class="form-control" name="type"
-						value="学校类型">
+						value="<%=connect.getType() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">学校所在地区：</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="province"
-						value="学校所在地区">
+						value="<%=connect.getProvince() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">学校电话：</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="telphone"
-						value="学校电话">
+						value="<%=connect.getTelphone() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">学校地址：</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="address"
-						value="学校地址">
+						value="<%=connect.getAddress() %>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">官网网址：</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="url"
-						value="官网网址">
+						value="<%=connect.getUrl() %>">
 				</div>
 			</div>
 			<div class="col-lg-5"></div>
@@ -197,7 +201,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="container">
 				<ul class="nav navbar-nav">
 					<li><a href="javascript:return false;">现在时间是：<span
-							id="showtime"></span></span>
+							id="showtime"></span>
 					</a></li>
 				</ul>
 			</div>

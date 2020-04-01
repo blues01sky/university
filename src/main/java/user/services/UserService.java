@@ -16,9 +16,9 @@ public interface UserService {
 	
 	User findUserByUsername(@Param("username") String username);
 	
-	String deleteByUserName(@Param("username") String username);
+	void deleteByUserName(@Param("username") String username);
 	
-	String deleteByUserId(@Param("id") Integer id);
+	void deleteByUserId(@Param("id") Integer id);
 	
 	void tianjiaUser(User user);
 	
