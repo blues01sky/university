@@ -50,5 +50,11 @@ public class ScorelineServicesImpl implements ScorelineServices {
 		// TODO Auto-generated method stub
 		scorelineMapper.updateScorelineById(scoreline);
 	}
+
+	@Override
+	public List<Scoreline> findByProvinceDepartment(String province, String deparement, Integer strat, Integer number) {
+		// TODO Auto-generated method stub
+		return scorelineMapper.findByProvinceDepartment(province, deparement, strat, number);
+	}
 	
 }

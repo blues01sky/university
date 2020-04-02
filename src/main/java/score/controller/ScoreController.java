@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import area.entity.Area;
 import area.services.AreaService;
+import connect.entity.Connect;
+import connect.services.ConnectServices;
 import score.entity.Score;
 import score.services.ScoreServices;
 import user.entity.User;
@@ -29,6 +31,8 @@ public class ScoreController {
 	private ScoreServices scoreServices;
 	@Autowired
 	private AreaService areaService;
+	@Autowired
+	private ConnectServices connectServices;
 	
 	@RequestMapping(value = "/addscore",method = RequestMethod.GET)
 	public String addscorepage() {
@@ -107,13 +111,21 @@ public class ScoreController {
 	
 	@RequestMapping(value="/index",method = RequestMethod.GET)
 	public String index(HttpServletRequest request,HttpServletResponse response,@Param("universityname") String universityname) {
-		Area findByUniversityName = areaService.findByUniversityName(universityname);
-		String area = findByUniversityName.getProvince();
+		Area area = areaService.findByUniversityName(universityname);
+		String province = area.getProvince();
 		String department= "理科";
-		List<Score> scores = scoreServices.findScoreByUniversitynameAndAreaAndDepartmentYearDesc(universityname, area,department );
+		List<Score> scores = scoreServices.findScoreByUniversitynameAndAreaAndDepartmentYearDesc(universityname, province,department );
 		if (scores.size() == 0 ) {
 			return "redirect:/index";
 		} else {
+			List<Area> areas = areaService.findByProvinceLimit(0, 10, province);
+			List<Area> levels = areaService.findByLevelLimit(0, 10, "专科");
+			List<Area> types = areaService.findByTypeLimit(0, 10, "综合");
+			Connect connect = connectServices.findByuniversityname(universityname);
+			request.setAttribute("connect",connect);
+			request.setAttribute("types",types);
+			request.setAttribute("levels",levels);
+			request.setAttribute("areas",areas);
 			request.setAttribute("scores", scores);
 		}
 		return "score";
@@ -122,12 +134,20 @@ public class ScoreController {
 	@RequestMapping(value="/select",method = RequestMethod.POST)
 	public String show(HttpServletRequest request,HttpServletResponse response) {
 		String universityname = request.getParameter("universityname");
-		String area = request.getParameter("area");
+		String province = request.getParameter("area");
 		String department= request.getParameter("department");
-		List<Score> scores = scoreServices.findScoreByUniversitynameAndAreaAndDepartmentYearDesc(universityname,area,department );
+		List<Score> scores = scoreServices.findScoreByUniversitynameAndAreaAndDepartmentYearDesc(universityname,province,department );
 		if (scores.size() == 0) {
 			return "redirect:/index";
 		} else {
+			List<Area> areas = areaService.findByProvinceLimit(0, 10, province);
+			List<Area> levels = areaService.findByLevelLimit(0, 10, "专科");
+			List<Area> types = areaService.findByTypeLimit(0, 10, "综合");
+			Connect connect = connectServices.findByuniversityname(universityname);
+			request.setAttribute("connect",connect);
+			request.setAttribute("types",types);
+			request.setAttribute("levels",levels);
+			request.setAttribute("areas",areas);
 			request.setAttribute("scores", scores);
 		}
 		return "score";

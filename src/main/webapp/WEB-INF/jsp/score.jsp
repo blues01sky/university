@@ -1,3 +1,5 @@
+<%@page import="connect.entity.Connect"%>
+<%@page import="area.entity.Area"%>
 <%@page import="java.util.List"%>
 <%@page import="score.entity.Score"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -12,7 +14,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta charset="UTF-8">
-<title>中国人民大学</title>
+<title>学校详情</title>
 <link href="<%=basePath%>static/css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="<%=basePath%>static/css/share_style0_24.css">
 <script src="<%=basePath%>static/js/hm.js"></script>
@@ -202,139 +204,106 @@
 				</form>
 			</div>
 
-			<div class="nconr">
-				<div class="nconrt" style="border-bottom: solid 2px red;">
-					<b class="f14px">推荐专业</b>
-				</div>
-				<div class="nconrc">
-					<ul>
-						<li>
-							<div class="ncrho" style="background-color: red;">1</div> <a
-							href="http://daxue.exam8.com/c/1" target="_blank">北京大学</a>
-						</li>
-						<li>
-							<div class="ncrho" style="background-color: red;">2</div> <a
-							href="http://daxue.exam8.com/c/2" target="_blank">中国人民大学</a>
-						</li>
-						<li>
-							<div class="ncrho" style="background-color: red;">3</div> <a
-							href="http://daxue.exam8.com/c/3" target="_blank">清华大学</a>
-						</li>
-						<li>
-							<div class="ncrhu" style="color: black;">4</div> <a
-							href="http://daxue.exam8.com/c/129" target="_blank">首都医科大学</a>
-						</li>
 
-					</ul>
-				</div>
-				<div class="ncheig"></div>
+
+			<div class="nconr">
+					<div class="nconrt" style="border-bottom: solid 2px red;">
+						<b class="f14px">本地区学校</b>
+					</div>
+					<div class="nconrc">
+						<ul>
+							<%
+								List<Area> areas = (List<Area>)request.getAttribute("areas");
+								for(int n=1;n<= areas.size();n++){
+									if(n<=3){
+										%>
+							<li>
+								<div class="ncrho" style="background-color: red;"><%=n %></div>
+								<a href="<%=basePath%>score/index?universityname=<%=areas.get(n-1).getUniversityname() %>" target="_blank"><%=areas.get(n-1).getUniversityname() %></a>
+							</li>
+										<%
+									}else{
+										%>
+							<li>
+								<div class="ncrho" style="color: black;"><%=n %></div>
+								<a href="<%=basePath%>score/index?universityname=<%=areas.get(n-1).getUniversityname() %>" target="_blank"><%=areas.get(n-1).getUniversityname() %></a>
+							</li>
+										<%
+									}
+								}
+							%>
+						</ul>
+					</div>
+					<div class="ncheig"></div>
 				<div class="nconrt" style="border-bottom: solid 2px red;">
 					<b class="f14px">院校地址</b>
 				</div>
 				<div class="nconrc">
-					<b class="cc00">中国人民大学所在的位置</b><br> 北京市海淀区中关村大街59号 <br>
-					所在省份：北京 <br> 所在城市： <br>
-					联系电话：010-62511340；62511156,010-62511083 <br>
+					<%
+						Connect connect = (Connect) request.getAttribute("connect");
+					%>
+					<b class="cc00"><%=connect.getUniversityname() %>所在的位置</b><br>&nbsp;<%=connect.getAddress() %><br>
+					所在省份：<%=connect.getProvince() %> <br> 所在地区：<%=connect.getProvince() %> <br>
+					联系电话：<%=connect.getTelphone() %><br>
 				</div>
 				<div class="ncheig"></div>
-				<div class="nconrt" style="border-bottom: solid 2px red;">
-					<b class="f14px">同地区院校关注排行</b>
+					<div class="nconrt" style="border-bottom: solid 2px red;">
+						<b class="f14px">根据层次推荐的学校</b>
+					</div>
+					<div class="nconrc">
+						<ul>
+							<%
+								List<Area> levels = (List<Area>)request.getAttribute("levels");
+								for(int l=1;l<= levels.size();l++){
+									if(l<=3){
+										%>
+							<li>
+								<div class="ncrho" style="background-color: red;"><%=l %></div>
+								<a href="<%=basePath%>score/index?universityname=<%=levels.get(l-1).getUniversityname() %>" target="_blank"><%=levels.get(l-1).getUniversityname() %></a>
+							</li>
+										<%
+									}else{
+										%>
+							<li>
+								<div class="ncrho" style="color: black;"><%=l %></div>
+								<a href="<%=basePath%>score/index?universityname=<%=levels.get(l-1).getUniversityname() %>" target="_blank"><%=levels.get(l-1).getUniversityname() %></a>
+							</li>
+										<%
+									}
+								}
+							%>
+						</ul>
+					</div>
+					<div class="ncheig"></div>
+					<div class="nconrt" style="border-bottom: solid 2px red;">
+						<b class="f14px">根据类型推荐的学校</b>
+					</div>
+					<div class="nconrc">
+						<ul>
+							<%
+								List<Area> types = (List<Area>)request.getAttribute("types");
+								for(int o=1;o<= types.size();o++){
+									if(o<=3){
+										%>
+							<li>
+								<div class="ncrho" style="background-color: red;"><%=o %></div>
+								<a href="<%=basePath%>score/index?universityname=<%=types.get(o-1).getUniversityname() %>" target="_blank"><%=types.get(o-1).getUniversityname() %></a>
+							</li>
+										<%
+									}else{
+										%>
+							<li>
+								<div class="ncrho" style="color: black;"><%=o %></div>
+								<a href="<%=basePath%>score/index?universityname=<%=types.get(o-1).getUniversityname() %>" target="_blank"><%=types.get(o-1).getUniversityname() %></a>
+							</li>
+										<%
+									}
+								}
+							%>
+						</ul>
+					</div>
 				</div>
-				<div class="nconrc">
-					<ul>
-						<li>
-							<div class="ncrho" style="background-color: red;">1</div> <a
-							href="http://daxue.exam8.com/c/1" target="_blank">北京大学</a>
-						</li>
-						<li>
-							<div class="ncrho" style="background-color: red;">2</div> <a
-							href="http://daxue.exam8.com/c/2" target="_blank">中国人民大学</a>
-						</li>
-						<li>
-							<div class="ncrho" style="background-color: red;">3</div> <a
-							href="http://daxue.exam8.com/c/3" target="_blank">清华大学</a>
-						</li>
-						<li>
-							<div class="ncrhu" style="color: black;">4</div> <a
-							href="http://daxue.exam8.com/c/129" target="_blank">首都医科大学</a>
-						</li>
-						<li>
-							<div class="ncrhu" style="color: black;">5</div> <a
-							href="http://daxue.exam8.com/c/4" target="_blank">北京航空航天大学</a>
-						</li>
-						<li>
-							<div class="ncrhu" style="color: black;">6</div> <a
-							href="http://daxue.exam8.com/c/5" target="_blank">北京理工大学</a>
-						</li>
-						<li>
-							<div class="ncrhu" style="color: black;">7</div> <a
-							href="http://daxue.exam8.com/c/7" target="_blank">北京师范大学</a>
-						</li>
-						<li>
-							<div class="ncrhu" style="color: black;">8</div> <a
-							href="http://daxue.exam8.com/c/8" target="_blank">中央民族大学</a>
-						</li>
-						<li>
-							<div class="ncrhu" style="color: black;">9</div> <a
-							href="http://daxue.exam8.com/c/120" target="_blank">中国石油大学(北京)</a>
-						</li>
-						<li>
-							<div class="ncrhu" style="color: black;">10</div> <a
-							href="http://daxue.exam8.com/c/1863" target="_blank">蚌埠学院</a>
-						</li>
-					</ul>
-				</div>
-				<div class="ncheig"></div>
-				<div class="nconrt" style="border-bottom: solid 2px red;">
-					<b class="f14px">同类型院校关注排行</b>
-				</div>
-				<div class="nconrc">
-					<ul>
-						<li>
-							<div class="ncrho">1</div> <a href="http://daxue.exam8.com/c/93"
-							target="_blank">西南大学</a>
-						</li>
-						<li>
-							<div class="ncrho">2</div> <a href="http://daxue.exam8.com/c/1"
-							target="_blank">北京大学</a>
-						</li>
-						<li>
-							<div class="ncrho">3</div> <a href="http://daxue.exam8.com/c/2"
-							target="_blank">中国人民大学</a>
-						</li>
-						<li>
-							<div class="ncrhu">4</div> <a href="http://daxue.exam8.com/c/3"
-							target="_blank">清华大学</a>
-						</li>
-						<li>
-							<div class="ncrhu">5</div> <a href="http://daxue.exam8.com/c/9"
-							target="_blank">南开大学</a>
-						</li>
-						<li>
-							<div class="ncrhu">6</div> <a href="http://daxue.exam8.com/c/15"
-							target="_blank">复旦大学</a>
-						</li>
-						<li>
-							<div class="ncrhu">7</div> <a href="http://daxue.exam8.com/c/20"
-							target="_blank">东南大学</a>
-						</li>
-						<li>
-							<div class="ncrhu">8</div> <a href="http://daxue.exam8.com/c/102"
-							target="_blank">宁夏大学</a>
-						</li>
-						<li>
-							<div class="ncrhu">9</div> <a href="http://daxue.exam8.com/c/108"
-							target="_blank">上海大学</a>
-						</li>
-						<li>
-							<div class="ncrhu">10</div> <a href="http://daxue.exam8.com/c/13"
-							target="_blank">吉林大学</a>
-						</li>
-					</ul>
-				</div>
-
 			</div>
-
 			<div class="nconx"></div>
 		</div>
 

@@ -35,19 +35,19 @@
     </select>
     
     <select id="findByProvince" resultType="Area" >  
-        select * from area where province = #{province} 
+        select * from area where province = #{province} order by universityname desc
     </select>
     
     <select id="findByProvinceLimit" resultType="Area" >  
-        select * from area where province = #{province} limit #{startnum},#{shownum}  
+        select * from area where province = #{province} order by universityname desc limit #{startnum},#{shownum} 
     </select>
     
     <select id="findByTypeLimit" resultType="Area" >  
-        select * from area where type = #{type} limit #{startnum},#{shownum}
+        select * from area where type = #{type} order by is985 desc limit #{startnum},#{shownum}
     </select>
     
     <select id="findByLevelLimit" resultType="Area" >  
-        select * from area where level = #{level} limit #{startnum},#{shownum}
+        select * from area where level = #{level} order by is985 desc limit #{startnum},#{shownum}
     </select>
     
     <select id="findOnlyProvince" resultType="Area" >  

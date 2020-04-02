@@ -33,6 +33,8 @@ public class RemarkController {
 		return "redirect:/index";
 	}
 	
+	
+	
 	@RequestMapping(value="/delremark",method = RequestMethod.GET)
 	public String delremark(@Param("remarkid") String remarkid) {
 		remarkServices.deleteByid(Integer.valueOf(remarkid));

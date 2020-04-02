@@ -106,7 +106,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<a href="<%=basePath%>admin/remark">用户留言管理</a>
 							</li>
 						</ul>
-
+					<ul class="nav navbar-nav navbar-right">
+						<%
+						String adminname = (String)session.getAttribute("adminname");
+						if(adminname != null){
+						%>
+						<li><a href="<%=basePath%>admin/managerindex">当前登录的账号名称为：<%=adminname %></a></li>
+						<li><a
+							href="javascript:if(confirm('确认要退出吗？')) location.href='<%=basePath%>admin/logout'">退出登录</a></li>
+						<%
+					}
+						%>
+					</ul>
 					</div>
 					<!-- /.navbar-collapse -->
 				</div>

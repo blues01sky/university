@@ -51,6 +51,8 @@
 		
 		<%
 			List<Area> result = (List<Area>)request.getAttribute("result");
+			List<Area> levels = (List<Area>)request.getAttribute("levels");
+			List<Area> onlytypes = (List<Area>)request.getAttribute("types");
 		%>
 		
 		<div class="content" style="background-color: #E7E7E7">
@@ -69,30 +71,15 @@
 						</div>
 						<div class="zyzbli">
 							<ul>
+								<%
+									for(Area area : onlytypes){
+										%>
 								<li>·
-									<a href="http://daxue.exam8.com/collegelist/xingzhi/benke">本科</a>
+									<a href="<%=basePath%>area/types?type=<%=area.getType() %>"><%=area.getType() %></a>
 								</li>
-								<li>·
-									<a href="http://daxue.exam8.com/collegelist/xingzhi/zhuanke">高职专科</a>
-								</li>
-								<li>·
-									<a href="http://daxue.exam8.com/collegelist/xingzhi/duli">独立学院</a>
-								</li>
-								<li>·
-									<a href="http://daxue.exam8.com/collegelist/xingzhi/zhishu">教育部直属</a>
-								</li>
-								<li>·
-									<a href="http://daxue.exam8.com/collegelist/xingzhi/ksyjs">开设研究生院高校</a>
-								</li>
-								<li>·
-									<a href="http://daxue.exam8.com/collegelist/xingzhi/minban">民办学校</a>
-								</li>
-								<li>·
-									<a href="http://daxue.exam8.com/collegelist/xingzhi/is211">211工程</a>
-								</li>
-								<li>·
-									<a href="http://daxue.exam8.com/collegelist/xingzhi/is985">985工程</a>
-								</li>
+										<%
+									}
+								%>
 							</ul>
 						</div>
 						<div class="zyzbd topx">
@@ -102,100 +89,100 @@
 						<div class="zyzbli">
 							<ul id="Province">
 								<li>·
-									<a href="http://daxue.exam8.com/collegelist/Province/1">北京</a>
+									<a href="<%=basePath%>area/index?province=北京">北京</a>
 								</li>
 								<li>·
-									<a href="http://daxue.exam8.com/collegelist/Province/2">天津</a>
+									<a href="<%=basePath%>area/index?province=天津">天津</a>
 								</li>
 								<li>·
-									<a href="http://daxue.exam8.com/collegelist/Province/3">上海</a>
+									<a href="<%=basePath%>area/index?province=上海">上海</a>
 								</li>
 								<li>·
-									<a href="http://daxue.exam8.com/collegelist/Province/4">重庆</a>
+									<a href="<%=basePath%>area/index?province=重庆">重庆</a>
 								</li>
 								<li>·
-									<a href="http://daxue.exam8.com/collegelist/Province/5">河北</a>
+									<a href="<%=basePath%>area/index?province=河北">河北</a>
 								</li>
 								<li>·
-									<a href="http://daxue.exam8.com/collegelist/Province/17">河南</a>
+									<a href="<%=basePath%>area/index?province=河南">河南</a>
 								</li>
 								<li>·
-									<a href="http://daxue.exam8.com/collegelist/Province/16">山东</a>
+									<a href="<%=basePath%>area/index?province=山东">山东</a>
 								</li>
 								<li>·
-									<a href="http://daxue.exam8.com/collegelist/Province/6">山西</a>
+									<a href="<%=basePath%>area/index?province=山西">山西</a>
 								</li>
 								<li>·
-									<a href="http://daxue.exam8.com/collegelist/Province/13">安徽</a>
+									<a href="<%=basePath%>area/index?province=安徽">安徽</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/15">江西</a>
+									<a href="<%=basePath%>area/index?province=江西">江西</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/11">江苏</a>
+									<a href="<%=basePath%>area/index?province=江苏">江苏</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/12">浙江</a>
+									<a href="<%=basePath%>area/index?province=浙江">浙江</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/18">湖北</a>
+									<a href="<%=basePath%>area/index?province=湖北">湖北</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/19">湖南</a>
+									<a href="<%=basePath%>area/index?province=湖南">湖南</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/20">广东</a>
+									<a href="<%=basePath%>area/index?province=广东">广东</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/21">广西</a>
+									<a href="<%=basePath%>area/index?province=广西">广西</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/25">云南</a>
+									<a href="<%=basePath%>area/index?province=云南">云南</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/24">贵州</a>
+									<a href="<%=basePath%>area/index?province=贵州">贵州</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/23">四川</a>
+									<a href="<%=basePath%>area/index?province=四川">四川</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/27">陕西</a>
+									<a href="<%=basePath%>area/index?province=陕西">陕西</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/29">青海</a>
+									<a href="<%=basePath%>area/index?province=青海">青海</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/30">宁夏</a>
+									<a href="<%=basePath%>area/index?province=宁夏">宁夏</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/10">黑龙江</a>
+									<a href="<%=basePath%>area/index?province=黑龙江">黑龙江</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/9">吉林</a>
+									<a href="<%=basePath%>area/index?province=吉林">吉林</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/8">辽宁</a>
+									<a href="<%=basePath%>area/index?province=辽宁">辽宁</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/26">西藏</a>
+									<a href="<%=basePath%>area/index?province=西藏">西藏</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/31">新疆</a>
+									<a href="<%=basePath%>area/index?province=新疆">新疆</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/7">内蒙古</a>
+									<a href="<%=basePath%>area/index?province=内蒙古">内蒙古</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/22">海南</a>
+									<a href="<%=basePath%>area/index?province=海南">海南</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/14">福建</a>
+									<a href="<%=basePath%>area/index?province=福建">福建</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/28">甘肃</a>
+									<a href="<%=basePath%>area/index?province=甘肃">甘肃</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="http://daxue.exam8.com/collegelist/Province/32">港澳台</a>
+									<a href="<%=basePath%>area/index?province=港澳台">港澳台</a>
 								</li>
 							</ul>
 							<a href="javascript:void();" class="dqmoer" onclick="if ($(&#39;.other_prov&#39;).css(&#39;display&#39;) == &#39;none&#39;){$(&#39;.other_prov&#39;).show(&#39;slow&#39;);$(this).html(&#39;收起&#39;);}else {$(&#39;.other_prov&#39;).hide(&#39;slow&#39;);$(this).html(&#39;更多地区&#39;);}" "=" ">更多地区</a>
@@ -203,19 +190,15 @@
     <div class="zyzbd topx mt10px "><div class="zyzbdl cc00 ">按院校类型</div><div class="zyzbdr "></div></div>
     <div class="zyzbli ">
         <ul>
-                <li>·<a href="http://daxue.exam8.com/collegelist/Province/collegelist/leixing/1 ">综合</a></li>
-                <li>·<a href="http://daxue.exam8.com/collegelist/Province/collegelist/leixing/2 ">工科</a></li>
-                <li>·<a href="http://daxue.exam8.com/collegelist/Province/collegelist/leixing/3 ">农业</a></li>
-                <li>·<a href="http://daxue.exam8.com/collegelist/Province/collegelist/leixing/4 ">师范</a></li>
-                <li>·<a href="http://daxue.exam8.com/collegelist/Province/collegelist/leixing/5 ">民族</a></li>
-                <li>·<a href="http://daxue.exam8.com/collegelist/Province/collegelist/leixing/6 ">林业</a></li>
-                <li>·<a href="http://daxue.exam8.com/collegelist/Province/collegelist/leixing/7 ">医药</a></li>
-                <li>·<a href="http://daxue.exam8.com/collegelist/Province/collegelist/leixing/8 ">语言</a></li>
-                <li>·<a href="http://daxue.exam8.com/collegelist/Province/collegelist/leixing/9 ">财经</a></li>
-                <li>·<a href="http://daxue.exam8.com/collegelist/Province/collegelist/leixing/10 ">体育</a></li>
-                <li>·<a href="http://daxue.exam8.com/collegelist/Province/collegelist/leixing/11 ">艺术</a></li>
-                <li>·<a href="http://daxue.exam8.com/collegelist/Province/collegelist/leixing/12 ">政法</a></li>
-                <li>·<a href="http://daxue.exam8.com/collegelist/Province/collegelist/leixing/13 ">军事</a></li>
+        	<%
+									for(Area area : levels){
+										%>
+								<li>·
+									<a href="<%=basePath%>area/level?type=<%=area.getLevel() %>"><%=area.getLevel() %></a>
+								</li>
+										<%
+									}
+								%>
         </ul>
     </div>
 </div>

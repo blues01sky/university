@@ -100,10 +100,10 @@
 			<div class="tknav">
 				<a href="<%=basePath%>index">系统首页</a>
 				<a href="">院校大全</a>
-				<a href="">地区排行</a>
-				<a href="">热门排行</a>
+				<a href="">大学实力排行</a>
 				<a href="">高校联系方式</a>
-				<a href="">批次控制线</a>
+				<a href="<%=basePath%>scoreline/index">各地批次控制线</a>
+				<a href="<%=basePath%>admin/index">管理员入口</a>
 				<%
 					String username = (String)session.getAttribute("username");
 					if(username != null){
@@ -208,7 +208,7 @@
 							<div class="tdxlxlc">
 								<ul>
 									<li>
-										<a href="#" target="_blank">19各地高考批次分数线</a>
+										<a href="<%=basePath%>scoreline/index" target="_blank">各地高考批次分数线</a>
 									</li>
 								
 								</ul>
@@ -260,7 +260,7 @@
 						<div class="tdxlclt">
 							<div class="tdxlcltb"></div>
 							<span class="fl"><%=provinceLimitArea1.get(0).getProvince() %>（<%=byProvinceNum1 %>所院校）</span><span class="fr tdxlcltbgd"><a
-							href="http://daxue.exam8.com/collegelist/Province/1"
+							href="<%=basePath%>area/index?province=<%=provinceLimitArea1.get(0).getProvince() %>"
 							target="_blank">更多&gt;&gt;</a></span>
 						</div>
 						<div class="tdxlclx"></div>
@@ -288,7 +288,7 @@
 						<div class="tdxlclt">
 							<div class="tdxlcltb"></div>
 							<span class="fl"><%=provinceLimitArea2.get(0).getProvince() %>（<%=byProvinceNum2 %>所院校）</span><span class="fr tdxlcltbgd"><a
-							href="http://daxue.exam8.com/collegelist/Province/2"
+							href="<%=basePath%>area/index?province=<%=provinceLimitArea2.get(0).getProvince() %>"
 							target="_blank">更多&gt;&gt;</a></span>
 						</div>
 						<div class="tdxlclx"></div>
@@ -315,7 +315,7 @@
 						<div class="tdxlclt">
 							<div class="tdxlcltb"></div>
 							<span class="fl"><%=provinceLimitArea3.get(0).getProvince() %>（<%=byProvinceNum3 %>所院校）</span><span class="fr tdxlcltbgd"><a
-							href="http://daxue.exam8.com/collegelist/Province/3"
+							href="<%=basePath%>area/index?province=<%=provinceLimitArea3.get(0).getProvince() %>"
 							target="_blank">更多&gt;&gt;</a></span>
 						</div>
 						<div class="tdxlclx"></div>
@@ -341,7 +341,7 @@
 						<div class="tdxlclt">
 							<div class="tdxlcltb"></div>
 							<span class="fl"><%=provinceLimitArea4.get(0).getProvince() %>（<%=byProvinceNum4 %>所院校）</span><span class="fr tdxlcltbgd"><a
-							href="http://daxue.exam8.com/collegelist/Province/4"
+							href="<%=basePath%>area/index?province=<%=provinceLimitArea4.get(0).getProvince() %>"
 							target="_blank">更多&gt;&gt;</a></span>
 						</div>
 						<div class="tdxlclx"></div>

@@ -89,7 +89,10 @@ public class AreaController {
 		int shownum = 10;
 		int startnum = (page-1) * shownum;
 		List<Area> result = areaService.findByLevelLimit(startnum, shownum, level);
-		
+		List<Area> types = areaService.findOnlyType();
+		List<Area> levels = areaService.findOnlyLevel();
+		request.setAttribute("types",types);
+		request.setAttribute("levels",levels);
 		request.setAttribute("Number",Number);
 		request.setAttribute("page",page);
 		request.setAttribute("startnum",startnum);
@@ -105,7 +108,10 @@ public class AreaController {
 		int startnum = 0;
 		int shownum = 10;
 		List<Area> result = areaService.findByLevelLimit(startnum,shownum,level);
-		
+		List<Area> types = areaService.findOnlyType();
+		List<Area> levels = areaService.findOnlyLevel();
+		request.setAttribute("types",types);
+		request.setAttribute("levels",levels);
 		request.setAttribute("Number",Number);
 		request.setAttribute("startnum",startnum);
 		request.setAttribute("page",1);
@@ -121,7 +127,10 @@ public class AreaController {
 		int startnum = 0;
 		int shownum = 50;
 		List<Area> result = areaService.findLike(universityname);
-		
+		List<Area> types = areaService.findOnlyType();
+		List<Area> levels = areaService.findOnlyLevel();
+		request.setAttribute("types",types);
+		request.setAttribute("levels",levels);
 		request.setAttribute("Number",Number);
 		request.setAttribute("startnum",startnum);
 		request.setAttribute("page",1);
@@ -136,7 +145,10 @@ public class AreaController {
 		int shownum = 10;
 		int startnum = (page-1) * shownum;
 		List<Area> result = areaService.findByTypeLimit(startnum, shownum, type);
-		
+		List<Area> types = areaService.findOnlyType();
+		List<Area> levels = areaService.findOnlyLevel();
+		request.setAttribute("types",types);
+		request.setAttribute("levels",levels);
 		request.setAttribute("Number",Number);
 		request.setAttribute("page",page);
 		request.setAttribute("startnum",startnum);
@@ -152,7 +164,10 @@ public class AreaController {
 		int startnum = 0;
 		int shownum = 10;
 		List<Area> result = areaService.findByTypeLimit(startnum,shownum,type);
-		
+		List<Area> types = areaService.findOnlyType();
+		List<Area> levels = areaService.findOnlyLevel();
+		request.setAttribute("types",types);
+		request.setAttribute("levels",levels);
 		request.setAttribute("Number",Number);
 		request.setAttribute("startnum",startnum);
 		request.setAttribute("page",1);
@@ -168,7 +183,10 @@ public class AreaController {
 		int startnum = 0;
 		int shownum = 10;
 		List<Area> result = areaService.findByTypeLimit(startnum,shownum,type);
-		
+		List<Area> types = areaService.findOnlyType();
+		List<Area> levels = areaService.findOnlyLevel();
+		request.setAttribute("types",types);
+		request.setAttribute("levels",levels);
 		request.setAttribute("Number",Number);
 		request.setAttribute("startnum",startnum);
 		request.setAttribute("page",1);
@@ -183,7 +201,10 @@ public class AreaController {
 		int shownum = 10;
 		int startnum = (page-1) * shownum;
 		List<Area> result = areaService.findByProvinceLimit(startnum, shownum, province);
-		
+		List<Area> types = areaService.findOnlyType();
+		List<Area> levels = areaService.findOnlyLevel();
+		request.setAttribute("types",types);
+		request.setAttribute("levels",levels);
 		request.setAttribute("Number",Number);
 		request.setAttribute("page",page);
 		request.setAttribute("startnum",startnum);
@@ -199,7 +220,10 @@ public class AreaController {
 		int startnum = 0;
 		int shownum = 10;
 		List<Area> result = areaService.findByProvinceLimit(startnum, shownum, province);
-		
+		List<Area> types = areaService.findOnlyType();
+		List<Area> levels = areaService.findOnlyLevel();
+		request.setAttribute("types",types);
+		request.setAttribute("levels",levels);
 		request.setAttribute("Number",Number);
 		request.setAttribute("startnum",startnum);
 		request.setAttribute("page",1);
@@ -215,7 +239,10 @@ public class AreaController {
 		int startnum = 0;
 		int shownum = 50;
 		List<Area> result = areaService.findByProvinceLimit(startnum, shownum, province);
-		
+		List<Area> types = areaService.findOnlyType();
+		List<Area> levels = areaService.findOnlyLevel();
+		request.setAttribute("types",types);
+		request.setAttribute("levels",levels);
 		request.setAttribute("Number",Number);
 		request.setAttribute("startnum",startnum);
 		request.setAttribute("page",1);

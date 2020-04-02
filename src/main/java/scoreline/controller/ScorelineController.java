@@ -1,6 +1,9 @@
 package scoreline.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,15 +11,78 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import area.entity.Area;
+import area.services.AreaService;
+import remark.entity.Remark;
+import remark.services.RemarkServices;
 import scoreline.entity.Scoreline;
 import scoreline.services.ScorelineServices;
+import util.DateUtil;
 
 @Controller
 @RequestMapping("/scoreline")
 public class ScorelineController {
+	DateUtil date = new DateUtil();
 	
 	@Autowired
 	private ScorelineServices scorelineServices;
+	@Autowired
+	private AreaService areaService;
+	@Autowired
+	private RemarkServices remarkServices;
+	
+	
+	@RequestMapping(value="/remarkscoreline",method = RequestMethod.POST)
+	public String remarkscoreline(String remarkcontent,HttpServletRequest request,HttpServletResponse response) {
+		remarkcontent = request.getParameter("remarkcontent");
+		String province = request.getParameter("province");
+		Remark remark = new Remark();
+		remark.setUpdatetime(date.getTimeTypeDate());
+		remark.setUniversityname("对"+province+"地区的分数线评论");
+		remark.setContent(remarkcontent);
+		remarkServices.addReamrk(remark);
+		return "redirect:/index";
+	}
+	
+	@RequestMapping(value = "/index",method = RequestMethod.GET)
+	public String index(HttpServletRequest request) {
+		String province = "北京";
+		String deparement1 = "理科";
+		String deparement2 = "文科";
+		Integer strat = 0;
+		Integer number = 30;
+		List<Scoreline> result1 = scorelineServices.findByProvinceDepartment(province, deparement1, strat, number);
+		List<Scoreline> result2 = scorelineServices.findByProvinceDepartment(province, deparement2, strat, number);
+		List<Area> areas = areaService.findByProvinceLimit(0, 10, province);
+		List<Area> levels = areaService.findByLevelLimit(0, 10, "专科");
+		List<Area> types = areaService.findByTypeLimit(0, 10, "重点");
+		request.setAttribute("types",types);
+		request.setAttribute("levels",levels);
+		request.setAttribute("areas",areas);
+		request.setAttribute("result2",result2);
+		request.setAttribute("result1",result1);
+		return "scoreline";
+	}
+	
+	@RequestMapping(value = "/xuanze",method = RequestMethod.POST)
+	public String xuanze(HttpServletRequest request) {
+		String province = request.getParameter("province");
+		String deparement1 = "理科";
+		String deparement2 = "文科";
+		Integer strat = 0;
+		Integer number = 30;
+		List<Scoreline> result1 = scorelineServices.findByProvinceDepartment(province, deparement1, strat, number);
+		List<Scoreline> result2 = scorelineServices.findByProvinceDepartment(province, deparement2, strat, number);
+		List<Area> areas = areaService.findByProvinceLimit(0, 10, province);
+		List<Area> levels = areaService.findByLevelLimit(0, 10, "专科");
+		List<Area> types = areaService.findByTypeLimit(0, 10, "重点");
+		request.setAttribute("types",types);
+		request.setAttribute("levels",levels);
+		request.setAttribute("areas",areas);
+		request.setAttribute("result2",result2);
+		request.setAttribute("result1",result1);
+		return "scoreline";
+	}
 	
 	@RequestMapping(value = "/addscoreline",method = RequestMethod.GET)
 	public String addscorelinepage() {
