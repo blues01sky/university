@@ -247,7 +247,7 @@
 		                    	}
 		                    %>
 		                    <%
-		                    	if(area.getIs211()==1){
+		                    	if(area.getIs985()==1){
 		                    		%>
 		                    		<td>√</td>
 		                    		<% 
@@ -261,7 +261,7 @@
 		                    <td>
 		                        <a href="" target="_blank ">简介</a>
 		                        <a href="<%=basePath%>score/index?universityname=<%=area.getUniversityname() %>" target="_blank ">历年分数线</a>
-		                        <a href="">加入对比</a>
+		                        <a href="<%=basePath%>compare/index?universityname=<%=area.getUniversityname() %>">加入对比</a>
 		                        	<span class="cc00 "><a href="<%=area.getUrl() %>" target="_blank ">官方网站</a></span>
 		                    </td>
 		                </tr>

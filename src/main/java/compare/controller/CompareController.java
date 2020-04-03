@@ -1,15 +1,21 @@
 package compare.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.annotations.Param;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import area.entity.Area;
+import area.services.AreaService;
 import compare.entity.Compare;
 import compare.services.CompareServices;
 
@@ -19,6 +25,31 @@ public class CompareController {
 	
 	@Autowired
 	private CompareServices compareServices;
+	@Autowired
+	private AreaService areaService;
+	
+	@RequestMapping(value = "/index",method = RequestMethod.GET)
+	public String index(@Param("universityname") String universityname,HttpServletRequest request) {
+		Compare university1 = compareServices.findBycomparename(universityname);
+		request.setAttribute("university1", university1);
+		return "compare";
+	}
+	
+	@RequestMapping(value = "/selecthandle",method = RequestMethod.POST)
+	public JSONObject selecthandle(HttpServletRequest request,@Param("select1") String select1) {
+		List<Area> value1 = areaService.findByProvince(select1);
+		Map<String, Area> map = new HashMap<String, Area>();
+		int i = 1;
+		for(Area area : value1) {
+			map.put("area"+i,area);
+			i++;
+		}
+		JSONObject jsonObject = new JSONObject(map);
+		System.out.println(jsonObject);
+		return jsonObject;
+	}
+	
+	
 	
 	@RequestMapping(value="/compare",method=RequestMethod.GET)
 	public String compare(HttpServletRequest request) {
