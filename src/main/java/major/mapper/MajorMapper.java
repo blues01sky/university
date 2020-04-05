@@ -10,6 +10,10 @@ public interface MajorMapper {
 	
 	List<Major> queryAll();
 	
+	Integer findMajortypeUniversityCount(@Param("majortype") String majortype);
+	
+	List<Major> findMajortypeByLimit(@Param("startnum") Integer startnum,@Param("number") Integer number,@Param("majortype") String majortype);
+	
 	Major findById(@Param("id") Integer id);
 	
 	Integer findCountByProfessional(@Param("professional") String professional,@Param("universityname") String universityname);

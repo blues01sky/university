@@ -171,7 +171,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						%>
 				<tr>
 					<td><%=compare.getId() %></td>
-					<td title="<%=compare.getUniversityname() %>">名称</td>
+					<td><%=compare.getUniversityname() %></td>
 					<td title="<%=compare.getType() %>">详情</td>
 					<td><%=compare.getProvince() %></td>
 					<td><%=compare.getIs211() %></td>

@@ -108,6 +108,7 @@ public class AreaController {
 		int startnum = 0;
 		int shownum = 10;
 		List<Area> result = areaService.findByLevelLimit(startnum,shownum,level);
+		System.out.println(result);
 		List<Area> types = areaService.findOnlyType();
 		List<Area> levels = areaService.findOnlyLevel();
 		request.setAttribute("types",types);
@@ -160,6 +161,25 @@ public class AreaController {
 	
 	@RequestMapping(value = "/types",method = RequestMethod.GET)
 	public String type(@Param("type") String type,HttpServletRequest request,HttpServletResponse response) {
+		Integer Number = areaService.findAllNumByType(type);
+		int startnum = 0;
+		int shownum = 10;
+		List<Area> result = areaService.findByTypeLimit(startnum,shownum,type);
+		List<Area> types = areaService.findOnlyType();
+		List<Area> levels = areaService.findOnlyLevel();
+		request.setAttribute("types",types);
+		request.setAttribute("levels",levels);
+		request.setAttribute("Number",Number);
+		request.setAttribute("startnum",startnum);
+		request.setAttribute("page",1);
+		request.setAttribute("shownum",shownum);
+		request.setAttribute("result",result);
+		return "type";
+	}
+
+	@RequestMapping(value = "/typesindex",method = RequestMethod.GET)
+	public String typeindex(HttpServletRequest request,HttpServletResponse response) {
+		String type = "综合";
 		Integer Number = areaService.findAllNumByType(type);
 		int startnum = 0;
 		int shownum = 10;
@@ -251,6 +271,25 @@ public class AreaController {
 		return "province";
 	}
 	
+	@RequestMapping(value = "/head",method = RequestMethod.GET)
+	public String nav(HttpServletRequest request,HttpServletResponse response) {
+		String province = "北京";
+		Integer Number = areaService.findAllNumByProvince(province);
+		int startnum = 0;
+		int shownum = 50;
+		List<Area> result = areaService.findByProvinceLimit(startnum, shownum, province);
+		List<Area> types = areaService.findOnlyType();
+		List<Area> levels = areaService.findOnlyLevel();
+		request.setAttribute("types",types);
+		request.setAttribute("levels",levels);
+		request.setAttribute("Number",Number);
+		request.setAttribute("startnum",startnum);
+		request.setAttribute("page",1);
+		request.setAttribute("shownum",shownum);
+		request.setAttribute("result",result);
+		return "province";
+	}
+	
 /*	@RequestMapping(value = "/index",method = RequestMethod.POST)
 	public void ajax(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		String province = request.getParameter("province");
@@ -267,7 +306,7 @@ public class AreaController {
 	}*/
 	
 	
-	@RequestMapping(value="/",method=RequestMethod.GET)
+	/*@RequestMapping(value="/",method=RequestMethod.GET)
 	public String area(HttpServletResponse response,HttpServletRequest request,@Param("universityname") String universityname,@Param("province") String province) {
 		List<Area> areas = areaService.findOnlyProvince();
 		List<Area> levels = areaService.findOnlyLevel();
@@ -290,7 +329,7 @@ public class AreaController {
 		System.out.println(areas + "areas");
 		System.out.println(levels + "levels");
 		return "index";
-	}
+	}*/
 	 
 	/*@RequestMapping(value="/add",method=RequestMethod.GET)
 	public void add() {

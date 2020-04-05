@@ -1,3 +1,4 @@
+<%@page import="major.entity.Major"%>
 <%@page import="area.entity.Area"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -50,7 +51,7 @@
 		</div>
 		
 		<%
-			List<Area> result = (List<Area>)request.getAttribute("result");
+			List<Major> result = (List<Major>)request.getAttribute("result");
 			List<Area> levels = (List<Area>)request.getAttribute("levels");
 			List<Area> onlytypes = (List<Area>)request.getAttribute("types");
 		%>
@@ -223,48 +224,17 @@
         <table width="100% " border="0 " cellspacing="0 " cellpadding="0 " class="zstable ">
             <tbody><tr>
                 <th>院校名称</th>
-                <th width="8% ">所在地</th>
-                <th width="8% ">类别</th>
-                <th width="5% ">211</th>
-                <th width="5% ">985</th>
-                <th width="20% ">院校性质</th>
-                <th width="30% ">详细</th>
+                <th>学位</th>
+                <th>类别</th>
+                <th>专业</th>
             </tr>
 					<%
-						for(Area area : result){%>
-							<tr>
-		                    <td><a href="<%=basePath%>score/index?universityname=<%=area.getUniversityname() %>" target="_blank "><%=area.getUniversityname() %></a></td>
-		                    <td><%=area.getProvince() %></td>
-		                    <td><%=area.getType() %></td>
-		                    <%
-		                    	if(area.getIs211()==1){
-		                    		%>
-		                    		<td>√</td>
-		                    		<% 
-		                    	}else{
-		                    	%>
-		                    		<td></td>
-		                    	<%
-		                    	}
-		                    %>
-		                    <%
-		                    	if(area.getIs985()==1){
-		                    		%>
-		                    		<td>√</td>
-		                    		<% 
-		                    	}else{
-		                    	%>
-		                    		<td></td>
-		                    	<%
-		                    	}
-		                    %>
-		                    <td><%=area.getLevel() %></td>
-		                    <td>
-		                        <a href="<%=basePath%>compare/instruction?universityname=<%=area.getUniversityname() %>" target="_blank ">简介</a>
-		                        <a href="<%=basePath%>score/index?universityname=<%=area.getUniversityname() %>" target="_blank ">历年分数线</a>
-		                        <a href="<%=basePath%>compare/index?universityname=<%=area.getUniversityname() %>">加入对比</a>
-		                        	<span class="cc00 "><a href="https://<%=area.getUrl() %>" target="_blank ">官方网站</a></span>
-		                    </td>
+						for(Major major : result){%>
+						<tr>
+		                    <td><a href="<%=basePath%>score/index?universityname=<%=major.getUniversityname() %>" target="_blank "><%=major.getUniversityname() %></a></td>
+		                    <td><%=major.getDegree() %></td>
+		                    <td><%=major.getMajortype() %></td>
+		                    <td><%=major.getProfessional() %></td>
 		                </tr>
 		                <%
 						}
@@ -288,10 +258,10 @@
    				}
 	       	%>
         <div class="fenye">&nbsp;
-	        <a href="<%=basePath%>area/fenye?province=<%=result.get(0).getProvince() %>&page=1" class="fy1 ">首页</a>&nbsp;&nbsp;&nbsp;
+	        <a href="<%=basePath%>major/fenye?majortype=<%=result.get(0).getMajortype() %>&page=1" class="fy1 ">首页</a>&nbsp;&nbsp;&nbsp;
 	        <%
 	        	if(pagenum>1){%>
-	        	<a href="<%=basePath%>area/fenye?province=<%=result.get(0).getProvince() %>&page=<%=beforepage %>" class="fy2 ">上一页</a>&nbsp;&nbsp;&nbsp;
+	        	<a href="<%=basePath%>major/fenye?majortype=<%=result.get(0).getMajortype() %>&page=<%=beforepage %>" class="fy2 ">上一页</a>&nbsp;&nbsp;&nbsp;
 	        	<%
 	        	}
 	        %>
@@ -301,7 +271,7 @@
 	        		<span>1</span>&nbsp;&nbsp;&nbsp;
 	        		<%
 	        		for(int i=2;i<=allNum;i++){%>
-	        			<a href="<%=basePath%>area/fenye?province=<%=result.get(0).getProvince() %>&page=<%=i %>" class="fy3"><%=i %></a>&nbsp;&nbsp;&nbsp;
+	        			<a href="<%=basePath%>major/fenye?majortype=<%=result.get(0).getMajortype() %>&page=<%=i %>" class="fy3"><%=i %></a>&nbsp;&nbsp;&nbsp;
 	        			<%
 	        		}
 	        	}else{
@@ -314,7 +284,7 @@
 		       	<%
 	       			}else{
 	       				%>
-		       			<a href="<%=basePath%>area/fenye?province=<%=result.get(0).getProvince() %>&page=<%=i %>" class="fy3"><%=i %></a>&nbsp;&nbsp;&nbsp;
+		       			<a href="<%=basePath%>major/fenye?majortype=<%=result.get(0).getMajortype() %>&page=<%=i %>" class="fy3"><%=i %></a>&nbsp;&nbsp;&nbsp;
 		       	<%
 	       				}
 	       			}
@@ -323,14 +293,15 @@
 	       	
 	       	<%
 	        	if(pagenum<allNum){%>
-	        	<a href="<%=basePath%>area/fenye?province=<%=result.get(0).getProvince() %>&page=<%=nextpage %>" class="fy2 ">下一页</a> &nbsp;&nbsp;
+	        	<a href="<%=basePath%>major/fenye?majortype=<%=result.get(0).getMajortype() %>&page=<%=nextpage %>" class="fy2 ">下一页</a> &nbsp;&nbsp;
 	        	<%
 	        	}
 	        %>
-	        <a href="<%=basePath%>area/fenye?province=<%=result.get(0).getProvince() %>&page=<%=allNum %>" class="fy1 ">尾页</a>&nbsp;</div>
+	        <a href="<%=basePath%>major/fenye?majortype=<%=result.get(0).getMajortype() %>&page=<%=allNum %>" class="fy1 ">尾页</a>&nbsp;</div>
    		</div><div class="clear "></div>
 </div>
-<div class="copyright">
+
+       <div class="copyright">
 				<div class="cpy01 cpyml">
 					<a href="<%=basePath%>index" target="_self">关于本站</a>
 					<a href="<%=basePath%>index" target="_self">网站声明</a>

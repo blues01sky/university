@@ -169,7 +169,10 @@ public class ScoreController {
 			
 			List<Score> result = scoreServices.findBigSelves(score,maxscore, todayyear, startnum, pagecount, department, area);
 			int Number = scoreServices.findBigSelvesCount(score, maxscore, todayyear, department, area);
-			
+			List<Area> types = areaService.findOnlyType();
+			List<Area> levels = areaService.findOnlyLevel();
+			request.setAttribute("types",types);
+			request.setAttribute("levels",levels);
 			request.setAttribute("score",Integer.valueOf(score));
 			request.setAttribute("Number",Number);
 			request.setAttribute("startnum",startnum);

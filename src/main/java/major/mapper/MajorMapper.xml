@@ -6,8 +6,16 @@
         select * from major 
     </select>
     
-    <select id="findCountByProfessional" >  
+    <select id="findCountByProfessional" resultType="Integer">  
         select count(#{professional}) from major where universityname = #{universityname}
+    </select>
+    
+    <select id="findMajortypeByLimit" resultType="Major">  
+        select * from major where majortype = #{majortype} limit #{startnum},#{number}
+    </select>
+    
+    <select id="findMajortypeUniversityCount" resultType="Integer" >  
+        select count(*) from major where majortype = #{majortype} 
     </select>
     
     <select id="findOnlyProfessional" resultType="Major" >  
@@ -22,11 +30,11 @@
         select distinct majortype from major
     </select>
     
-    <select id="findCountByDegree">  
+    <select id="findCountByDegree" resultType="Integer">  
         select count(#{degree}) from major where universityname = #{universityname}
     </select>
     
-    <select id="findCountByMajortype" >  
+    <select id="findCountByMajortype" resultType="Integer">  
         select count(#{majortype}) from major where universityname = #{universityname}
     </select>
     

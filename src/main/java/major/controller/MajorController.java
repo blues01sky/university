@@ -1,6 +1,9 @@
 package major.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import area.entity.Area;
+import area.services.AreaService;
 import major.entity.Major;
 import major.services.MajorServices;
 
@@ -17,6 +22,47 @@ public class MajorController {
 	
 	@Autowired
 	private MajorServices majorServices;
+	@Autowired
+	private AreaService areaService;
+	
+	@RequestMapping(value = "/index",method = RequestMethod.GET)
+	public String fenyeBylevel(@Param("majortype") String majortype,HttpServletRequest request,HttpServletResponse response) {
+		int page = 1;
+		Integer Number = majorServices.findMajortypeUniversityCount(majortype);
+		int number = 10;
+		int startnum = (page-1) * number;
+		List<Major> result = majorServices.findMajortypeByLimit(startnum, number, majortype);
+		List<Area> types = areaService.findOnlyType();
+		List<Area> levels = areaService.findOnlyLevel();
+		request.setAttribute("types",types);
+		request.setAttribute("levels",levels);
+		request.setAttribute("Number",Number);
+		request.setAttribute("page",page);
+		request.setAttribute("startnum",startnum);
+		request.setAttribute("shownum",number);
+		request.setAttribute("result",result);
+		
+		return "major";
+	}
+	
+	@RequestMapping(value = "/fenye",method = RequestMethod.GET)
+	public String fenye(@Param("majortype") String majortype,@Param("page") int page,HttpServletRequest request,HttpServletResponse response) {
+		Integer Number = majorServices.findMajortypeUniversityCount(majortype);
+		int number = 10;
+		int startnum = (page-1) * number;
+		List<Major> result = majorServices.findMajortypeByLimit(startnum, number, majortype);
+		List<Area> types = areaService.findOnlyType();
+		List<Area> levels = areaService.findOnlyLevel();
+		request.setAttribute("types",types);
+		request.setAttribute("levels",levels);
+		request.setAttribute("Number",Number);
+		request.setAttribute("page",page);
+		request.setAttribute("startnum",startnum);
+		request.setAttribute("shownum",number);
+		request.setAttribute("result",result);
+		
+		return "major";
+	}
 	
 	@RequestMapping(value = "/addmajor",method = RequestMethod.GET)
 	public String addmajorpage() {

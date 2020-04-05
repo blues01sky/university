@@ -7,7 +7,11 @@ import org.apache.ibatis.annotations.Param;
 import major.entity.Major;
 
 public interface MajorServices {
-List<Major> queryAll();
+	List<Major> queryAll();
+	
+	Integer findMajortypeUniversityCount(@Param("majortype") String majortype);
+	
+	List<Major> findMajortypeByLimit(@Param("startnum") Integer startnum,@Param("number") Integer number,@Param("majortype") String majortype);
 	
 	Integer findCountByProfessional(@Param("professional") String professional,@Param("universityname") String universityname);
 	

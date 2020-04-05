@@ -147,4 +147,16 @@ public class MajorServicesImpl implements MajorServices {
 		return majorMapper.findById(id);
 	}
 
+	@Override
+	public Integer findMajortypeUniversityCount(String majortype) {
+		// TODO Auto-generated method stub
+		return majorMapper.findMajortypeUniversityCount(majortype);
+	}
+
+	@Override
+	public List<Major> findMajortypeByLimit(Integer startnum, Integer number, String majortype) {
+		// TODO Auto-generated method stub
+		return majorMapper.findMajortypeByLimit(startnum, number, majortype);
+	}
+
 }

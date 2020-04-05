@@ -36,12 +36,12 @@
 	</div>
 	<div class="tknavw">
 			<div class="tknav">
-				<a href="">系统首页</a>
-				<a href="">院校大全</a>
-				<a href="">地区排行</a>
-				<a href="">热门排行</a>
-				<a href="">高校联系方式</a>
-				<a href="">批次控制线</a>
+				<a href="<%=basePath%>index">系统首页</a>
+				<a href="<%=basePath%>area/typesindex">院校大全</a>
+				<a href="<%=basePath%>area/head">地区院校大全</a>
+				<a href="<%=basePath%>compare/head">对比选学校</a>
+				<a href="<%=basePath%>scoreline/index">各地批次控制线</a>
+				<a href="<%=basePath%>admin/index">管理员入口</a>
 				<%
 					String username = (String)session.getAttribute("username");
 					if(username != null){
@@ -308,37 +308,34 @@
 		</div>
 
 		<div class="copyright">
-			<div class="cpy01 cpyml">
-				<a href="http://www.exam8.com/about/AboutExam8.html" target="_self">关于本站</a>
-				<a href="http://www.exam8.com/about/copyright.html" target="_self">网站声明</a>
-				<a href="http://www.exam8.com/about/exam8adv.html" target="_self">广告服务</a>
-				<a href="http://www.exam8.com/about/Contact.html" target="_self">联系方式</a>
-				<a href="http://www.exam8.com/pay/" target="_self">付款方式</a> <a
-					href="http://www.exam8.com/map.html" target="_self">站内导航</a> <a
-					href="http://www.exam8.com/service/" target="_self">客服中心</a> <a
-					href="http://www.exam8.com/link/" target="_self">友情链接</a> <a
-					href="http://bbs.exam8.com/archiver/">考试论坛</a> <a
-					href="http://www.exam8.com/SiteMap/Article1.htm">最新更新</a> <a
-					href="http://www.exam8.com/SiteNavigation.html">网站地图</a>
-			</div>
-			<div class="cpy01">
-				Copyright © 2004-
-				<script language="JavaScript">
-					var myDate = new Date();
-					var theYear = myDate.getFullYear();
-					document.write(theYear);
-				</script>
-				2020 <a href="http://www.exam8.com/" target="_blank">考试吧 </a>( <a
-					href="http://www.exam8.com/" target="_blank">Exam8.com</a>) All
-				Rights Reserved <a href="http://www.miibeian.gov.cn/"
-					target="_blank">京ICP证060677</a><span
-					style="margin-left: 8px; margin-right: 8px;">京公网安备:1101084974</span>
-				<a href="http://adm.baidu.com/help/success.html" target="_blank"
-					style="position: relative; padding-left: 20px;">
-					<div class="zhichi"></div>精准广告支持
-				</a>
-			</div>
-			<div class="cpy01">中国科学院研究生院权威支持(北京)　电 话：010-62168566　传 真：010-62192699</div>
+				<div class="cpy01 cpyml">
+					<a href="<%=basePath%>index" target="_self">关于本站</a>
+					<a href="<%=basePath%>index" target="_self">网站声明</a>
+					<a href="<%=basePath%>index" target="_self">广告服务</a>
+					<a href="<%=basePath%>index" target="_self">联系方式</a>
+					<a href="<%=basePath%>index" target="_self">站内导航</a>
+					<a href="<%=basePath%>index" target="_self">客服中心</a>
+					<a href="<%=basePath%>index" target="_self">友情链接</a>
+					<a href="<%=basePath%>index">最新更新</a>
+					<a href="<%=basePath%>index">网站地图</a>
+				</div>
+				<div class="cpy01">
+					Copyright © 
+					<script language="JavaScript">
+						var myDate = new Date();
+						var theYear = myDate.getFullYear();
+						document.write(theYear);
+					</script>
+					<a href="<%=basePath%>index" target="_blank">大学排行榜</a>(
+					<a href="<%=basePath%>index" target="_blank"></a>) All Rights Reserved
+					<a href="<%=basePath%>index" target="_blank">京ICP证06101011</a><span style="margin-left: 8px; margin-right: 8px;">京公网安备:1101011</span>
+					<a href="<%=basePath%>index" target="_blank" style="position: relative; padding-left: 20px;">
+						<div class="zhichi"></div>精准广告支持</a>
+				</div>
+				<div class="cpy01">中国科学院权威支持(北京)　电 话：010-1010110　传 真：010-1010110</div>
+				</div>
 
-		</div>
-	</div>
+			</div>
+	</body>
+
+</html>
