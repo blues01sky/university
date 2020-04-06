@@ -15,6 +15,7 @@
 	window.onload = function(){
 		window.location.href="<%=basePath%>index";
 	}
+	
 </script>
 </head>
 <body>
