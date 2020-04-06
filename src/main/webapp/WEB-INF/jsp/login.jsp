@@ -15,7 +15,7 @@
 <base href="<%=basePath%>">
 <meta charset="UTF-8">
 
-<title>中国高校信息查询系统_高考院校库_考试吧</title>
+<title>高校信息查询系统</title>
 <link href="<%=basePath%>static/css/style.css" rel="stylesheet"
 	type="text/css">
 <link href="<%=basePath%>static/css/login.css" rel="stylesheet"

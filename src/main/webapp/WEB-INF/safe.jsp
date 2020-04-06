@@ -10,7 +10,7 @@
 	<head>
 	<base href="<%=basePath%>">
 	<meta charset="UTF-8">
-<title>Insert title here</title>
+<title>高校信息查询系统</title>
 <script type="text/javascript">
 	window.onload = function(){
 		window.location.href="<%=basePath%>index";

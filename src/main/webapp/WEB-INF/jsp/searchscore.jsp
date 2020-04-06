@@ -13,7 +13,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta charset="UTF-8">
-<title>北京高校列表</title>
+<title>高校信息查询系统</title>
 <link href="<%=basePath%>static/css/style.css" rel="stylesheet"
 	type="text/css">
 <script src="<%=basePath%>static/js/hm.js"></script>
