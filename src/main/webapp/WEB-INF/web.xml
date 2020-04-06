@@ -77,7 +77,7 @@
 	</servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>jsp/index.html</welcome-file>
-		<welcome-file>/WEB-INF/jsp/login.jsp</welcome-file>
+		<welcome-file>/WEB-INF/safe.jsp</welcome-file>
+		<welcome-file>/WEB-INF/safe.html</welcome-file>
 	</welcome-file-list>
 </web-app>
