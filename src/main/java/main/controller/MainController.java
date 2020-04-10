@@ -38,17 +38,17 @@ public class MainController {
 		
 		Integer byProvinceNum1 = areaService.findAllNumByProvince("北京");
 		
-		List<Area> provinceLimitArea2 = areaService.findByProvinceLimit(0, 10, "河南");
+		List<Area> provinceLimitArea2 = areaService.findByProvinceLimit(0, 10, "湖北");
 		
-		Integer byProvinceNum2 = areaService.findAllNumByProvince("河南");
+		Integer byProvinceNum2 = areaService.findAllNumByProvince("湖北");
 		
-		List<Area> provinceLimitArea3 = areaService.findByProvinceLimit(0, 10, "北京");
+		List<Area> provinceLimitArea3 = areaService.findByProvinceLimit(0, 10, "上海");
 		
-		Integer byProvinceNum3 = areaService.findAllNumByProvince("北京");
+		Integer byProvinceNum3 = areaService.findAllNumByProvince("上海");
 		
-		List<Area> provinceLimitArea4 = areaService.findByProvinceLimit(0, 10, "河南");
+		List<Area> provinceLimitArea4 = areaService.findByProvinceLimit(0, 10, "陕西");
 		
-		Integer byProvinceNum4 = areaService.findAllNumByProvince("河南");
+		Integer byProvinceNum4 = areaService.findAllNumByProvince("陕西");
 		
 		request.setAttribute("allNum", allNum);
 		request.setAttribute("onlyProvince", onlyProvince);
