@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ranks.mapper.RanksMapper">
+    <!-- 查询所有person -->  
+    <select id="queryAll" resultType="Ranks" >  
+        select * from ranks order by rank asc
+    </select>
+    
+    <select id="findByIdYearDesc" resultType="Ranks" >  
+        select * from ranks where id = #{id} order by rank asc
+    </select>
+    
+    <select id="findByNameYearDesc" resultType="Ranks" >  
+        select * from ranks where name = #{name} order by year desc
+    </select>
+    
+    <select id="findByNamesameBrand" resultType="Ranks" >  
+        select * from ranks where name = #{name} and brand = #{brand} order by year desc
+    </select>
+    
+    <delete id="deleteById">
+    	delete from ranks where id = #{id}
+    </delete>
+    
+    <select id="findByBrand" resultType="Ranks" >  
+        select * from ranks where brand = #{brand} order by rank asc
+    </select>
+    
+    <select id="findByBrandlimitscoredesc" resultType="Ranks" >  
+        select * from ranks where brand = #{brand} order by year desc,score desc limit #{startnum},#{countnum}
+    </select>
+    
+    <select id="findByBrandlimitrankAsc" resultType="Ranks" >  
+        select * from ranks where brand = #{brand} order by year desc,rank asc limit #{startnum},#{countnum}
+    </select>
+    
+    <select id="findByBrandAndYear" resultType="Ranks" >  
+        select * from ranks where brand = #{brand} and year = #{year} order by rank asc
+    </select>
+    
+    <select id="findOnlyBrand" resultType="Ranks" >  
+        select distinct brand from ranks
+    </select>
+    
+    <select id="findOnlyCategory" resultType="Ranks" >  
+        select distinct Category from ranks
+    </select>
+    
+    <select id="findByBrandAndLocation" resultType="Ranks" >  
+        select * from ranks where brand = #{brand} and location = #{location} order by rank asc
+    </select>
+  
+</mapper>

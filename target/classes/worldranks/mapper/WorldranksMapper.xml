@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="worldranks.mapper.WorldranksMapper">
+    <!-- 查询所有person -->  
+    <select id="queryAll" resultType="Worldranks" >  
+        select * from world_ranks order by ranking asc
+    </select>
+    
+    <select id="findByIdYearDesc" resultType="Worldranks" >  
+        select * from world_ranks where id = #{id}
+    </select>
+    
+    <delete id="deleteById">
+    	delete from world_ranks where id = #{id}
+    </delete>
+    
+    <select id="findByBrand" resultType="Worldranks" >  
+        select * from world_ranks where brand = #{brand} order by ranking asc 
+    </select>
+    
+    <select id="findByBrandlimit" resultType="Worldranks" >  
+        select * from world_ranks where brand = #{brand} order by year desc,rank asc limit #{startnum},#{countnum}
+    </select>
+    
+    <select id="findByBrandAndYear" resultType="Worldranks" >  
+        select * from world_ranks where brand = #{brand} and year = #{year} order by ranking asc
+    </select>
+    
+    <select id="findOnlyBrand" resultType="Worldranks" >  
+        select distinct brand from world_ranks
+    </select>
+    
+    <select id="findByuniversityname" resultType="Worldranks" >  
+        select * from world_ranks where university_name = #{university_name} order by year asc,ranking asc;
+    </select>
+    
+</mapper>

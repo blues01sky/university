@@ -16,6 +16,8 @@
          <typeAlias type="compare.entity.Compare" alias="Compare"/>
          <typeAlias type="connect.entity.Connect" alias="Connect"/>  
          <typeAlias type="scoreline.entity.Scoreline" alias="Scoreline"/>  
+         <typeAlias type="ranks.entity.Ranks" alias="Ranks"/>  
+         <typeAlias type="worldranks.entity.Worldranks" alias="Worldranks"/>  
          
     </typeAliases>     
      <!--  <mappers>  

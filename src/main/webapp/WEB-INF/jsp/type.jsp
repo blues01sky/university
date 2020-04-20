@@ -89,97 +89,97 @@
 						<div class="zyzbli">
 							<ul id="Province">
 								<li>·
-									<a href="<%=basePath%>area/index?province=北京">北京</a>
+									<a href="<%=basePath%>area/index?province=北京市">北京</a>
 								</li>
 								<li>·
-									<a href="<%=basePath%>area/index?province=天津">天津</a>
+									<a href="<%=basePath%>area/index?province=天津市">天津</a>
 								</li>
 								<li>·
-									<a href="<%=basePath%>area/index?province=上海">上海</a>
+									<a href="<%=basePath%>area/index?province=上海市">上海</a>
 								</li>
 								<li>·
-									<a href="<%=basePath%>area/index?province=重庆">重庆</a>
+									<a href="<%=basePath%>area/index?province=重庆市">重庆</a>
 								</li>
 								<li>·
-									<a href="<%=basePath%>area/index?province=河北">河北</a>
+									<a href="<%=basePath%>area/index?province=河北省">河北</a>
 								</li>
 								<li>·
-									<a href="<%=basePath%>area/index?province=河南">河南</a>
+									<a href="<%=basePath%>area/index?province=河南省">河南</a>
 								</li>
 								<li>·
-									<a href="<%=basePath%>area/index?province=山东">山东</a>
+									<a href="<%=basePath%>area/index?province=山东省">山东</a>
 								</li>
 								<li>·
-									<a href="<%=basePath%>area/index?province=山西">山西</a>
+									<a href="<%=basePath%>area/index?province=山西省">山西</a>
 								</li>
 								<li>·
-									<a href="<%=basePath%>area/index?province=安徽">安徽</a>
+									<a href="<%=basePath%>area/index?province=安徽省">安徽</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=江西">江西</a>
+									<a href="<%=basePath%>area/index?province=江西省">江西</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=江苏">江苏</a>
+									<a href="<%=basePath%>area/index?province=江苏省">江苏</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=浙江">浙江</a>
+									<a href="<%=basePath%>area/index?province=浙江省">浙江</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=湖北">湖北</a>
+									<a href="<%=basePath%>area/index?province=湖北省">湖北</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=湖南">湖南</a>
+									<a href="<%=basePath%>area/index?province=湖南省">湖南</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=广东">广东</a>
+									<a href="<%=basePath%>area/index?province=广东省">广东</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=广西">广西</a>
+									<a href="<%=basePath%>area/index?province=广西壮族自治区">广西</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=云南">云南</a>
+									<a href="<%=basePath%>area/index?province=云南省">云南</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=贵州">贵州</a>
+									<a href="<%=basePath%>area/index?province=贵州省">贵州</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=四川">四川</a>
+									<a href="<%=basePath%>area/index?province=四川省">四川</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=陕西">陕西</a>
+									<a href="<%=basePath%>area/index?province=陕西省">陕西</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=青海">青海</a>
+									<a href="<%=basePath%>area/index?province=青海省">青海</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=宁夏">宁夏</a>
+									<a href="<%=basePath%>area/index?province=宁夏回族自治区">宁夏</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=黑龙江">黑龙江</a>
+									<a href="<%=basePath%>area/index?province=黑龙江省">黑龙江</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=吉林">吉林</a>
+									<a href="<%=basePath%>area/index?province=吉林省">吉林</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=辽宁">辽宁</a>
+									<a href="<%=basePath%>area/index?province=辽宁省">辽宁</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=西藏">西藏</a>
+									<a href="<%=basePath%>area/index?province=西藏自治区">西藏</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=新疆">新疆</a>
+									<a href="<%=basePath%>area/index?province=新疆维吾尔自治区">新疆</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=内蒙古">内蒙古</a>
+									<a href="<%=basePath%>area/index?province=内蒙古自治区">内蒙古</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=海南">海南</a>
+									<a href="<%=basePath%>area/index?province=海南省">海南</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=福建">福建</a>
+									<a href="<%=basePath%>area/index?province=福建省">福建</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
-									<a href="<%=basePath%>area/index?province=甘肃">甘肃</a>
+									<a href="<%=basePath%>area/index?province=甘肃省">甘肃</a>
 								</li>
 								<li class="other_prov" style="display: none;">·
 									<a href="<%=basePath%>area/index?province=港澳台">港澳台</a>
@@ -263,7 +263,7 @@
 		                        <a href="" target="_blank ">简介</a>
 		                        <a href="<%=basePath%>score/index?universityname=<%=area.getUniversityname() %>" target="_blank ">历年分数线</a>
 		                        <a href="">加入对比</a>
-		                        	<span class="cc00 "><a href="<%=area.getUrl() %>" target="_blank ">官方网站</a></span>
+		                        	<span class="cc00 "><a href="https://<%=area.getUrl() %>" target="_blank ">官方网站</a></span>
 		                    </td>
 		                </tr>
 		                <%

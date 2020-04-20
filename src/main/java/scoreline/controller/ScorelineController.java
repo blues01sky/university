@@ -46,7 +46,7 @@ public class ScorelineController {
 	
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
 	public String index(HttpServletRequest request) {
-		String province = "北京";
+		String province = "北京市";
 		String deparement1 = "理科";
 		String deparement2 = "文科";
 		Integer strat = 0;
@@ -74,7 +74,7 @@ public class ScorelineController {
 		List<Scoreline> result1 = scorelineServices.findByProvinceDepartment(province, deparement1, strat, number);
 		List<Scoreline> result2 = scorelineServices.findByProvinceDepartment(province, deparement2, strat, number);
 		List<Area> areas = areaService.findByProvinceLimit(0, 10, province);
-		List<Area> levels = areaService.findByLevelLimit(0, 10, "专科");
+		List<Area> levels = areaService.findByLevelLimit(0, 10, "本科");
 		List<Area> types = areaService.findByTypeLimit(0, 10, "重点");
 		request.setAttribute("types",types);
 		request.setAttribute("levels",levels);

@@ -273,7 +273,7 @@ public class AreaController {
 	
 	@RequestMapping(value = "/head",method = RequestMethod.GET)
 	public String nav(HttpServletRequest request,HttpServletResponse response) {
-		String province = "北京";
+		String province = "北京市";
 		Integer Number = areaService.findAllNumByProvince(province);
 		int startnum = 0;
 		int shownum = 50;

@@ -15,6 +15,10 @@ import area.entity.Area;
 import area.services.AreaService;
 import major.entity.Major;
 import major.services.MajorServices;
+import ranks.entity.Ranks;
+import ranks.services.RanksServices;
+import worldranks.entity.Worldranks;
+import worldranks.services.WorldranksServices;
 
 @Controller
 @RequestMapping
@@ -24,6 +28,10 @@ public class MainController {
 	private MajorServices majorServices;
 	@Autowired
 	private AreaService areaService;
+	@Autowired
+	private RanksServices ranksServices;
+	@Autowired
+	private WorldranksServices worldranksServices;
 	
 	@RequestMapping(value="/index",method = RequestMethod.GET)
 	public String index(HttpServletRequest request,HttpServletResponse response,HttpSession session) {
@@ -34,21 +42,21 @@ public class MainController {
 		List<Area> onlyLevel = areaService.findOnlyLevel();
 		List<Major> onlyMajortype = majorServices.findOnlyMajortype();
 		
-		List<Area> provinceLimitArea1 = areaService.findByProvinceLimit(0, 10, "北京");
+		List<Area> provinceLimitArea1 = areaService.findByProvinceLimit(0, 10, "北京市");
 		
-		Integer byProvinceNum1 = areaService.findAllNumByProvince("北京");
+		Integer byProvinceNum1 = areaService.findAllNumByProvince("北京市");
 		
-		List<Area> provinceLimitArea2 = areaService.findByProvinceLimit(0, 10, "湖北");
+		List<Area> provinceLimitArea2 = areaService.findByProvinceLimit(0, 10, "湖北省");
 		
-		Integer byProvinceNum2 = areaService.findAllNumByProvince("湖北");
+		Integer byProvinceNum2 = areaService.findAllNumByProvince("湖北省");
 		
-		List<Area> provinceLimitArea3 = areaService.findByProvinceLimit(0, 10, "上海");
+		List<Area> provinceLimitArea3 = areaService.findByProvinceLimit(0, 10, "上海市");
 		
-		Integer byProvinceNum3 = areaService.findAllNumByProvince("上海");
+		Integer byProvinceNum3 = areaService.findAllNumByProvince("上海市");
 		
-		List<Area> provinceLimitArea4 = areaService.findByProvinceLimit(0, 10, "陕西");
+		List<Area> provinceLimitArea4 = areaService.findByProvinceLimit(0, 10, "陕西省");
 		
-		Integer byProvinceNum4 = areaService.findAllNumByProvince("陕西");
+		Integer byProvinceNum4 = areaService.findAllNumByProvince("陕西省");
 		
 		request.setAttribute("allNum", allNum);
 		request.setAttribute("onlyProvince", onlyProvince);
@@ -70,7 +78,19 @@ public class MainController {
 	
 	@RequestMapping(value="/compare",method = RequestMethod.GET)
 	public String compare() {
+		
 		return "compare";
+	}
+	
+	@RequestMapping(value="/rank",method = RequestMethod.GET)
+	public String rank(HttpServletRequest request) {
+		List<Ranks> OnlyBrand = ranksServices.findOnlyBrand();
+		List<Worldranks> OnlyworldBrand = worldranksServices.findOnlyBrand();
+		List<Ranks> rankslimit = ranksServices.findByBrandlimitscoredesc(OnlyBrand.get(0).getBrand(),0, 30);
+		request.setAttribute("rankslimit", rankslimit);
+		request.setAttribute("OnlyBrand", OnlyBrand);
+		request.setAttribute("OnlyworldBrand",OnlyworldBrand);
+		return "rank";
 	}
 	
 	@RequestMapping(value="/instructions",method = RequestMethod.GET)
