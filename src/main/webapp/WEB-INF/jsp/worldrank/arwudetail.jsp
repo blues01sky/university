@@ -63,7 +63,7 @@
 
 	<%
 			List<Ranks> OnlyBrand = (List<Ranks>)request.getAttribute("OnlyBrand");
-			List<Ranks> findByNamesameBrand = (List<Ranks>)request.getAttribute("findByNamesameBrand");
+			List<Worldranks> universitynameAndBrand = (List<Worldranks>)request.getAttribute("universitynameAndBrand");
 			List<Worldranks> OnlyworldBrand = (List<Worldranks>)request.getAttribute("OnlyworldBrand");
 		%>
 
@@ -167,13 +167,13 @@
 									// 指定图表的配置项和数据
 									var option = {
 										    title: {
-										        text: '<%=findByNamesameBrand.get(0).getName() %>在本排行榜排名'
+										        text: '<%=universitynameAndBrand.get(0).getUniversity_name() %>'
 										    },
 										    tooltip: {
 										        trigger: 'axis'
 										    },
 										    legend: {
-										        data: ['学校排名', '学校分数', '学校星级', '学校层次', '科研分数','人才分数']
+										        data: ['\n','\n','\n','国内排名','校友排名','奖学金','费用','\n','\n','软件排名','知名度','pcp','整体分数',]
 										    },
 										    grid: {
 										        left: '3%',
@@ -191,15 +191,15 @@
 										        boundaryGap: false,
 										        data: [
 										        	<%	int a = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(a < findByNamesameBrand.size()){
+													for(Worldranks worldranks : universitynameAndBrand){
+														if(a < universitynameAndBrand.size()){
 															a++;
 															%>
-															'<%=ranks.getYear() %>',
+															'<%=worldranks.getYear() %>',
 															<%
 														}else{
 															%>
-															'<%=ranks.getYear() %>'
+															'<%=worldranks.getYear() %>'
 															<%
 														}
 													}
@@ -211,20 +211,20 @@
 										    },
 										    series: [
 										        {
-										            name: '学校排名',
+										            name: '国内排名',
 										            type: 'line',
 										            stack: '总量',
 										            data: [
-										            	<%	int b = 0;
-														for(Ranks ranks : findByNamesameBrand){
-															if(b < findByNamesameBrand.size()){
-																b++;
+										            	<%	int c = 0;
+														for(Worldranks worldranks : universitynameAndBrand){
+															if(c < universitynameAndBrand.size()){
+																c++;
 																%>
-																<%=ranks.getRank() %>,
+																<%=worldranks.getArwu_national_ranking() %>,
 																<%
 															}else{
 																%>
-																<%=ranks.getRank() %>
+																<%=worldranks.getArwu_national_ranking() %>
 																<%
 															}
 														}
@@ -232,83 +232,62 @@
 										            	]
 										        },
 										        {
-										            name: '学校分数',
-										            type: 'line',
-										            stack: '总量',
-										            data: [
-										            	<%	int c = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(c < findByNamesameBrand.size()){
-															c++;
-															%>
-															<%=ranks.getScore() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getScore() %>
-															<%
-														}
-													}
-												%>
-										            	]
-										        },
-										        {
-										            name: '学校星级',
+										            name: '校友排名',
 										            type: 'line',
 										            stack: '总量',
 										            data: [
 										            	<%	int d = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(d < findByNamesameBrand.size()){
-															d++;
-															%>
-															<%=ranks.getStar() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getStar() %>
-															<%
+														for(Worldranks worldranks : universitynameAndBrand){
+															if(d < universitynameAndBrand.size()){
+																d++;
+																%>
+																<%=worldranks.getArwu_alumni() %>,
+																<%
+															}else{
+																%>
+																<%=worldranks.getArwu_alumni() %>
+																<%
+															}
 														}
-													}
-												%>
+													%>
 										            	]
 										        },
 										        {
-										            name: '学校层次',
+										            name: '奖学金',
 										            type: 'line',
 										            stack: '总量',
 										            data: [
 										            	<%	int e = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(e < findByNamesameBrand.size()){
-															e++;
-															%>
-															<%=ranks.getLevel() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getLevel() %>
-															<%
+														for(Worldranks worldranks : universitynameAndBrand){
+															if(e < universitynameAndBrand.size()){
+																e++;
+																%>
+																<%=worldranks.getArwu_award() %>,
+																<%
+															}else{
+																%>
+																<%=worldranks.getArwu_award() %>
+																<%
+															}
 														}
-													}
-												%>
+													%>
 										            	]
 										        },
 										        {
-										            name: '科研分数',
+										            name: '费用',
 										            type: 'line',
 										            stack: '总量',
 										            data: [
 										            	<%	int f = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(f < findByNamesameBrand.size()){
+													for(Worldranks worldranks : universitynameAndBrand){
+														if(f < universitynameAndBrand.size()){
 															f++;
 															%>
-															<%=ranks.getScientific_research_score() %>,
+															<%=worldranks.getArwu_hi_ci() %>,
 															<%
 														}else{
 															%>
-															<%=ranks.getScientific_research_score() %>
+															<%=worldranks.getArwu_hi_ci() %>
 															<%
 														}
 													}
@@ -316,20 +295,83 @@
 										            	]
 										        },
 										        {
-										            name: '人才分数',
+										            name: '软件排名',
 										            type: 'line',
 										            stack: '总量',
 										            data: [
 										            	<%	int g = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(g < findByNamesameBrand.size()){
+													for(Worldranks worldranks : universitynameAndBrand){
+														if(g < universitynameAndBrand.size()){
 															g++;
 															%>
-															<%=ranks.getTelent_score() %>,
+															<%=worldranks.getArwu_nand_s() %>,
 															<%
 														}else{
 															%>
-															<%=ranks.getTelent_score() %>
+															<%=worldranks.getArwu_nand_s() %>
+															<%
+														}
+													}
+												%>
+										            	]
+										        },
+										        {
+										            name: '知名度',
+										            type: 'line',
+										            stack: '总量',
+										            data: [
+										            	<%	int h = 0;
+													for(Worldranks worldranks : universitynameAndBrand){
+														if(h < universitynameAndBrand.size()){
+															h++;
+															%>
+															<%=worldranks.getArwu_pub() %>,
+															<%
+														}else{
+															%>
+															<%=worldranks.getArwu_pub() %>
+															<%
+														}
+													}
+												%>
+										            	]
+										        },
+										        {
+										            name: 'pcp',
+										            type: 'line',
+										            stack: '总量',
+										            data: [
+										            	<%	int i = 0;
+													for(Worldranks worldranks : universitynameAndBrand){
+														if(i < universitynameAndBrand.size()){
+															i++;
+															%>
+															<%=worldranks.getArwu_pcp() %>,
+															<%
+														}else{
+															%>
+															<%=worldranks.getArwu_pcp() %>
+															<%
+														}
+													}
+												%>
+										            	]
+										        },
+										        {
+										            name: '整体分数',
+										            type: 'line',
+										            stack: '总量',
+										            data: [
+										            	<%	int k = 0;
+													for(Worldranks worldranks : universitynameAndBrand){
+														if(k < universitynameAndBrand.size()){
+															k++;
+															%>
+															<%=worldranks.getArwu_total_score() %>,
+															<%
+														}else{
+															%>
+															<%=worldranks.getArwu_total_score() %>
 															<%
 														}
 													}

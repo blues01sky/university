@@ -1,11 +1,13 @@
 package main.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import major.entity.Major;
 import major.services.MajorServices;
 import ranks.entity.Ranks;
 import ranks.services.RanksServices;
+import util.Bili;
 import worldranks.entity.Worldranks;
 import worldranks.services.WorldranksServices;
 
@@ -80,6 +83,22 @@ public class MainController {
 	public String compare() {
 		
 		return "compare";
+	}
+	
+	@RequestMapping(value="/bili",method = RequestMethod.GET)
+	public String bili(@Param("brand") String brand,HttpServletRequest request) {
+		List<Bili> bilis = new ArrayList<Bili>();
+		List<Ranks> findlocation = ranksServices.findlocation(brand);
+		List<Ranks> findByBrand = ranksServices.findByBrand(brand);
+		for(Ranks ranks: findlocation) {
+			Bili bili = new Bili();
+			bili.setShengfen(ranks.getLocation());
+			bili.setShuliang(ranksServices.findschoolcount(brand, findByBrand.get(0).getYear(), ranks.getLocation()));
+			bilis.add(bili);
+		}
+		System.out.println(bilis);
+		request.setAttribute("bilis",bilis);
+		return "bili";
 	}
 	
 	@RequestMapping(value="/rank",method = RequestMethod.GET)

@@ -87,6 +87,18 @@ public class RanksServicesImpl implements RanksServices {
 		return ranksMapper.findByNamesameBrand(brand, name);
 	}
 
+	@Override
+	public Integer findschoolcount(String brand, Integer year, String location) {
+		// TODO Auto-generated method stub
+		return ranksMapper.findschoolcount(brand, year, location);
+	}
+
+	@Override
+	public List<Ranks> findlocation(String brand) {
+		// TODO Auto-generated method stub
+		return ranksMapper.findlocation(brand);
+	}
+
 	
 	
 }

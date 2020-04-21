@@ -42,6 +42,14 @@
         select distinct brand from ranks
     </select>
     
+    <select id="findlocation" resultType="Ranks" >  
+        select distinct location from ranks where brand = #{brand}
+    </select>
+    
+    <select id="findschoolcount" resultType="Integer">  
+        select count(*) from ranks where brand = #{brand} and year = #{year} and location= #{location}
+    </select>
+    
     <select id="findOnlyCategory" resultType="Ranks" >  
         select distinct Category from ranks
     </select>

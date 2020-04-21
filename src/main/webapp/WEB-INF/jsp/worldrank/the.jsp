@@ -63,12 +63,15 @@
 
 	<%
 			List<Ranks> OnlyBrand = (List<Ranks>)request.getAttribute("OnlyBrand");
-			List<Ranks> findByNamesameBrand = (List<Ranks>)request.getAttribute("findByNamesameBrand");
+			List<Worldranks> findYear = (List<Worldranks>)request.getAttribute("findYear");
+			List<Worldranks> findByBrand = (List<Worldranks>)request.getAttribute("findByBrand");
 			List<Worldranks> OnlyworldBrand = (List<Worldranks>)request.getAttribute("OnlyworldBrand");
+		
 		%>
 
 	<div class="content" style="background-color: #E7E7E7">
-
+		<input hidden="hidden" value="<%=findByBrand.get(0).getBrand() %>" id="yincangzhi">
+		<input hidden="hidden" value="<%=findByBrand.get(0).getYear() %>" id="nianfen">
 		<div class="zydaquan">
 			<div class="zydql">
 				<div class="sanlt">
@@ -160,20 +163,21 @@
 				</div>
 			</div>
 
-			<div id="main" style="width: 82%; height: 700px;margin:50px 0 0 18%;"></div>
+			<div id="main" style="width: 82%; height: 700px;margin:50px 0 0 18%;">
+			</div>
 			<script type="text/javascript">
 									// 基于准备好的dom，初始化echarts实例
 									var myChart = echarts.init(document.getElementById('main'));
 									// 指定图表的配置项和数据
 									var option = {
 										    title: {
-										        text: '<%=findByNamesameBrand.get(0).getName() %>在本排行榜排名'
+										        text: '<%=findByBrand.get(0).getBrand() %>排行榜排名'
 										    },
 										    tooltip: {
 										        trigger: 'axis'
 										    },
 										    legend: {
-										        data: ['学校排名', '学校分数', '学校星级', '学校层次', '科研分数','人才分数']
+										        data: ['国际评分','研究性得分','被引用次数','行业收入','整体分数']
 										    },
 										    grid: {
 										        left: '3%',
@@ -191,15 +195,15 @@
 										        boundaryGap: false,
 										        data: [
 										        	<%	int a = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(a < findByNamesameBrand.size()){
+													for(Worldranks worldranks : findByBrand){
+														if(a < findByBrand.size()){
 															a++;
 															%>
-															'<%=ranks.getYear() %>',
+															'<%=worldranks.getRanking() %>',
 															<%
 														}else{
 															%>
-															'<%=ranks.getYear() %>'
+															'<%=worldranks.getRanking() %>'
 															<%
 														}
 													}
@@ -211,20 +215,20 @@
 										    },
 										    series: [
 										        {
-										            name: '学校排名',
+										            name: '国际评分',
 										            type: 'line',
 										            stack: '总量',
 										            data: [
 										            	<%	int b = 0;
-														for(Ranks ranks : findByNamesameBrand){
-															if(b < findByNamesameBrand.size()){
+														for(Worldranks worldranks : findByBrand){
+															if(b < findByBrand.size()){
 																b++;
 																%>
-																<%=ranks.getRank() %>,
+																<%=worldranks.getThe_international_outlook() %>,
 																<%
 															}else{
 																%>
-																<%=ranks.getRank() %>
+																<%=worldranks.getThe_international_outlook() %>
 																<%
 															}
 														}
@@ -232,116 +236,122 @@
 										            	]
 										        },
 										        {
-										            name: '学校分数',
+										            name: '研究性得分',
 										            type: 'line',
 										            stack: '总量',
 										            data: [
 										            	<%	int c = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(c < findByNamesameBrand.size()){
-															c++;
-															%>
-															<%=ranks.getScore() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getScore() %>
-															<%
+														for(Worldranks worldranks : findByBrand){
+															if(c < findByBrand.size()){
+																c++;
+																%>
+																<%=worldranks.getThe_research() %>,
+																<%
+															}else{
+																%>
+																<%=worldranks.getThe_research() %>
+																<%
+															}
 														}
-													}
-												%>
+													%>
 										            	]
 										        },
 										        {
-										            name: '学校星级',
+										            name: '被引用次数',
 										            type: 'line',
 										            stack: '总量',
 										            data: [
 										            	<%	int d = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(d < findByNamesameBrand.size()){
-															d++;
-															%>
-															<%=ranks.getStar() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getStar() %>
-															<%
+														for(Worldranks worldranks : findByBrand){
+															if(d < findByBrand.size()){
+																d++;
+																%>
+																<%=worldranks.getThe_citations() %>,
+																<%
+															}else{
+																%>
+																<%=worldranks.getThe_citations() %>
+																<%
+															}
 														}
-													}
-												%>
+													%>
 										            	]
 										        },
 										        {
-										            name: '学校层次',
+										            name: '行业收入',
 										            type: 'line',
 										            stack: '总量',
 										            data: [
 										            	<%	int e = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(e < findByNamesameBrand.size()){
-															e++;
-															%>
-															<%=ranks.getLevel() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getLevel() %>
-															<%
+														for(Worldranks worldranks : findByBrand){
+															if(e < findByBrand.size()){
+																e++;
+																%>
+																<%=worldranks.getThe_industry_income() %>,
+																<%
+															}else{
+																%>
+																<%=worldranks.getThe_industry_income() %>
+																<%
+															}
 														}
-													}
-												%>
+													%>
 										            	]
 										        },
 										        {
-										            name: '科研分数',
+										            name: '整体分数',
 										            type: 'line',
 										            stack: '总量',
 										            data: [
 										            	<%	int f = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(f < findByNamesameBrand.size()){
+													for(Worldranks worldranks : findByBrand){
+														if(f < findByBrand.size()){
 															f++;
 															%>
-															<%=ranks.getScientific_research_score() %>,
+															<%=worldranks.getThe_overall_score() %>,
 															<%
 														}else{
 															%>
-															<%=ranks.getScientific_research_score() %>
+															<%=worldranks.getThe_overall_score() %>
 															<%
 														}
 													}
 												%>
 										            	]
-										        },
-										        {
-										            name: '人才分数',
-										            type: 'line',
-										            stack: '总量',
-										            data: [
-										            	<%	int g = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(g < findByNamesameBrand.size()){
-															g++;
-															%>
-															<%=ranks.getTelent_score() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getTelent_score() %>
-															<%
-														}
-													}
-												%>
-										            	]
-										        }
-										    ]
-										};
+										        }]};
 									// 使用刚指定的配置项和数据显示图表。
 									myChart.setOption(option);
+									myChart.on('click', function (params) {
+										var brand = $("#yincangzhi").val();
+										var nianfen = $("#nianfen").val();
+										var name = params.name;
+										window.location.href="<%=basePath %>worldranks/detail?brand="+brand+"&ranking="+name+"&nianfen="+nianfen;
+									});
+									 
 								</script>
 	</div>
+	 <div class="zyyxss" style="width: 82%; height: 30px;margin:50px 0 0 18%;">
+                <table width="100% " border="0 " cellspacing="0 " cellpadding="0 ">
+                    <tbody>
+                    <tr>
+                        <td style="color: red;" align="center"><b class="f14px">选择年份</b></td>
+                        <form action="<%=basePath%>worldranks/brand" method="post">
+                        	<td>
+                        		<select name="year">
+                        		<%
+                        			for(Worldranks worldranks : findYear){
+                        				%><option value="<%=worldranks.getYear() %>"><%=worldranks.getYear() %></option><%
+                        			}
+                        		%>
+                        		</select>
+                        	</td>
+                        	<input hidden="hidden" name="brand" value="<%=findByBrand.get(0).getBrand() %>"> 
+                       		<td><input class="zys_03" type="submit" style="color: red;background-color: #A6CEF1;text-align: center; " value="搜 索 "></td>
+                    	</form>
+                    </tr>
+                </tbody></table>
+        </div>
+	
 	<div class="copyright">
 		<div class="cpy01 cpyml">
 			<a href="<%=basePath%>index" target="_self">关于本站</a> <a

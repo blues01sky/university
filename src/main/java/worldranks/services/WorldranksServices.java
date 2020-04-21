@@ -14,6 +14,12 @@ public interface WorldranksServices {
 	
 	void deleteById(@Param("id") Integer id);
 	
+	List<Worldranks> findByuniversitynameAndBrand(@Param("university_name") String university_name,@Param("brand") String brand);
+	
+	List<Worldranks> findAUniversityname(@Param("brand") String brand,@Param("year") Integer year,@Param("ranking") Integer ranking);
+	
+	List<Worldranks> findOnlyYear(@Param("brand") String brand);
+	
 	List<Worldranks> findByBrand(@Param("brand") String brand);
 	
 	List<Worldranks> findByBrandlimit(@Param("brand") String brand,@Param("startnum") Integer startnum,@Param("countnum") Integer countnum);

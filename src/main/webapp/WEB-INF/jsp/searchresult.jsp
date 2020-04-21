@@ -19,17 +19,18 @@
 <base href="<%=basePath%>">
 <meta charset="UTF-8">
 <title>高校信息查询系统</title>
-		<link href="<%=basePath%>static/css/style.css" rel="stylesheet" type="text/css">
+<link href="<%=basePath%>static/css/style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="<%=basePath%>static/css/share_style0_24.css">
 		<script src="<%=basePath%>static/js/hm.js"></script>
 		<script src="<%=basePath%>static/js/jquery-1.8.2.js"></script>
 		<script src="<%=basePath%>static/js/jquery.cookie.js"></script>
-		<script src="<%=basePath%>static/js/bdhmprotocol.js" ></script>
+		<script src="<%=basePath%>static/js/bdhmprotocol.js" type="text/javascript" charset="gb2312"></script>
 		<script src="<%=basePath%>static/js/compare.js"></script>
 		<script src="<%=basePath%>static/js/share.js"></script>
 		<script src="<%=basePath%>static/js/XY_function.js"></script>
 		<script src="<%=basePath%>static/js/Comment.js"></script>
-		<script src="<%=basePath%>static/js/echarts.js" ></script>
+
+		<script type="text/javascript" src="<%=basePath%>static/js/echarts.js" ></script>
 </head>
 
 <body>
@@ -63,12 +64,13 @@
 
 	<%
 			List<Ranks> OnlyBrand = (List<Ranks>)request.getAttribute("OnlyBrand");
-			List<Ranks> findByNamesameBrand = (List<Ranks>)request.getAttribute("findByNamesameBrand");
+			List<Ranks> ranks1 = (List<Ranks>)request.getAttribute("ranks1");
+			List<Ranks> ranks2 = (List<Ranks>)request.getAttribute("ranks2");
+			List<Ranks> ranks3 = (List<Ranks>)request.getAttribute("ranks3");
 			List<Worldranks> OnlyworldBrand = (List<Worldranks>)request.getAttribute("OnlyworldBrand");
 		%>
 
 	<div class="content" style="background-color: #E7E7E7">
-
 		<div class="zydaquan">
 			<div class="zydql">
 				<div class="sanlt">
@@ -167,13 +169,13 @@
 									// 指定图表的配置项和数据
 									var option = {
 										    title: {
-										        text: '<%=findByNamesameBrand.get(0).getName() %>在本排行榜排名'
+										        text: '<%=ranks1.get(0).getName() %>所有排行榜排名'
 										    },
 										    tooltip: {
 										        trigger: 'axis'
 										    },
 										    legend: {
-										        data: ['学校排名', '学校分数', '学校星级', '学校层次', '科研分数','人才分数']
+										        data: ['<%=ranks1.get(0).getBrand()%>排名', '<%=ranks2.get(0).getBrand()%>排名', '<%=ranks3.get(0).getBrand()%>排名']
 										    },
 										    grid: {
 										        left: '3%',
@@ -191,8 +193,8 @@
 										        boundaryGap: false,
 										        data: [
 										        	<%	int a = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(a < findByNamesameBrand.size()){
+													for(Ranks ranks : ranks2){
+														if(a < ranks2.size()){
 															a++;
 															%>
 															'<%=ranks.getYear() %>',
@@ -211,13 +213,13 @@
 										    },
 										    series: [
 										        {
-										            name: '学校排名',
+										            name: '<%=ranks1.get(0).getBrand()%>排名',
 										            type: 'line',
 										            stack: '总量',
 										            data: [
 										            	<%	int b = 0;
-														for(Ranks ranks : findByNamesameBrand){
-															if(b < findByNamesameBrand.size()){
+														for(Ranks ranks : ranks1){
+															if(b < ranks1.size()){
 																b++;
 																%>
 																<%=ranks.getRank() %>,
@@ -232,115 +234,54 @@
 										            	]
 										        },
 										        {
-										            name: '学校分数',
+										            name: '<%=ranks2.get(0).getBrand() %>排名',
 										            type: 'line',
 										            stack: '总量',
 										            data: [
 										            	<%	int c = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(c < findByNamesameBrand.size()){
-															c++;
-															%>
-															<%=ranks.getScore() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getScore() %>
-															<%
+														for(Ranks ranks : ranks2){
+															if(c < ranks2.size()){
+																c++;
+																%>
+																<%=ranks.getRank() %>,
+																<%
+															}else{
+																%>
+																<%=ranks.getRank() %>
+																<%
+															}
 														}
-													}
-												%>
+													%>
 										            	]
 										        },
 										        {
-										            name: '学校星级',
+										            name: '<%=ranks3.get(0).getBrand() %>排名',
 										            type: 'line',
 										            stack: '总量',
 										            data: [
 										            	<%	int d = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(d < findByNamesameBrand.size()){
-															d++;
-															%>
-															<%=ranks.getStar() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getStar() %>
-															<%
+														for(Ranks ranks : ranks3){
+															if(d < ranks3.size()){
+																d++;
+																%>
+																<%=ranks.getRank() %>,
+																<%
+															}else{
+																%>
+																<%=ranks.getRank() %>
+																<%
+															}
 														}
-													}
-												%>
-										            	]
-										        },
-										        {
-										            name: '学校层次',
-										            type: 'line',
-										            stack: '总量',
-										            data: [
-										            	<%	int e = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(e < findByNamesameBrand.size()){
-															e++;
-															%>
-															<%=ranks.getLevel() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getLevel() %>
-															<%
-														}
-													}
-												%>
-										            	]
-										        },
-										        {
-										            name: '科研分数',
-										            type: 'line',
-										            stack: '总量',
-										            data: [
-										            	<%	int f = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(f < findByNamesameBrand.size()){
-															f++;
-															%>
-															<%=ranks.getScientific_research_score() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getScientific_research_score() %>
-															<%
-														}
-													}
-												%>
-										            	]
-										        },
-										        {
-										            name: '人才分数',
-										            type: 'line',
-										            stack: '总量',
-										            data: [
-										            	<%	int g = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(g < findByNamesameBrand.size()){
-															g++;
-															%>
-															<%=ranks.getTelent_score() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getTelent_score() %>
-															<%
-														}
-													}
-												%>
+													%>
 										            	]
 										        }
-										    ]
-										};
+										        ]};
 									// 使用刚指定的配置项和数据显示图表。
 									myChart.setOption(option);
 								</script>
+       
+</div>
+			
 	</div>
 	<div class="copyright">
 		<div class="cpy01 cpyml">

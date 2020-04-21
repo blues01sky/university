@@ -62,6 +62,24 @@ public class WorldranksServicesImpl implements WorldranksServices {
 		// TODO Auto-generated method stub
 		return worldranksMapper.findByuniversityname(university_name);
 	}
+
+	@Override
+	public List<Worldranks> findOnlyYear(String brand) {
+		// TODO Auto-generated method stub
+		return worldranksMapper.findOnlyYear(brand);
+	}
+
+	@Override
+	public List<Worldranks> findAUniversityname(String brand, Integer year, Integer ranking) {
+		// TODO Auto-generated method stub
+		return worldranksMapper.findAUniversityname(brand, year, ranking);
+	}
+
+	@Override
+	public List<Worldranks> findByuniversitynameAndBrand(String university_name, String brand) {
+		// TODO Auto-generated method stub
+		return worldranksMapper.findByuniversitynameAndBrand(university_name, brand);
+	}
 	
 	
 	

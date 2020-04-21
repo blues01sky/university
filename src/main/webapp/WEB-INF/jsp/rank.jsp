@@ -19,27 +19,25 @@
 <base href="<%=basePath%>">
 <meta charset="UTF-8">
 <title>高校信息查询系统</title>
-<link href="<%=basePath%>static/css/style.css" rel="stylesheet"
-	type="text/css">
-<link rel="stylesheet"
-	href="<%=basePath%>static/css/share_style0_24.css">
-<script src="<%=basePath%>static/js/hm.js"></script>
-<script src="<%=basePath%>static/jquery/jquery-3.4.1.min.js"></script>
-<script src="<%=basePath%>static/js/echarts.js"></script>
-<script src="<%=basePath%>static/js/share.js"></script>
-<script src="<%=basePath%>static/js/XY_function.js"></script>
-<script src="<%=basePath%>static/js/Comment.js"></script>
+<link href="<%=basePath%>static/css/style.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="<%=basePath%>static/css/share_style0_24.css">
+		<script src="<%=basePath%>static/js/hm.js"></script>
+		<script src="<%=basePath%>static/js/jquery-1.8.2.js"></script>
+		<script src="<%=basePath%>static/js/jquery.cookie.js"></script>
+		<script src="<%=basePath%>static/js/bdhmprotocol.js" type="text/javascript" charset="gb2312"></script>
+		<script src="<%=basePath%>static/js/compare.js"></script>
+		<script src="<%=basePath%>static/js/share.js"></script>
+		<script src="<%=basePath%>static/js/XY_function.js"></script>
+		<script src="<%=basePath%>static/js/Comment.js"></script>
 
-<link href="../../static/css/style.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="../../static/js/echarts.js"></script>
+		<script type="text/javascript" src="<%=basePath%>static/js/echarts.js" ></script>
 </head>
 
 <body>
 
 	<div class="tknavw">
 		<div class="tknav">
-			<a href="<%=basePath%>index">系统首页</a> <a
-				href="<%=basePath%>area/typesindex">院校大全</a> <a
+			<a href="<%=basePath%>index">系统首页</a> <a href="<%=basePath%>rank">院校排行</a> <a
 				href="<%=basePath%>area/head">地区院校大全</a> <a
 				href="<%=basePath%>compare/head">对比选学校</a> <a
 				href="<%=basePath%>scoreline/index">各地批次控制线</a> <a
@@ -160,93 +158,59 @@
 								%>
 						</ul>
 					</div>
+					<div class="zyzbd">
+						<div class="zyzbdl cc00">国内大学占比</div>
+						<div class="zyzbdr"></div>
+					</div>
+					<div class="zyzbli">
+						<ul>
+							<%
+								for(Ranks ranks :OnlyBrand ){
+										%>
+							<li>· <a
+								href="<%=basePath%>bili?brand=<%=ranks.getBrand() %>">
+									<%
+								switch(ranks.getBrand()){
+									case "wsl": 
+										%>武书连<%
+										break;
+									case "xyh": 
+										%>校友会<%
+										break;
+									case "NetBig": 
+										%>网大<%
+										break;
+									default: 
+										%><%=ranks.getBrand() %>
+									<%
+									   	break; 
+								}
+								%>
+							</a>
+							</li>
+							<%
+									}
+								%>
+						</ul>
+					</div>
 				</div>
 			</div>
 
-			<div id="main" style="width: 82%; height: 700px;margin:50px 0 0 18%;"></div>
-			<script type="text/javascript">
-									// 基于准备好的dom，初始化echarts实例
-									var myChart = echarts.init(document.getElementById('main'));
-									// 指定图表的配置项和数据
-									var  option = {
-								    title: {
-								        text: '国内大学部分排行榜',
-								        subtext: '前30位'
-								    },
-								    tooltip: {
-								        trigger: 'axis'
-								    },
-								    legend: {
-								        data: ['蒸发量']
-								    },
-								    toolbox: {
-								        show: true,
-								        feature: {
-								            dataView: {show: true, readOnly: false},
-								            magicType: {show: true, type: ['line', 'bar']},
-								            restore: {show: true},
-								            saveAsImage: {show: true}
-								        }
-								    },
-								    calculable: true,
-								    xAxis: [
-								        {
-								            type: 'category',
-								            data: [
-								            	
-								            	<%	int k = 0;
-												for(Ranks ranks : rankslimit){
-													if(k < rankslimit.size()){
-														k++;
-														%>
-														'<%=ranks.getName() %>',
-														<%
-													}else{
-														%>
-														'<%=ranks.getName() %>'
-														<%
-													}
-												}
-											%>
-								            ]
-								        }
-								    ],
-								    yAxis: [
-								        {
-								            type: 'value'
-								        }
-								    ],
-								    series: [
-								        {
-								            name: '综合分数',
-								            type: 'bar',
-								            data: [
-								            	<%	int j = 0;
-												for(Ranks ranks : rankslimit){
-													if(j < rankslimit.size()){
-														j++;
-														%>
-														'<%=ranks.getScore() %>',
-														<%
-													}else{
-														%>
-														'<%=ranks.getScore() %>'
-														<%
-													}
-												}
-											%>
-								            ],
-								        }
-								    ]
-								};
-									// 使用刚指定的配置项和数据显示图表。
-									myChart.setOption(option);
-									/* myChart.on('click', function (params) {
-										alert(params.name);
-									}; */
-									
-								</script>
-			
+			<div class="zydqr ">
+        <div class="zyyxss ">
+                <table width="100% " border="0 " cellspacing="0 " cellpadding="0 ">
+                    <tbody>
+                    <tr>
+                        <td width="105" style="color: red;" align="center"><b class="f14px">查排行：</b></td>
+                        <form action="<%=basePath%>ranks/search" method="post">
+                       		<td align="center"><input type="text" name="schoolname" id="keyword" class="zys_01 " style="width:400px;" value=""></td>
+                       		<td width="200"><input class="zys_03" type="submit" style="color: red;background-color: #A6CEF1;text-align: center; " value="搜 索 "></td>
+                    	</form>
+                    </tr>
+                </tbody></table>
+        </div>
+       
+</div>
 			
 	</div>
 	<div class="copyright">

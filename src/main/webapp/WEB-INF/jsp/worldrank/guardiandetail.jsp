@@ -63,7 +63,7 @@
 
 	<%
 			List<Ranks> OnlyBrand = (List<Ranks>)request.getAttribute("OnlyBrand");
-			List<Ranks> findByNamesameBrand = (List<Ranks>)request.getAttribute("findByNamesameBrand");
+			List<Worldranks> universitynameAndBrand = (List<Worldranks>)request.getAttribute("universitynameAndBrand");
 			List<Worldranks> OnlyworldBrand = (List<Worldranks>)request.getAttribute("OnlyworldBrand");
 		%>
 
@@ -167,13 +167,13 @@
 									// 指定图表的配置项和数据
 									var option = {
 										    title: {
-										        text: '<%=findByNamesameBrand.get(0).getName() %>在本排行榜排名'
+										        text: '<%=universitynameAndBrand.get(0).getUniversity_name() %>'
 										    },
 										    tooltip: {
 										        trigger: 'axis'
 										    },
 										    legend: {
-										        data: ['学校排名', '学校分数', '学校星级', '学校层次', '科研分数','人才分数']
+										        data: ['\n','\n','\n','总评分','课堂满意度','教学满意度','满意度调查','\n','\n','学生肥胖比例','补助情况','入学率','教学质量','\n','\n','就业情况']
 										    },
 										    grid: {
 										        left: '3%',
@@ -191,15 +191,15 @@
 										        boundaryGap: false,
 										        data: [
 										        	<%	int a = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(a < findByNamesameBrand.size()){
+													for(Worldranks worldranks : universitynameAndBrand){
+														if(a < universitynameAndBrand.size()){
 															a++;
 															%>
-															'<%=ranks.getYear() %>',
+															'<%=worldranks.getYear() %>',
 															<%
 														}else{
 															%>
-															'<%=ranks.getYear() %>'
+															'<%=worldranks.getYear() %>'
 															<%
 														}
 													}
@@ -210,132 +210,195 @@
 										        type: 'value'
 										    },
 										    series: [
-										        {
-										            name: '学校排名',
-										            type: 'line',
-										            stack: '总量',
-										            data: [
-										            	<%	int b = 0;
-														for(Ranks ranks : findByNamesameBrand){
-															if(b < findByNamesameBrand.size()){
-																b++;
+										    	 {
+											            name: '总评分',
+											            type: 'line',
+											            stack: '总量',
+											            data: [
+											            	<%	int b = 0;
+															for(Worldranks worldranks : universitynameAndBrand){
+																if(b < universitynameAndBrand.size()){
+																	b++;
+																	%>
+																	<%=worldranks.getGuardian_guardian_score() %>,
+																	<%
+																}else{
+																	%>
+																	<%=worldranks.getGuardian_guardian_score() %>
+																	<%
+																}
+															}
+														%>
+											            	]
+											        },
+											        {
+											            name: '课堂满意度',
+											            type: 'line',
+											            stack: '总量',
+											            data: [
+											            	<%	int c = 0;
+															for(Worldranks worldranks : universitynameAndBrand){
+																if(c < universitynameAndBrand.size()){
+																	c++;
+																	%>
+																	<%=worldranks.getGuardian_satisfied_with_course() %>,
+																	<%
+																}else{
+																	%>
+																	<%=worldranks.getGuardian_satisfied_with_course() %>
+																	<%
+																}
+															}
+														%>
+											            	]
+											        },
+											        {
+											            name: '教学满意度',
+											            type: 'line',
+											            stack: '总量',
+											            data: [
+											            	<%	int d = 0;
+															for(Worldranks worldranks : universitynameAndBrand){
+																if(d < universitynameAndBrand.size()){
+																	d++;
+																	%>
+																	<%=worldranks.getGuardian_satisfied_with_teaching() %>,
+																	<%
+																}else{
+																	%>
+																	<%=worldranks.getGuardian_satisfied_with_teaching() %>
+																	<%
+																}
+															}
+														%>
+											            	]
+											        },
+											        {
+											            name: '满意度调查',
+											            type: 'line',
+											            stack: '总量',
+											            data: [
+											            	<%	int e = 0;
+															for(Worldranks worldranks : universitynameAndBrand){
+																if(e < universitynameAndBrand.size()){
+																	e++;
+																	%>
+																	<%=worldranks.getGuardian_satisfied_with_feedback() %>,
+																	<%
+																}else{
+																	%>
+																	<%=worldranks.getGuardian_satisfied_with_feedback() %>
+																	<%
+																}
+															}
+														%>
+											            	]
+											        },
+											        {
+											            name: '学生肥胖比例',
+											            type: 'line',
+											            stack: '总量',
+											            data: [
+											            	<%	int f = 0;
+														for(Worldranks worldranks : universitynameAndBrand){
+															if(f < universitynameAndBrand.size()){
+																f++;
 																%>
-																<%=ranks.getRank() %>,
+																<%=worldranks.getGuardian_student_taff_ratio() %>,
 																<%
 															}else{
 																%>
-																<%=ranks.getRank() %>
+																<%=worldranks.getGuardian_student_taff_ratio() %>
 																<%
 															}
 														}
 													%>
-										            	]
-										        },
-										        {
-										            name: '学校分数',
-										            type: 'line',
-										            stack: '总量',
-										            data: [
-										            	<%	int c = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(c < findByNamesameBrand.size()){
-															c++;
-															%>
-															<%=ranks.getScore() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getScore() %>
-															<%
+											            	]
+											        },
+											        {
+											            name: '补助情况',
+											            type: 'line',
+											            stack: '总量',
+											            data: [
+											            	<%	int j = 0;
+														for(Worldranks worldranks : universitynameAndBrand){
+															if(j < universitynameAndBrand.size()){
+																j++;
+																%>
+																<%=worldranks.getGuardian_spend_per_student() %>,
+																<%
+															}else{
+																%>
+																<%=worldranks.getGuardian_spend_per_student() %>
+																<%
+															}
 														}
-													}
-												%>
-										            	]
-										        },
-										        {
-										            name: '学校星级',
-										            type: 'line',
-										            stack: '总量',
-										            data: [
-										            	<%	int d = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(d < findByNamesameBrand.size()){
-															d++;
-															%>
-															<%=ranks.getStar() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getStar() %>
-															<%
+													%>
+											            	]
+											        },
+											        {
+											            name: '入学率',
+											            type: 'line',
+											            stack: '总量',
+											            data: [
+											            	<%	int h = 0;
+														for(Worldranks worldranks : universitynameAndBrand){
+															if(h < universitynameAndBrand.size()){
+																h++;
+																%>
+																<%=worldranks.getGuardian_entry_tariff() %>,
+																<%
+															}else{
+																%>
+																<%=worldranks.getGuardian_entry_tariff() %>
+																<%
+															}
 														}
-													}
-												%>
-										            	]
-										        },
-										        {
-										            name: '学校层次',
-										            type: 'line',
-										            stack: '总量',
-										            data: [
-										            	<%	int e = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(e < findByNamesameBrand.size()){
-															e++;
-															%>
-															<%=ranks.getLevel() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getLevel() %>
-															<%
+													%>
+											            	]
+											        },
+											        {
+											            name: '教学质量',
+											            type: 'line',
+											            stack: '总量',
+											            data: [
+											            	<%	int i = 0;
+														for(Worldranks worldranks : universitynameAndBrand){
+															if(i < universitynameAndBrand.size()){
+																i++;
+																%>
+																<%=worldranks.getGuardian_value_added_score() %>,
+																<%
+															}else{
+																%>
+																<%=worldranks.getGuardian_value_added_score() %>
+																<%
+															}
 														}
-													}
-												%>
-										            	]
-										        },
-										        {
-										            name: '科研分数',
-										            type: 'line',
-										            stack: '总量',
-										            data: [
-										            	<%	int f = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(f < findByNamesameBrand.size()){
-															f++;
-															%>
-															<%=ranks.getScientific_research_score() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getScientific_research_score() %>
-															<%
+													%>
+											            	]
+											        },
+											        {
+											            name: '就业情况',
+											            type: 'line',
+											            stack: '总量',
+											            data: [
+											            	<%	int k = 0;
+														for(Worldranks worldranks : universitynameAndBrand){
+															if(k < universitynameAndBrand.size()){
+																k++;
+																%>
+																<%=worldranks.getGuardian_career_after6_mths() %>,
+																<%
+															}else{
+																%>
+																<%=worldranks.getGuardian_career_after6_mths() %>
+																<%
+															}
 														}
-													}
-												%>
-										            	]
-										        },
-										        {
-										            name: '人才分数',
-										            type: 'line',
-										            stack: '总量',
-										            data: [
-										            	<%	int g = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(g < findByNamesameBrand.size()){
-															g++;
-															%>
-															<%=ranks.getTelent_score() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getTelent_score() %>
-															<%
-														}
-													}
-												%>
-										            	]
-										        }
+													%>
+											            	]
+											        }
 										    ]
 										};
 									// 使用刚指定的配置项和数据显示图表。

@@ -28,6 +28,10 @@ public interface RanksMapper {
 	
 	List<Ranks> findOnlyBrand();
 	
+	Integer findschoolcount(@Param("brand") String brand,@Param("year") Integer year,@Param("location") String location);
+	
+	List<Ranks> findlocation(@Param("brand") String brand);
+	
 	List<Ranks> findOnlyCategory();
 	
 	List<Ranks> findByBrandAndLocation(@Param("brand") String brand,@Param("location") String location);

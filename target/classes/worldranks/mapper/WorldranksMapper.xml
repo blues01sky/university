@@ -15,23 +15,35 @@
     </delete>
     
     <select id="findByBrand" resultType="Worldranks" >  
-        select * from world_ranks where brand = #{brand} order by ranking asc 
+        select * from world_ranks where brand = #{brand} order by year desc,ranking asc
     </select>
     
     <select id="findByBrandlimit" resultType="Worldranks" >  
-        select * from world_ranks where brand = #{brand} order by year desc,rank asc limit #{startnum},#{countnum}
+        select * from world_ranks where brand = #{brand} order by year desc,ranking asc limit #{startnum},#{countnum}
     </select>
     
     <select id="findByBrandAndYear" resultType="Worldranks" >  
         select * from world_ranks where brand = #{brand} and year = #{year} order by ranking asc
     </select>
     
+    <select id="findAUniversityname" resultType="Worldranks" >  
+        select * from world_ranks where brand = #{brand} and year = #{year} and ranking = #{ranking}
+    </select>
+    
     <select id="findOnlyBrand" resultType="Worldranks" >  
         select distinct brand from world_ranks
     </select>
     
+     <select id="findOnlyYear" resultType="Worldranks" >  
+        select distinct year from world_ranks where brand = #{brand} order by year desc 
+    </select>
+    
     <select id="findByuniversityname" resultType="Worldranks" >  
         select * from world_ranks where university_name = #{university_name} order by year asc,ranking asc;
+    </select>
+    
+    <select id="findByuniversitynameAndBrand" resultType="Worldranks" >  
+        select * from world_ranks where university_name = #{university_name} and brand = #{brand} order by year desc,ranking asc;
     </select>
     
 </mapper>

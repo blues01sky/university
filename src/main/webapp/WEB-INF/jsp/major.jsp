@@ -29,7 +29,7 @@
 		<div class="tknavw">
 			<div class="tknav">
 				<a href="<%=basePath%>index">系统首页</a>
-				<a href="<%=basePath%>area/typesindex">院校大全</a>
+				<a href="<%=basePath%>rank">院校排行</a>
 				<a href="<%=basePath%>area/head">地区院校大全</a>
 				<a href="<%=basePath%>compare/head">对比选学校</a>
 				<a href="<%=basePath%>scoreline/index">各地批次控制线</a>

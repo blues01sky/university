@@ -173,7 +173,7 @@
 										        trigger: 'axis'
 										    },
 										    legend: {
-										        data: ['学校排名', '学校分数', '学校星级', '学校层次', '科研分数','人才分数']
+										        data: ['学校排名', '软科排名', '学校得分', '学校星级']
 										    },
 										    grid: {
 										        left: '3%',
@@ -232,7 +232,7 @@
 										            	]
 										        },
 										        {
-										            name: '学校分数',
+										            name: '软科排名',
 										            type: 'line',
 										            stack: '总量',
 										            data: [
@@ -240,6 +240,27 @@
 													for(Ranks ranks : findByNamesameBrand){
 														if(c < findByNamesameBrand.size()){
 															c++;
+															%>
+															<%=ranks.getRank_inlocation() %>,
+															<%
+														}else{
+															%>
+															<%=ranks.getRank_inlocation() %>
+															<%
+														}
+													}
+												%>
+										            	]
+										        },
+										        {
+										            name: '学校得分',
+										            type: 'line',
+										            stack: '总量',
+										            data: [
+										            	<%	int d = 0;
+													for(Ranks ranks : findByNamesameBrand){
+														if(d < findByNamesameBrand.size()){
+															d++;
 															%>
 															<%=ranks.getScore() %>,
 															<%
@@ -257,10 +278,10 @@
 										            type: 'line',
 										            stack: '总量',
 										            data: [
-										            	<%	int d = 0;
+										            	<%	int e = 0;
 													for(Ranks ranks : findByNamesameBrand){
-														if(d < findByNamesameBrand.size()){
-															d++;
+														if(e < findByNamesameBrand.size()){
+															e++;
 															%>
 															<%=ranks.getStar() %>,
 															<%
@@ -272,72 +293,7 @@
 													}
 												%>
 										            	]
-										        },
-										        {
-										            name: '学校层次',
-										            type: 'line',
-										            stack: '总量',
-										            data: [
-										            	<%	int e = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(e < findByNamesameBrand.size()){
-															e++;
-															%>
-															<%=ranks.getLevel() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getLevel() %>
-															<%
-														}
-													}
-												%>
-										            	]
-										        },
-										        {
-										            name: '科研分数',
-										            type: 'line',
-										            stack: '总量',
-										            data: [
-										            	<%	int f = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(f < findByNamesameBrand.size()){
-															f++;
-															%>
-															<%=ranks.getScientific_research_score() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getScientific_research_score() %>
-															<%
-														}
-													}
-												%>
-										            	]
-										        },
-										        {
-										            name: '人才分数',
-										            type: 'line',
-										            stack: '总量',
-										            data: [
-										            	<%	int g = 0;
-													for(Ranks ranks : findByNamesameBrand){
-														if(g < findByNamesameBrand.size()){
-															g++;
-															%>
-															<%=ranks.getTelent_score() %>,
-															<%
-														}else{
-															%>
-															<%=ranks.getTelent_score() %>
-															<%
-														}
-													}
-												%>
-										            	]
-										        }
-										    ]
-										};
+										        }]};
 									// 使用刚指定的配置项和数据显示图表。
 									myChart.setOption(option);
 								</script>
