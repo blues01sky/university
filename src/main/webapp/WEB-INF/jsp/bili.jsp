@@ -159,6 +159,41 @@
 								%>
 						</ul>
 					</div>
+					<div class="zyzbd">
+						<div class="zyzbdl cc00">国内大学占比</div>
+						<div class="zyzbdr"></div>
+					</div>
+					<div class="zyzbli">
+						<ul>
+							<%
+								for(Ranks ranks :OnlyBrand ){
+										%>
+							<li>· <a
+								href="<%=basePath%>bili?brand=<%=ranks.getBrand() %>">
+									<%
+								switch(ranks.getBrand()){
+									case "wsl": 
+										%>武书连<%
+										break;
+									case "xyh": 
+										%>校友会<%
+										break;
+									case "NetBig": 
+										%>网大<%
+										break;
+									default: 
+										%><%=ranks.getBrand() %>
+									<%
+									   	break; 
+								}
+								%>
+							</a>
+							</li>
+							<%
+									}
+								%>
+						</ul>
+					</div>
 				</div>
 			</div>
 			
@@ -198,7 +233,7 @@
 										    },
 										    series: [
 										        {
-										            name: '访问来源',
+										            name: '省份学校的个数和所占比例',
 										            type: 'pie',
 										            radius: '55%',
 										            center: ['50%', '60%'],

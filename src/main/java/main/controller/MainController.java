@@ -96,7 +96,10 @@ public class MainController {
 			bili.setShuliang(ranksServices.findschoolcount(brand, findByBrand.get(0).getYear(), ranks.getLocation()));
 			bilis.add(bili);
 		}
-		System.out.println(bilis);
+		List<Ranks> OnlyBrand = ranksServices.findOnlyBrand();
+		List<Worldranks> OnlyworldBrand = worldranksServices.findOnlyBrand();
+		request.setAttribute("OnlyBrand", OnlyBrand);
+		request.setAttribute("OnlyworldBrand",OnlyworldBrand);
 		request.setAttribute("bilis",bilis);
 		return "bili";
 	}

@@ -44,6 +44,7 @@
 	    	    	window.location.reload();	
 	    	    }
 	    	})
+	    	
 		}
 		}
 		function ajax02(){
